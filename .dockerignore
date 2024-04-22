@@ -1,0 +1,13 @@
+/.git
+/.github
+/.idea
+/dist
+/node_modules
+
+/.dockerignore
+/.env.local
+/.eslintrc.cjs
+/.gitignore
+/.prettierrc.json
+/Dockerfile
+/README.md
