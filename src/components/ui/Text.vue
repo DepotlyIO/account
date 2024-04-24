@@ -9,11 +9,13 @@ interface Props {
   variant?: 'regular' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   tag?: 'div';
   color?: Color;
+  align?: 'start' | 'center' | 'end';
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'regular',
   color: 'color-black',
+  align: 'start',
 });
 
 const computedComponent = computed(() =>
@@ -23,6 +25,7 @@ const computedComponent = computed(() =>
 const computedClasses = computed(() => ({
   [styles['ui-text']]: true,
   [styles[`ui-text--variant-${props.variant}`]]: props.variant,
+  [styles[`ui-text--align-${props.align}`]]: props.align,
 }));
 
 const computedStyles = computed(() => ({
@@ -81,6 +84,20 @@ const computedStyles = computed(() => ({
 
     &-h6 {
       font-size: 1rem;
+    }
+  }
+
+  &--align {
+    &-start {
+      text-align: start;
+    }
+
+    &-center {
+      text-align: center;
+    }
+
+    &-end {
+      text-align: end;
     }
   }
 }
