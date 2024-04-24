@@ -6,6 +6,18 @@ import VueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    assetsInlineLimit: 0,
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        chunkFileNames: '[hash].js',
+        entryFileNames: '[name].js',
+        assetFileNames: '[hash][extname]',
+      },
+    },
+    target: 'es2022',
+  },
   plugins: [vue(), VueDevTools()],
   resolve: {
     alias: {
