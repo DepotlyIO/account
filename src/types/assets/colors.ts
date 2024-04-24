@@ -1,0 +1,16 @@
+export type Color =
+  | 'color-transparent'
+  | 'color-black'
+  | 'color-white'
+  | 'color-blue'
+  | 'color-indigo'
+  | 'color-purple'
+  | 'color-pink'
+  | 'color-red'
+  | 'color-orange'
+  | 'color-yellow'
+  | 'color-green'
+  | 'color-teal'
+  | 'color-cyan'
+  | 'color-gray'
+  | 'color-gray-dark';
