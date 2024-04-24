@@ -1,1 +1,16 @@
-{}
+{
+  "labels": {
+    "email": "Email",
+    "password": "Password"
+  },
+  "actions": {
+    "sign_in": "Sign in"
+  },
+  "pages": {
+    "authentication": {
+      "sign_in": {
+        "title": "Sign in"
+      }
+    }
+  }
+}
