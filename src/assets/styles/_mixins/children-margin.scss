@@ -1,0 +1,11 @@
+@mixin children-margin-block($space) {
+  > *:not(:last-child) {
+    margin-block-end: $space;
+  }
+}
+
+@mixin children-margin-inline($space) {
+  > *:not(:last-child) {
+    margin-inline-end: $space;
+  }
+}

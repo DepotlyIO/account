@@ -18,6 +18,13 @@ export default defineConfig({
     },
     target: 'es2022',
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "@/assets/styles/global.scss";',
+      },
+    },
+  },
   plugins: [vue(), VueDevTools()],
   resolve: {
     alias: {
