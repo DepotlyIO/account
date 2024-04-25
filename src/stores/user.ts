@@ -29,45 +29,51 @@ export const useUserStore = defineStore('user', () => {
   const signIn = async (form: AuthenticationRequest) => {
     if (loading.value) return;
 
-    loading.value = true;
     try {
+      loading.value = true;
       const { data } = await api.authentication.sign_in(form);
 
       user.value = data.user;
       updateTokens(data.tokens);
     } catch (e) {
       console.error(e);
+      throw e;
+    } finally {
+      loading.value = false;
     }
-    loading.value = false;
   };
 
-  const signOut = async () => {
+  const signOut = async (skipRequest = false) => {
     if (loading.value) return;
 
-    loading.value = true;
     try {
-      await api.authentication.sign_out();
+      loading.value = true;
+      if (!skipRequest) await api.authentication.sign_out();
 
-      user.value = undefined;
       updateTokens();
+      user.value = undefined;
     } catch (e) {
       console.error(e);
+      throw e;
+    } finally {
+      loading.value = false;
     }
-    loading.value = false;
   };
 
   const autologin = async () => {
     if (loading.value || !getToken('refresh')) return;
 
-    loading.value = true;
     try {
+      loading.value = true;
       const { data } = await api.authentication.autologin();
 
       user.value = data;
     } catch (e) {
       console.error(e);
+      throw e;
+    } finally {
+      loading.value = false;
     }
-    loading.value = false;
   };
 
   return {

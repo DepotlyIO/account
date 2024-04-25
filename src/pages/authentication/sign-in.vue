@@ -1,18 +1,42 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { useUserStore } from '@/stores/user';
+import { useApi } from '@/composables/useApi';
 import UiText from '@/components/ui/Text.vue';
 import UiFormInput from '@/components/ui/form/Input.vue';
 import UiButton from '@/components/ui/Button.vue';
 
+const router = useRouter();
+const { t } = useI18n();
 const userStore = useUserStore();
+const api = useApi();
 
 const form = ref({
   email: '',
   password: '',
 });
 
-const handleFormSubmit = () => {};
+const error = ref();
+
+const handleFormSubmit = async () => {
+  try {
+    await userStore.signIn({ user: form.value });
+    if (userStore.isAuthenticated) await router.push({ name: 'index' });
+  } catch (e) {
+    if (api.isAxiosError(e))
+      error.value = e.response?.data?.message ?? t('labels.unexpected_server_error');
+  }
+};
+
+watch(
+  form,
+  () => {
+    if (error.value) error.value = undefined;
+  },
+  { deep: true },
+);
 </script>
 
 <template>
@@ -22,9 +46,22 @@ const handleFormSubmit = () => {};
     </UiText>
 
     <form @submit.prevent="handleFormSubmit" :class="$style['page-authentication-sign-in__form']">
-      <UiFormInput name="email" :label="$t('labels.email')" />
+      <UiFormInput
+        v-model="form.email"
+        name="email"
+        :label="$t('labels.email')"
+        type="email"
+        autocomplete="email"
+      />
 
-      <UiFormInput name="password" :label="$t('labels.password')" />
+      <UiFormInput
+        v-model="form.password"
+        :label="$t('labels.password')"
+        :error="error"
+        name="password"
+        type="password"
+        autocomplete="current-password"
+      />
 
       <UiButton
         size="large"

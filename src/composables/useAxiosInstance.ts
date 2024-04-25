@@ -1,29 +1,8 @@
 import axios from 'axios';
 import { useUserStore } from '@/stores/user';
-import type {
-  InternalAxiosRequestConfig,
-  AxiosInstance,
-  AxiosError,
-  AxiosRequestConfig,
-} from 'axios';
-import type { AuthenticationResponse } from '@/types/models/authentication';
+import type { AxiosInstance } from 'axios';
 
 let instance: AxiosInstance;
-
-interface ExtendedInternalAxiosRequestConfig extends InternalAxiosRequestConfig {
-  _retry?: boolean;
-  _refresh?: boolean;
-}
-
-interface ExtendedAxiosError extends AxiosError {
-  _retry?: boolean;
-  _refresh?: boolean;
-}
-
-interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
-  _retry?: boolean;
-  _refresh?: boolean;
-}
 
 export const useAxiosInstance = (): AxiosInstance => {
   if (!instance) {
@@ -33,41 +12,47 @@ export const useAxiosInstance = (): AxiosInstance => {
       baseURL: import.meta.env.VITE_BASE_API_URL,
     });
 
-    instance.interceptors.request.use((config: ExtendedInternalAxiosRequestConfig) => {
-      const access_token = userStore.getToken('access');
+    instance.interceptors.request.use((config) => {
+      const token = userStore.getToken(
+        '_refresh' in config && config._refresh ? 'refresh' : 'access',
+      );
 
-      if (access_token && !config._refresh) {
-        config.headers['Authorization'] = access_token;
-      }
+      if (token) config.headers.Authorization = token;
 
       return config;
     });
 
     instance.interceptors.response.use(
       (response) => response,
-      async (error: ExtendedAxiosError) => {
+      async (error) => {
         if (
           axios.isAxiosError(error) &&
-          error.response?.status === 401 &&
+          error.config &&
+          error.response &&
+          error.response.status === 401 &&
+          // @ts-expect-error
           !error._refresh &&
+          // @ts-expect-error
           !error._retry &&
           userStore.getToken('refresh')
         ) {
-          const { data } = await instance<AuthenticationResponse>('/v1/authentications/refresh', {
-            method: 'post',
-            headers: {
-              Authorization: userStore.getToken('refresh'),
-            },
-            _refresh: true,
-          } as ExtendedAxiosRequestConfig);
+          // @ts-expect-error
+          error.config._retry = true;
 
-          userStore.user = data.user;
-          userStore.updateTokens(data.tokens);
+          try {
+            const { data } = await instance('/v1/authentications/refresh', {
+              method: 'post',
+              // @ts-expect-error
+              _refresh: true,
+            });
 
-          return await instance({
-            ...error.request,
-            _retry: true,
-          });
+            userStore.user = data.user;
+            userStore.updateTokens(data.tokens);
+
+            return await instance(error.config);
+          } catch (e) {
+            await userStore.signOut(true);
+          }
         } else {
           return Promise.reject(error);
         }

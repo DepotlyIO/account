@@ -1,7 +1,8 @@
 {
   "labels": {
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "unexpected_server_error": "Unexpected server error"
   },
   "actions": {
     "sign_in": "Sign in"
