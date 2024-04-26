@@ -1,59 +1,39 @@
 const getNamesGenerator = (): ((name: string, filename: string) => string) => {
-  const names = new Map();
+  const generatedNames = new Map<string, string>();
 
-  const chars = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-  ];
+  // a-z
+  const chars = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
 
-  const firstAvailableChar = chars[0];
-
-  const currentNameChars = [firstAvailableChar];
+  const [firstAvailableChar] = chars;
+  const currentNameChars: string[] = [];
 
   const generateNewName = (key: string) => {
-    const currentName = currentNameChars.join('');
-
     const index = currentNameChars.length - 1;
 
-    if (currentNameChars[index] === chars.at(chars.length - 1)) {
-      currentNameChars[index] = firstAvailableChar;
-      currentNameChars.push(firstAvailableChar);
-    } else {
-      currentNameChars[index] = chars[chars.indexOf(currentNameChars[index]) + 1];
+    switch (true) {
+      // When empty array
+      case !currentNameChars.length:
+        currentNameChars.push(firstAvailableChar);
+        break;
+      // When last char used
+      case currentNameChars[index] === chars.at(chars.length - 1):
+        currentNameChars[index] = firstAvailableChar;
+        currentNameChars.push(firstAvailableChar);
+        break;
+      // Just change last element in array
+      default:
+        currentNameChars[index] = chars[chars.indexOf(currentNameChars[index]) + 1];
     }
 
-    names.set(key, currentName);
+    const currentName = currentNameChars.join('');
+    generatedNames.set(key, currentName);
 
     return currentName;
   };
 
   return (name: string, filename: string): string => {
     const key = `${name}_${filename}`;
-    return names.get(key) || generateNewName(key);
+    return generatedNames.get(key) || generateNewName(key);
   };
 };
 
