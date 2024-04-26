@@ -22,7 +22,7 @@ export default defineConfig({
   },
   css: {
     modules: {
-      generateScopedName: getNamesGenerator(),
+      generateScopedName: process.env.PROD ? getNamesGenerator() : (name) => name,
     },
     preprocessorOptions: {
       scss: {
