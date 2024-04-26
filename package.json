@@ -14,6 +14,7 @@
     "generate-sprites": "tsx utils/sprites-generator"
   },
   "dependencies": {
+    "@unhead/vue": "^1.9.7",
     "axios": "^1.6.8",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",

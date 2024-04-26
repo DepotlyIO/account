@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      '@unhead/vue':
+        specifier: ^1.9.7
+        version: 1.9.7(vue@3.4.25(typescript@5.4.5))
       axios:
         specifier: ^1.6.8
         version: 1.6.8
@@ -1198,6 +1201,32 @@ packages:
       {
         integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==,
       }
+
+  '@unhead/dom@1.9.7':
+    resolution:
+      {
+        integrity: sha512-suZVi8apZCNEMKuasGboBB3njJJm+gd8G0NA89geVozJ0bz40FvLyLEJZ9LirbzpujmhgHhsUSvlq4QyslRqdQ==,
+      }
+
+  '@unhead/schema@1.9.7':
+    resolution:
+      {
+        integrity: sha512-naQGY1gQqq8DmQCxVTOeeXIqaRwbqnLEgvQl12zPEDviYxmg7TCbmKyN9uT4ZarQbJ2WYT2UtYvdSrmTXcwlBw==,
+      }
+
+  '@unhead/shared@1.9.7':
+    resolution:
+      {
+        integrity: sha512-srji+qaBkkGOTdtTmFxt3AebFYcpt1qQHeQva7X3dSm5nZJDoKj35BJJTZfBSRCjgvkTtsdVUT14f9p9/4BCMA==,
+      }
+
+  '@unhead/vue@1.9.7':
+    resolution:
+      {
+        integrity: sha512-c5pcNvi3FwMfqd+lfD3XUyRKPDv/AVPrep84CFXaqB7ebb+2OQTgtxBiCoRsa8+DtdhYI50lYJ/yeVdfLI9XUw==,
+      }
+    peerDependencies:
+      vue: '>=2.7 || >=3'
 
   '@vitejs/plugin-vue@5.0.4':
     resolution:
@@ -2987,6 +3016,12 @@ packages:
         integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==,
       }
 
+  unhead@1.9.7:
+    resolution:
+      {
+        integrity: sha512-Kv7aU5l41qiq36t9qMks8Pgsj7adaTBm9aDS6USlmodTXioeqlJ5vEu9DI+8ZZPwRlmof3aDlo1kubyaXdSNmQ==,
+      }
+
   universalify@2.0.1:
     resolution:
       {
@@ -3196,6 +3231,12 @@ packages:
         integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==,
       }
     engines: { node: '>=10' }
+
+  zhead@2.2.4:
+    resolution:
+      {
+        integrity: sha512-8F0OI5dpWIA5IGG5NHUg9staDwz/ZPxZtvGVf01j7vHqSyZ0raHY+78atOVxRqb73AotX22uV1pXt3gYSstGag==,
+      }
 
 snapshots:
   '@aashutoshrathi/word-wrap@1.2.6': {}
@@ -3792,6 +3833,28 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@unhead/dom@1.9.7':
+    dependencies:
+      '@unhead/schema': 1.9.7
+      '@unhead/shared': 1.9.7
+
+  '@unhead/schema@1.9.7':
+    dependencies:
+      hookable: 5.5.3
+      zhead: 2.2.4
+
+  '@unhead/shared@1.9.7':
+    dependencies:
+      '@unhead/schema': 1.9.7
+
+  '@unhead/vue@1.9.7(vue@3.4.25(typescript@5.4.5))':
+    dependencies:
+      '@unhead/schema': 1.9.7
+      '@unhead/shared': 1.9.7
+      hookable: 5.5.3
+      unhead: 1.9.7
+      vue: 3.4.25(typescript@5.4.5)
 
   '@vitejs/plugin-vue@5.0.4(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0))(vue@3.4.25(typescript@5.4.5))':
     dependencies:
@@ -4865,6 +4928,13 @@ snapshots:
 
   undici-types@5.26.5: {}
 
+  unhead@1.9.7:
+    dependencies:
+      '@unhead/dom': 1.9.7
+      '@unhead/schema': 1.9.7
+      '@unhead/shared': 1.9.7
+      hookable: 5.5.3
+
   universalify@2.0.1: {}
 
   update-browserslist-db@1.0.13(browserslist@4.23.0):
@@ -5006,3 +5076,5 @@ snapshots:
   yallist@4.0.0: {}
 
   yocto-queue@0.1.0: {}
+
+  zhead@2.2.4: {}
