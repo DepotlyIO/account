@@ -1,4 +1,5 @@
 $colors: (
+  'inherit': inherit,
   'transparent': transparent,
   'white': #ffffff,
   'black': #212529,
@@ -13,12 +14,13 @@ $colors: (
   'teal': #20c997,
   'cyan': #0dcaf0,
   'gray': #6c757d,
+  'gray-light': #f6f8fa,
   'gray-dark': #343a40,
   'border': #dee2e6,
   'border-active': #86b7fe,
 );
 
-$colors-without-variants: 'border', 'border-active';
+$colors-without-variants: 'inherit', 'border', 'border-active';
 
 $colors-equal-variants: 'transparent';
 

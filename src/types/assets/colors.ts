@@ -1,4 +1,5 @@
 export type Color =
+  | 'color-inherit'
   | 'color-transparent'
   | 'color-black'
   | 'color-white'
@@ -13,4 +14,5 @@ export type Color =
   | 'color-teal'
   | 'color-cyan'
   | 'color-gray'
+  | 'color-gray-light'
   | 'color-gray-dark';
