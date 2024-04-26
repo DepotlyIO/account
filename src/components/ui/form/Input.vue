@@ -15,6 +15,7 @@ interface Props {
   disabled?: boolean;
   readonly?: boolean;
   error?: string | string[];
+  tabindex?: number | string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -38,6 +39,7 @@ const inputAttributes = computed(() => ({
   disabled: props.disabled,
   readonly: props.readonly,
   required: props.required,
+  tabindex: props.tabindex,
   class: {
     [styles['ui-form-text__input']]: true,
   },
@@ -50,9 +52,15 @@ const computedError = computed(() =>
 
 <template>
   <section :class="$style['ui-form-text']">
-    <label v-if="props.label" :for="id" :class="$style['ui-form-text__label']">
-      {{ props.label }}
-    </label>
+    <div :class="$style['ui-form-text__head']">
+      <label v-if="props.label" :for="id" :class="$style['ui-form-text__head_label']">
+        {{ props.label }}
+      </label>
+
+      <div v-if="$slots['label']" :class="$style['ui-form-text__head_label-slot']">
+        <slot name="label" />
+      </div>
+    </div>
 
     <input v-model="model" v-bind="inputAttributes" />
 
@@ -71,8 +79,18 @@ const computedError = computed(() =>
     display: block;
   }
 
-  &__label {
-    cursor: pointer;
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_label {
+      cursor: pointer;
+
+      &-slot {
+        margin-inline-start: auto;
+      }
+    }
   }
 
   &__input {

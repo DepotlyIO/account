@@ -10,7 +10,8 @@
   "pages": {
     "authentication": {
       "sign_in": {
-        "title": "Sign in"
+        "title": "Sign in",
+        "forgot_password": "Forgot password?"
       }
     }
   }

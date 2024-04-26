@@ -3,7 +3,7 @@
 <template>
   <main :class="$style['page-authentication']">
     <div :class="$style['page-authentication__wrapper']">
-      <RouterView></RouterView>
+      <RouterView />
     </div>
   </main>
 </template>
@@ -17,7 +17,6 @@
   align-items: center;
 
   &__wrapper {
-    min-width: 350px;
     max-width: calc(100dvw - 20px);
   }
 }

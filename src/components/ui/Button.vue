@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, useCssModule } from 'vue';
 import { useCssVariable } from '@/composables/useCssVariable';
+import UiIcon from '@/components/ui/Icon.vue';
 import type { Color } from '@/types/assets/colors';
 
 const styles = useCssModule();
@@ -10,8 +11,10 @@ interface Props {
   variant?: 'default' | 'outlined' | 'text';
   size?: 'small' | 'small-compact' | 'medium' | 'medium-compact' | 'large' | 'large-compact';
   type?: 'button' | 'submit' | 'reset';
+  loading?: boolean;
   disabled?: boolean;
   rectangular?: boolean;
+  tabindex?: number | string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -19,6 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
   size: 'medium',
   type: 'button',
+  loading: false,
   disabled: false,
   rectangular: false,
 });
@@ -28,6 +32,7 @@ const computedClasses = computed(() => ({
   [styles[`ui-button--variant-${props.variant}`]]: props.variant,
   [styles[`ui-button--size-${props.size}`]]: props.size,
   [styles['ui-button--rectangular']]: props.rectangular,
+  [styles['ui-button--loading']]: props.loading,
 }));
 
 const secondColor = computed(() =>
@@ -49,8 +54,17 @@ const computedStyles = computed(() => {
 </script>
 
 <template>
-  <button :type="props.type" :class="computedClasses">
-    <slot />
+  <button
+    :disabled="props.disabled"
+    :type="props.type"
+    :tabindex="props.tabindex"
+    :class="computedClasses"
+  >
+    <template v-if="loading">
+      <UiIcon name="loading" size="1em" color="color-inherit" />
+    </template>
+
+    <slot v-else />
   </button>
 </template>
 
@@ -164,6 +178,16 @@ const computedStyles = computed(() => {
 
   &--rectangular {
     border-radius: 0;
+  }
+
+  &--loading {
+    pointer-events: none;
+    filter: opacity(90%);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    filter: opacity(50%);
   }
 }
 </style>
