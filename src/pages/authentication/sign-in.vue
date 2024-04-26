@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import { useHead } from '@unhead/vue';
 import { useUserStore } from '@/stores/user';
 import { useApi } from '@/composables/useApi';
 import UiText from '@/components/ui/Text.vue';
@@ -37,6 +38,10 @@ watch(
   },
   { deep: true },
 );
+
+useHead(() => ({
+  title: t('pages.authentication.meta.title'),
+}));
 </script>
 
 <template>

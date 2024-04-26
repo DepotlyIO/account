@@ -9,6 +9,9 @@
   },
   "pages": {
     "authentication": {
+      "meta": {
+        "title": "Sign in"
+      },
       "sign_in": {
         "title": "Sign in",
         "forgot_password": "Forgot password?"
