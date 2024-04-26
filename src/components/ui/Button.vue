@@ -61,7 +61,7 @@ const computedStyles = computed(() => {
     :class="computedClasses"
   >
     <template v-if="loading">
-      <UiIcon name="loading" size="1em" color="color-inherit" />
+      <UiIcon name="loading" size="1em" color="color-inherit" :class="$style['ui-button__icon']" />
     </template>
 
     <slot v-else />
@@ -188,6 +188,10 @@ const computedStyles = computed(() => {
   &:disabled {
     pointer-events: none;
     filter: opacity(50%);
+  }
+
+  &__icon {
+    animation: spin 0.5s linear infinite;
   }
 }
 </style>
