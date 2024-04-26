@@ -11,9 +11,9 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        chunkFileNames: '[hash].js',
-        entryFileNames: '[name].js',
-        assetFileNames: '[hash][extname]',
+        chunkFileNames: 'chunks/[hash].js',
+        entryFileNames: 'entries/[hash].js',
+        assetFileNames: 'assets/[hash][extname]',
       },
     },
     target: 'es2022',
