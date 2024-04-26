@@ -6,3 +6,12 @@ export interface User {
   email: string;
   account_type: AccountType;
 }
+
+export interface UserCreateRequest {
+  user: {
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+  };
+}

@@ -31,10 +31,12 @@ export const useUserStore = defineStore('user', () => {
 
     try {
       loading.value = true;
-      const { data } = await api.authentication.sign_in(form);
+      const { data: tokensData } = await api.authentication.sign_in(form);
 
-      user.value = data.user;
-      updateTokens(data.tokens);
+      updateTokens(tokensData.tokens);
+
+      const { data: userData } = await api.user.info();
+      user.value = userData;
     } catch (e) {
       console.error(e);
       throw e;
@@ -60,12 +62,12 @@ export const useUserStore = defineStore('user', () => {
     }
   };
 
-  const autologin = async () => {
+  const getUserInfo = async () => {
     if (loading.value || !getToken('refresh')) return;
 
     try {
       loading.value = true;
-      const { data } = await api.authentication.autologin();
+      const { data } = await api.user.info();
 
       user.value = data;
     } catch (e) {
@@ -84,6 +86,6 @@ export const useUserStore = defineStore('user', () => {
     getToken,
     signIn,
     signOut,
-    autologin,
+    getUserInfo,
   };
 });

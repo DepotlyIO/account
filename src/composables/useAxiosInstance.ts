@@ -46,7 +46,6 @@ export const useAxiosInstance = (): AxiosInstance => {
               _refresh: true,
             });
 
-            userStore.user = data.user;
             userStore.updateTokens(data.tokens);
 
             return await instance(error.config);

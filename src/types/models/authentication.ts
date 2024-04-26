@@ -1,5 +1,3 @@
-import type { User } from '@/types/models/user';
-
 export interface Tokens {
   access: string;
   refresh: string;
@@ -13,6 +11,5 @@ export interface AuthenticationRequest {
 }
 
 export interface AuthenticationResponse {
-  user: User;
   tokens: Tokens;
 }

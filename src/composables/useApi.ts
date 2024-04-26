@@ -12,7 +12,10 @@ export const useApi = (): Api => {
       authentication: {
         sign_in: (data) => axios('/v1/authentications', { method: 'post', data }),
         sign_out: () => axios('/v1/authentications', { method: 'delete' }),
-        autologin: () => axios('/v1/authentications/autologin', { method: 'post' }),
+      },
+      user: {
+        info: () => axios('/v1/user', { method: 'get' }),
+        create: (data) => axios('/v1/user', { method: 'post', data }),
       },
       isAxiosError,
     };
