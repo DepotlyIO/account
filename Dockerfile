@@ -14,7 +14,7 @@ RUN pnpm install
 
 COPY . .
 
-# RUN pnpm generate-sprites
+RUN pnpm generate-sprites
 
 RUN pnpm build
 

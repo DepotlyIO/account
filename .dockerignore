@@ -3,6 +3,7 @@
 /.idea
 /dist
 /node_modules
+/src/assets/sprites
 
 /.dockerignore
 /.env.local
