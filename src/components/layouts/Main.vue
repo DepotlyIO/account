@@ -5,11 +5,11 @@ import AppMenu from '@/components/app/Menu.vue';
 <template>
   <div :class="$style['layout-default']">
     <div :class="$style['layout-default__wrapper']">
-      <AppMenu :class="$style['layout-default__menu']" />
-
       <main :class="$style['layout-default__main']">
         <slot />
       </main>
+
+      <AppMenu :class="$style['layout-default__menu']" />
     </div>
   </div>
 </template>

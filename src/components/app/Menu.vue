@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import UiIcon from '@/components/ui/Icon.vue';
+import UiText from '@/components/ui/Text.vue';
 import type { MainIcon } from '@/types/assets/icons';
 
 const { t } = useI18n();
@@ -50,7 +51,7 @@ const menuItems = computed(() =>
     >
       <UiIcon :name="item.icon" color="color-inherit" />
 
-      <span>{{ item.text }}</span>
+      <UiText variant="underline" color="color-inherit">{{ item.text }}</UiText>
     </RouterLink>
   </div>
 </template>
@@ -63,9 +64,11 @@ const menuItems = computed(() =>
   background: $color-gray-light;
 
   &__item {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: $color-black;
 
     &--active {
