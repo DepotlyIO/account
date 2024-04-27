@@ -79,7 +79,7 @@ const computedError = computed(() =>
 <style module lang="scss">
 .ui-form-text {
   width: 100%;
-  @include children-margin-block(0.5rem);
+  @include children-margin-block(0.25rem);
 
   > * {
     display: block;

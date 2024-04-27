@@ -1,12 +1,16 @@
 {
   "labels": {
+    "name": "Name",
     "email": "Email",
     "password": "Password",
+    "password_confirmation": "Password confirmation",
     "unexpected_server_error": "Unexpected server error"
   },
   "actions": {
     "sign_in": "Sign in",
-    "create_account": "Create an account"
+    "sign_up": "Sign up",
+    "create_account": "Create an account",
+    "back_to_authentication": "Back to authentication"
   },
   "pages": {
     "index": {
@@ -22,6 +26,13 @@
         "title": "Sign in",
         "forgot_password": "Forgot password?",
         "sign_up_text": "New to Depotly?"
+      },
+      "sign_up": {
+        "meta": {
+          "title": "Sign up"
+        },
+        "title": "Sign up",
+        "already_have_account": "Already have account?"
       },
       "reset": {
         "meta": {

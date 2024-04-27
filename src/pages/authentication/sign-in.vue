@@ -95,7 +95,7 @@ useHead(() => ({
 
     <section :class="$style['page-authentication-sign-in__links']">
       {{ t('pages.authentication.sign_in.sign_up_text') }}
-      <RouterLink :to="{ name: 'authentication-sign-up'}">
+      <RouterLink :to="{ name: 'authentication-sign-up' }">
         {{ t('actions.create_account') }}
       </RouterLink>
     </section>
