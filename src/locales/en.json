@@ -5,7 +5,8 @@
     "unexpected_server_error": "Unexpected server error"
   },
   "actions": {
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "create_account": "Create an account"
   },
   "pages": {
     "index": {
@@ -19,7 +20,8 @@
           "title": "Sign in"
         },
         "title": "Sign in",
-        "forgot_password": "Forgot password?"
+        "forgot_password": "Forgot password?",
+        "sign_up_text": "New to Depotly?"
       },
       "reset": {
         "meta": {

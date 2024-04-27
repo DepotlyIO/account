@@ -19,7 +19,7 @@
   &__wrapper {
     width: 100%;
     padding: 10px;
-    max-width: 440px;
+    max-width: 460px;
   }
 }
 </style>

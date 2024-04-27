@@ -55,9 +55,9 @@ const computedError = computed(() =>
 <template>
   <section :class="$style['ui-form-text']">
     <div :class="$style['ui-form-text__head']">
-      <label v-if="props.label" :for="id" :class="$style['ui-form-text__head_label']">
+      <UiText variant="underline" :for="id" tag="label" :class="$style['ui-form-text__head_label']">
         {{ props.label }}
-      </label>
+      </UiText>
 
       <div v-if="$slots['label']" :class="$style['ui-form-text__head_label-slot']">
         <slot name="label" />

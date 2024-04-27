@@ -22,7 +22,7 @@ useHead(() => ({
 
 <template>
   <div :class="$style['page-authentication-reset']">
-    <UiText variant="h1" align="center" :class="$style['page-authentication-reset__title']">
+    <UiText variant="h2" align="center" :class="$style['page-authentication-reset__title']">
       {{ t('pages.authentication.reset.title') }}
     </UiText>
 
