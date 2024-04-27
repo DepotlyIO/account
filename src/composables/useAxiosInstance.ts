@@ -9,7 +9,7 @@ export const useAxiosInstance = (): AxiosInstance => {
     const userStore = useUserStore();
 
     instance = axios.create({
-      baseURL: import.meta.env.DEV ? undefined : import.meta.env.VITE_BASE_API_URL,
+      baseURL: import.meta.env.VITE_BASE_API_URL,
     });
 
     instance.interceptors.request.use((config) => {
