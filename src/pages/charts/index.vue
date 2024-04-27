@@ -1,9 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <slot />
-  </div>
+  <div></div>
 </template>
 
 <style module lang="scss"></style>

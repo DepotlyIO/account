@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 
 import authentication from '@/configurations/routes/authentication';
+import charts from '@/configurations/routes/charts';
+import settings from '@/configurations/routes/settings';
+import wallets from '@/configurations/routes/wallets';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +19,9 @@ const router = createRouter({
     },
 
     ...authentication,
+    ...charts,
+    ...settings,
+    ...wallets,
   ],
 });
 
