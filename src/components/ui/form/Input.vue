@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T">
 import { computed, useCssModule } from 'vue';
 import { useUuid } from '@/composables/useUuid';
+import UiText from '@/components/ui/Text.vue';
 
 const styles = useCssModule();
 const uuid = useUuid();
@@ -9,6 +10,7 @@ interface Props {
   name: string;
   label?: string;
   placeholder?: string;
+  hint?: string;
   type?: 'text' | 'email' | 'password';
   autocomplete?: 'off' | 'email' | 'current-password' | 'new-password' | 'name';
   required?: boolean;
@@ -67,6 +69,10 @@ const computedError = computed(() =>
     <div v-if="props.error" :class="$style['ui-form-text__error']">
       {{ computedError }}
     </div>
+
+    <UiText v-if="props.hint" variant="underline" color="color-gray">
+      {{ props.hint }}
+    </UiText>
   </section>
 </template>
 

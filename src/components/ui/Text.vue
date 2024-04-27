@@ -6,7 +6,7 @@ import type { Color } from '@/types/assets/colors';
 const styles = useCssModule();
 
 interface Props {
-  variant?: 'regular' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'regular' | 'lead' | 'underline';
   tag?: 'div';
   color?: Color;
   align?: 'start' | 'center' | 'end';
@@ -53,15 +53,6 @@ const computedStyles = computed(() => ({
       font-weight: 500;
     }
 
-    &-lead {
-      font-size: 1.25rem;
-      font-weight: 300;
-    }
-
-    &-underline {
-      font-size: 0.875em;
-    }
-
     &-h1 {
       font-size: calc(1.375rem + 1.5vw);
     }
@@ -84,6 +75,15 @@ const computedStyles = computed(() => ({
 
     &-h6 {
       font-size: 1rem;
+    }
+
+    &-lead {
+      font-size: 1.25rem;
+      font-weight: 300;
+    }
+
+    &-underline {
+      font-size: 0.875em;
     }
   }
 

@@ -24,7 +24,10 @@
       "reset": {
         "meta": {
           "title": "Reset password"
-        }
+        },
+        "title": "Reset your password",
+        "description": "If your email exists in our system you will receive instructions",
+        "button": "Send password reset email"
       }
     }
   }

@@ -56,6 +56,7 @@ useHead(() => ({
         :label="$t('labels.email')"
         :readonly="userStore.loading"
         name="email"
+        placeholder="user@example.com"
         type="email"
         autocomplete="email"
         required
@@ -68,6 +69,7 @@ useHead(() => ({
         :readonly="userStore.loading"
         :error="error"
         name="password"
+        placeholder="password"
         type="password"
         autocomplete="current-password"
         required
@@ -82,7 +84,7 @@ useHead(() => ({
 
       <UiButton
         :loading="userStore.loading"
-        size="large"
+        color="color-green"
         type="submit"
         tabindex="3"
         :class="$style['page-authentication-sign-in__form_button']"
@@ -104,8 +106,7 @@ useHead(() => ({
     flex-direction: column;
     gap: 10px;
     padding: 15px;
-    width: 320px;
-    max-width: 100%;
+    width: 100%;
     border-radius: 15px;
     background: $color-gray-light;
     border: 1px solid $color-border;

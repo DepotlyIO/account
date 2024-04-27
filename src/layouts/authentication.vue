@@ -17,7 +17,9 @@
   align-items: center;
 
   &__wrapper {
-    max-width: calc(100dvw - 20px);
+    width: 100%;
+    padding: 10px;
+    max-width: 440px;
   }
 }
 </style>
