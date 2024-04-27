@@ -8,6 +8,11 @@
     "sign_in": "Sign in"
   },
   "pages": {
+    "index": {
+      "meta": {
+        "title": "Home"
+      }
+    },
     "authentication": {
       "meta": {
         "title": "Sign in"
