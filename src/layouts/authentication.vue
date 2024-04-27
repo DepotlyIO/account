@@ -1,15 +1,15 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main :class="$style['page-authentication']">
-    <div :class="$style['page-authentication__wrapper']">
-      <RouterView />
+  <main :class="$style['layout-authentication']">
+    <div :class="$style['layout-authentication__wrapper']">
+      <slot />
     </div>
   </main>
 </template>
 
 <style module lang="scss">
-.page-authentication {
+.layout-authentication {
   width: 100dvw;
   height: 100dvh;
   display: flex;
