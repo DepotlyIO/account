@@ -51,7 +51,9 @@ const menuItems = computed(() =>
     >
       <UiIcon :name="item.icon" color="color-inherit" />
 
-      <UiText variant="underline" color="color-inherit">{{ item.text }}</UiText>
+      <UiText variant="underline" color="color-inherit" :class="$style['app-menu__item_text']">
+        {{ item.text }}
+      </UiText>
     </RouterLink>
   </div>
 </template>
@@ -61,18 +63,45 @@ const menuItems = computed(() =>
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: $color-gray-light;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 20px;
 
   &__item {
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
     color: $color-black;
 
     &--active {
       color: $color-blue;
+    }
+
+    &_text {
+      display: none;
+    }
+  }
+
+  @media #{$media-query-tablet} {
+    padding: 20px 13px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+
+    &__item {
+      height: auto;
+    }
+  }
+
+  @media #{$media-query-desktop} {
+    padding: 20px;
+
+    &__item {
+      &_text {
+        display: unset;
+      }
     }
   }
 }

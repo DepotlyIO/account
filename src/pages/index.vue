@@ -10,7 +10,11 @@ useHead(() => ({
 </script>
 
 <template>
-  <div>Hi</div>
+  <div :class="$style['page-index']">Home</div>
 </template>
 
-<style></style>
+<style module lang="scss">
+.page-index {
+  min-height: 9999px;
+}
+</style>

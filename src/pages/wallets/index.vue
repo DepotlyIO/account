@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div></div>
+  <div>Wallets</div>
 </template>
 
 <style module lang="scss"></style>
