@@ -40,7 +40,7 @@ watch(
 );
 
 useHead(() => ({
-  title: t('pages.authentication.meta.title'),
+  title: t('pages.authentication.sign_in.meta.title'),
 }));
 </script>
 

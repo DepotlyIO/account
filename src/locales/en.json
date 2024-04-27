@@ -14,12 +14,17 @@
       }
     },
     "authentication": {
-      "meta": {
-        "title": "Sign in"
-      },
       "sign_in": {
+        "meta": {
+          "title": "Sign in"
+        },
         "title": "Sign in",
         "forgot_password": "Forgot password?"
+      },
+      "reset": {
+        "meta": {
+          "title": "Reset password"
+        }
       }
     }
   }
