@@ -12,6 +12,12 @@
     "create_account": "Create an account",
     "back_to_authentication": "Back to authentication"
   },
+  "menu": {
+    "index": "Home",
+    "wallets": "Wallets",
+    "charts": "Charts",
+    "settings": "Settings"
+  },
   "pages": {
     "index": {
       "meta": {
