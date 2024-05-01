@@ -4,7 +4,9 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  is_email_verified: boolean;
   account_type: AccountType;
+  is_account_verified: boolean;
 }
 
 export interface UserCreateRequest {
