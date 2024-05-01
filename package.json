@@ -7,6 +7,7 @@
     "node": "22.x",
     "pnpm": "9.x"
   },
+  "packageManager": "pnpm@9.0.6+sha1.648f6014eb363abb36618f2ba59282a9eeb3e879",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
