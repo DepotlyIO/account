@@ -14,7 +14,7 @@ const userStore = useUserStore();
 const accountType = computed(() => t(`labels.${userStore.user?.account_type}_account_type`));
 
 useHead(() => ({
-  title: t('pages.settings.meta.title'),
+  title: t('pages.account.meta.title'),
 }));
 </script>
 

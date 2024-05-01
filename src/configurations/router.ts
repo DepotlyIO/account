@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 
+import account from '@/configurations/routes/account';
 import authentication from '@/configurations/routes/authentication';
 import charts from '@/configurations/routes/charts';
-import settings from '@/configurations/routes/settings';
 import wallets from '@/configurations/routes/wallets';
 
 const router = createRouter({
@@ -18,9 +18,9 @@ const router = createRouter({
       },
     },
 
+    ...account,
     ...authentication,
     ...charts,
-    ...settings,
     ...wallets,
   ],
 });

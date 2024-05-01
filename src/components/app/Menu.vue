@@ -28,8 +28,8 @@ const menuItems = computed(() =>
         icon: 'chart-bar',
       },
       {
-        name: 'settings',
-        icon: 'cog',
+        name: 'account',
+        icon: 'account-circle',
       },
     ] as RawMenuItem[]
   ).map((item) => ({

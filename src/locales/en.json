@@ -61,9 +61,9 @@
         "title": "Charts"
       }
     },
-    "settings": {
+    "account": {
       "meta": {
-        "title": "Settings"
+        "title": "Account"
       }
     }
   }
