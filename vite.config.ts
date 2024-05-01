@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue';
 import VueDevTools from 'vite-plugin-vue-devtools';
 import { VitePWA } from 'vite-plugin-pwa';
 
-import getNamesGenerator from './utils/modulesNamesGenerator';
+import getCssModulesNamesGenerator from './utils/cssModulesNamesGenerator';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,7 +24,7 @@ export default defineConfig({
   css: {
     modules: {
       generateScopedName:
-        process.env.NODE_ENV === 'production' ? getNamesGenerator() : (name) => name,
+        process.env.NODE_ENV === 'production' ? getCssModulesNamesGenerator() : (name) => name,
     },
     preprocessorOptions: {
       scss: {
