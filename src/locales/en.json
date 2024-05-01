@@ -4,7 +4,9 @@
     "email": "Email",
     "password": "Password",
     "password_confirmation": "Password confirmation",
-    "unexpected_server_error": "Unexpected server error"
+    "unexpected_server_error": "Unexpected server error",
+    "regular_account_type": "Regular account",
+    "company_account_type": "Company account"
   },
   "actions": {
     "sign_in": "Sign in",
@@ -47,6 +49,21 @@
         "title": "Reset your password",
         "description": "If your email exists in our system you will receive instructions",
         "button": "Send password reset email"
+      }
+    },
+    "wallets": {
+      "meta": {
+        "title": "Wallets"
+      }
+    },
+    "charts": {
+      "meta": {
+        "title": "Charts"
+      }
+    },
+    "settings": {
+      "meta": {
+        "title": "Settings"
       }
     }
   }
