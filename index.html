@@ -7,9 +7,44 @@
     <link rel="mask-icon" href="/src/assets/images/svg/logo.svg" color="black" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f6f8fa" />
+    <style>
+      .loader {
+          width: 100dvw;
+          height: 100dvh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .loader > svg {
+          width: 50%;
+          max-width: 250px;
+          color: #7baae4;
+          animation: spin 0.5s linear infinite;
+      }
+
+      @keyframes spin {
+          0% {
+              transform: rotate(0deg);
+          }
+          50% {
+              transform: rotate(180deg);
+          }
+          100% {
+              transform: rotate(360deg);
+          }
+      }
+
+    </style>
     <script type="module" src="/src/main.ts" defer></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="loader">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" fill="currentColor" />
+        </svg>
+      </div>
+    </div>
   </body>
 </html>
