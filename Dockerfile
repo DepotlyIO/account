@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1
 
-FROM node:20-alpine as build
+FROM node:22-alpine as build
 
 ARG VITE_BASE_API_URL
 
