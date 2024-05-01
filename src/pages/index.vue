@@ -15,6 +15,5 @@ useHead(() => ({
 
 <style module lang="scss">
 .page-index {
-  min-height: 9999px;
 }
 </style>
