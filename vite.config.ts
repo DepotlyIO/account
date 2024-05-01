@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import VueDevTools from 'vite-plugin-vue-devtools';
+import { VitePWA } from 'vite-plugin-pwa';
 
 import getNamesGenerator from './utils/modulesNamesGenerator';
 
@@ -31,7 +32,47 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(), VueDevTools()],
+  plugins: [
+    vue(),
+    VueDevTools(),
+    VitePWA({
+      injectRegister: 'auto',
+      manifest: {
+        description: 'Depotly application',
+        icons: [
+          {
+            src: 'pwa/logo-64x64.png',
+            sizes: '64x64',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa/logo-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa/logo-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'pwa/logo-512x512-maskable.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+        name: 'Depotly',
+        short_name: 'Depotly',
+        theme_color: '#ffffff',
+      },
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
