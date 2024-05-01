@@ -80,7 +80,7 @@ useHead(() => ({
       />
 
       <UiFormInput
-        v-model="form.password"
+        v-model="form.password_confirmation"
         :label="$t('labels.password_confirmation')"
         :readonly="loading"
         :error="error"
