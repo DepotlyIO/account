@@ -65,7 +65,7 @@ export default defineConfig({
         ],
         name: 'Depotly',
         short_name: 'Depotly',
-        theme_color: '#ffffff',
+        theme_color: '#f6f8fa',
       },
       registerType: 'autoUpdate',
       workbox: {
