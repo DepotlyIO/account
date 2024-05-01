@@ -94,6 +94,10 @@ const computedStyles = computed(() => ({
       font-size: 1rem;
     }
 
+    &-regular {
+      font-size: 1rem;
+    }
+
     &-lead {
       font-size: 1.25rem;
       font-weight: 300;
