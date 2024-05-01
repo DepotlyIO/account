@@ -17,4 +17,8 @@ const userStore = useUserStore();
 
 userStore.getUserInfo().finally(() => {
   app.use(router).use(i18n).use(unhead).mount('#app');
+
+  setTimeout(() => {
+    document.querySelector('#loader')?.remove();
+  }, 1000);
 });
