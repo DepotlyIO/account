@@ -36,6 +36,9 @@ export default defineConfig({
     vue(),
     VueDevTools(),
     VitePWA({
+      devOptions: {
+        enabled: false,
+      },
       injectRegister: 'auto',
       manifest: {
         description: 'Depotly application',
@@ -68,7 +71,6 @@ export default defineConfig({
         theme_color: '#f6f8fa',
       },
       registerType: 'autoUpdate',
-      selfDestroying: true,
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'],
       },
