@@ -70,7 +70,7 @@ export default defineConfig({
         short_name: 'Depotly',
         theme_color: '#f6f8fa',
       },
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'],
       },
