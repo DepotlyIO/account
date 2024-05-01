@@ -7,6 +7,7 @@ export type MainIcon =
   | 'chart-bar'
   | 'check-decagram'
   | 'close'
+  | 'exit-to-app'
   | 'home'
   | 'loading'
   | 'update'

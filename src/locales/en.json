@@ -12,6 +12,7 @@
   "actions": {
     "sign_in": "Sign in",
     "sign_up": "Sign up",
+    "sign_out": "Sign out",
     "create_account": "Create an account",
     "back_to_authentication": "Back to authentication",
     "update": "Update"

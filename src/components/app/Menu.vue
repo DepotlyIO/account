@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useUserStore } from '@/stores/user';
 import UiIcon from '@/components/ui/Icon.vue';
 import UiText from '@/components/ui/Text.vue';
 import type { MainIcon } from '@/types/assets/icons';
 
 const { t } = useI18n();
+const userStore = useUserStore();
 
 interface RawMenuItem {
   name: string;
@@ -42,65 +44,110 @@ const menuItems = computed(() =>
 
 <template>
   <div :class="$style['app-menu']">
-    <RouterLink
-      v-for="item in menuItems"
-      :key="item.name"
-      :to="{ name: item.name }"
-      :class="$style['app-menu__item']"
-      :active-class="$style['app-menu__item--active']"
-    >
-      <UiIcon :name="item.icon" color="color-inherit" />
+    <div :class="$style['app-menu__block']">
+      <RouterLink
+        v-for="item in menuItems"
+        :key="item.name"
+        :to="{ name: item.name }"
+        :class="$style['app-menu__block_item']"
+        :active-class="$style['app-menu__block_item--active']"
+      >
+        <UiIcon :name="item.icon" color="color-inherit" />
 
-      <UiText variant="underline" color="color-inherit" :class="$style['app-menu__item_text']">
-        {{ item.text }}
-      </UiText>
-    </RouterLink>
+        <UiText
+          variant="underline"
+          color="color-inherit"
+          :class="$style['app-menu__block_item-text']"
+        >
+          {{ item.text }}
+        </UiText>
+      </RouterLink>
+    </div>
+
+    <div :class="$style['app-menu__block']">
+      <RouterLink
+        :to="{ name: 'authentication-sign-in' }"
+        :class="$style['app-menu__block_item']"
+        :active-class="$style['app-menu__block_item--active']"
+        @click.prevent="() => userStore.signOut()"
+      >
+        <UiIcon name="exit-to-app" color="color-inherit" />
+
+        <UiText
+          variant="underline"
+          color="color-inherit"
+          :class="$style['app-menu__block_item-text']"
+        >
+          {{ t('actions.sign_out') }}
+        </UiText>
+      </RouterLink>
+    </div>
   </div>
 </template>
 
 <style module lang="scss">
 .app-menu {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: $color-white;
-  border: 1px solid $color-border;
-  border-radius: 20px;
 
-  &__item {
-    height: 100%;
+  &__block {
+    width: 100%;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 10px;
-    color: $color-black;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 20px;
 
-    &--active {
-      color: $color-blue;
+    &_item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: $color-black;
+
+      &--active {
+        color: $color-blue;
+      }
+
+      &-text {
+        display: none;
+      }
     }
 
-    &_text {
+    &:not(:first-child) {
       display: none;
     }
   }
 
   @media #{$media-query-tablet} {
-    padding: 20px 13px;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 10px;
+    gap: 20px;
 
-    &__item {
-      height: auto;
+    &__block {
+      padding: 20px 13px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+
+      &_item {
+        height: auto;
+      }
+
+      &:not(:first-child) {
+        display: unset;
+      }
     }
   }
 
   @media #{$media-query-desktop} {
-    padding: 20px;
+    &__block {
+      padding: 20px;
 
-    &__item {
-      &_text {
-        display: unset;
+      &_item {
+        &-text {
+          display: unset;
+        }
       }
     }
   }
