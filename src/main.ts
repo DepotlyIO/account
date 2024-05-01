@@ -15,6 +15,6 @@ const app = createApp(App).use(pinia);
 
 const userStore = useUserStore();
 
-userStore.getUserInfo().then(() => {
+userStore.getUserInfo().finally(() => {
   app.use(router).use(i18n).use(unhead).mount('#app');
 });

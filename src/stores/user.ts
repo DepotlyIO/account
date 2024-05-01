@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import { useApi } from '@/composables/useApi';
+import router from '@/configurations/router';
 import type { User } from '@/types/models/user';
 import type { Tokens, AuthenticationRequest } from '@/types/models/authentication';
 
@@ -46,14 +47,16 @@ export const useUserStore = defineStore('user', () => {
   };
 
   const signOut = async (skipRequest = false) => {
-    if (loading.value) return;
+    if (loading.value && !skipRequest) return;
 
     try {
-      loading.value = true;
+      loading.value = !skipRequest;
       if (!skipRequest) await api.authentication.sign_out();
 
       updateTokens();
       user.value = undefined;
+
+      await router.push({ name: 'authentication-sign-in' });
     } catch (e) {
       console.error(e);
       throw e;
