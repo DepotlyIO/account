@@ -35,13 +35,30 @@ const computedStyles = computed(() => ({
 
 <template>
   <component :is="computedComponent" :class="computedClasses">
-    <slot></slot>
+    <div v-if="$slots['start']">
+      <slot name="start" />
+    </div>
+
+    <div>
+      <slot />
+    </div>
+
+    <div v-if="$slots['end']">
+      <slot name="end" />
+    </div>
   </component>
 </template>
 
 <style module lang="scss">
 .ui-text {
+  gap: 0.25rem;
   color: v-bind('computedStyles.color');
+
+  &,
+  & > * {
+    display: flex;
+    align-items: center;
+  }
 
   &--variant {
     &-h1,

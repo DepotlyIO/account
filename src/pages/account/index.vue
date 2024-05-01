@@ -23,7 +23,13 @@ useHead(() => ({
     <UiCard :class="$style['page-settings__account']">
       <UiIcon name="account-circle" size="200" color="color-gray" />
 
-      <UiText variant="h3">{{ userStore.user?.name }}</UiText>
+      <UiText variant="h3">
+        {{ userStore.user?.name }}
+
+        <template v-if="userStore.user?.is_account_verified" #end>
+          <UiIcon name="check-decagram" color="color-blue" size="1em" />
+        </template>
+      </UiText>
 
       <UiText color="color-gray">{{ userStore.user?.email }}</UiText>
       <UiText color="color-gray">{{ accountType }}</UiText>
