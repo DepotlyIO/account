@@ -6,19 +6,21 @@
     "password_confirmation": "Password confirmation",
     "unexpected_server_error": "Unexpected server error",
     "regular_account_type": "Regular account",
-    "company_account_type": "Company account"
+    "company_account_type": "Company account",
+    "app_update_available": "New app version available"
   },
   "actions": {
     "sign_in": "Sign in",
     "sign_up": "Sign up",
     "create_account": "Create an account",
-    "back_to_authentication": "Back to authentication"
+    "back_to_authentication": "Back to authentication",
+    "update": "Update"
   },
   "menu": {
     "index": "Home",
     "wallets": "Wallets",
     "charts": "Charts",
-    "settings": "Settings"
+    "account": "Account"
   },
   "pages": {
     "index": {

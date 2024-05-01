@@ -121,12 +121,12 @@ const computedStyles = computed(() => {
       color: v-bind('computedStyles.firstColor');
 
       &:hover {
-        border-color: v-bind('computedStyles.firstColorHover');
+        border-color: $color-transparent;
         background-color: v-bind('computedStyles.firstColorHover');
       }
 
       &:active {
-        border-color: v-bind('computedStyles.firstColorActive');
+        border-color: $color-transparent;
         background-color: v-bind('computedStyles.firstColorActive');
       }
     }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppMenu from '@/components/app/Menu.vue';
+import AppUpdate from '@/components/app/Update.vue';
 </script>
 
 <template>
@@ -8,6 +9,8 @@ import AppMenu from '@/components/app/Menu.vue';
       <AppMenu :class="$style['layout-default__menu']" />
 
       <main :class="$style['layout-default__main']">
+        <AppUpdate :class="$style['layout-default__main_update']" />
+
         <slot />
       </main>
     </div>
@@ -29,6 +32,10 @@ import AppMenu from '@/components/app/Menu.vue';
   &__main {
     padding: 10px 10px calc($app-menu-mobile-height + 40px);
     min-height: 100dvh;
+
+    &_update {
+      margin-block-end: 1rem;
+    }
   }
 
   @media #{$media-query-tablet} {
