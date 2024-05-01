@@ -32,7 +32,7 @@ jobs:
           build-args: |
             VITE_BASE_API_URL=${{ vars.VITE_BASE_API_URL }}
           push: true
-          tags: dr.big.wtf/depotly-account:latest
+          tags: dr.big.wtf/depotly-account:production
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
