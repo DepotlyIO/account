@@ -8,11 +8,13 @@ import AppUpdate from '@/components/app/Update.vue';
     <div :class="$style['layout-default__wrapper']">
       <AppMenu :class="$style['layout-default__menu']" />
 
-      <main :class="$style['layout-default__main']">
-        <AppUpdate :class="$style['layout-default__main_update']" />
+      <div :class="$style['layout-default__main_wrapper']">
+        <main :class="$style['layout-default__main']">
+          <AppUpdate :class="$style['layout-default__main_update']" />
 
-        <slot />
-      </main>
+          <slot />
+        </main>
+      </div>
     </div>
   </div>
 </template>
@@ -30,8 +32,10 @@ import AppUpdate from '@/components/app/Update.vue';
   }
 
   &__main {
-    padding: 10px 10px calc($app-menu-mobile-height + 40px);
-    min-height: 100dvh;
+    &_wrapper {
+      min-height: 100dvh;
+      padding: 10px 10px calc($app-menu-mobile-height + 40px);
+    }
 
     &_update {
       margin-block-end: 1rem;
@@ -51,8 +55,12 @@ import AppUpdate from '@/components/app/Update.vue';
     }
 
     &__main {
-      padding-block-start: 20px;
-      padding-inline-start: calc($app-menu-tablet-width + 40px);
+      &_wrapper {
+        padding-inline-start: calc($app-menu-tablet-width + 40px);
+        padding-block: 20px;
+      }
+      max-width: $app-main-tablet-max-width;
+      margin-inline: auto;
     }
   }
 
@@ -62,7 +70,9 @@ import AppUpdate from '@/components/app/Update.vue';
     }
 
     &__main {
-      padding-inline-start: calc($app-menu-desktop-width + 40px);
+      &_wrapper {
+        padding-inline-start: calc($app-menu-desktop-width + 40px);
+      }
     }
   }
 }
