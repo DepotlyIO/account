@@ -77,6 +77,7 @@ const computedStyles = computed(() => {
   gap: 10px;
   font-weight: 400;
   cursor: pointer;
+  user-select: none;
   transition-property: border-color, background-color, color;
   transition-duration: $duration-medium;
 
