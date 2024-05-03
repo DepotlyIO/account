@@ -5,6 +5,8 @@ export interface User {
   name: string;
   email: string;
   is_email_verified: boolean;
+  email_verification_sent_at: string | null;
+  password_reset_sent_at: string | null;
   account_type: AccountType;
   is_account_verified: boolean;
 }
