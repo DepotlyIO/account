@@ -16,6 +16,9 @@ export const useApi = (): Api => {
       user: {
         info: () => axios('/v1/user', { method: 'get' }),
         create: (data) => axios('/v1/user', { method: 'post', data }),
+        verifyEmail: (data) => axios('/v1/user/email-verification', { method: 'post', data }),
+        resendVerificationEmail: () =>
+          axios('/v1/user/resend-email-verification', { method: 'post' }),
       },
       isAxiosError,
     };

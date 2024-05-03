@@ -17,3 +17,7 @@ export interface UserCreateRequest {
     password_confirmation: string;
   };
 }
+
+export interface EmailVerificationRequest {
+  email_verification_token: string;
+}
