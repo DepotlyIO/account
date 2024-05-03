@@ -67,7 +67,7 @@ const computedStyles = computed(() => ({
     &-h4,
     &-h5,
     &-h6 {
-      font-weight: 500;
+      font-weight: 600;
     }
 
     &-h1 {
