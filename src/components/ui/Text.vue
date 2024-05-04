@@ -10,6 +10,25 @@ interface Props {
   tag?: 'div' | 'label';
   color?: Color;
   align?: 'start' | 'center' | 'end';
+  fontWeight?:
+    | 100
+    | 200
+    | 300
+    | 400
+    | 500
+    | 600
+    | 700
+    | 800
+    | 900
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900';
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -39,7 +58,7 @@ const computedStyles = computed(() => ({
       <slot name="start" />
     </div>
 
-    <div>
+    <div :style="{ fontWeight: props.fontWeight }">
       <slot />
     </div>
 
@@ -110,15 +129,15 @@ const computedStyles = computed(() => ({
 
   &--align {
     &-start {
-      text-align: start;
+      justify-content: flex-start;
     }
 
     &-center {
-      text-align: center;
+      justify-content: center;
     }
 
     &-end {
-      text-align: end;
+      justify-content: flex-end;
     }
   }
 }
