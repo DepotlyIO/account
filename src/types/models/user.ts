@@ -1,4 +1,4 @@
-type AccountType = 'regular' | 'company';
+type AccountType = 'employee' | 'regular' | 'company';
 
 export interface User {
   id: number;
@@ -17,6 +17,7 @@ export interface UserCreateRequest {
     email: string;
     password: string;
     password_confirmation: string;
+    locale: string;
   };
 }
 

@@ -7,7 +7,7 @@ import UiText from '@/components/ui/Text.vue';
 import UiFormInput from '@/components/ui/form/Input.vue';
 import UiButton from '@/components/ui/Button.vue';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const api = useApi();
 
 const loading = ref(false);
@@ -22,12 +22,19 @@ const error = ref();
 const handleFormSubmit = async () => {
   if (loading.value) return;
 
+  loading.value = true;
   try {
-    await api.user.create({ user: form.value });
+    await api.user.create({
+      user: {
+        ...form.value,
+        locale: locale.value,
+      },
+    });
     // TODO: add logic after registration
   } catch (e) {
     console.error(e);
   }
+  loading.value = false;
 };
 
 useHead(() => ({
