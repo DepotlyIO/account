@@ -20,7 +20,7 @@ const token = computed(() => route.query.token);
 
 const verifyEmail = async () => {
   if (typeof token.value !== 'string') {
-    return router.replace({ name: 'authentication-verify' })
+    return router.replace({ name: 'authentication-sign-in' });
   } else if (status.value === 'pending') {
     return;
   }
@@ -95,8 +95,8 @@ useHead(() => ({
           </UiText>
         </div>
 
-        <UiButton :to="{ name: 'authentication-verify' }">
-          {{ $t('actions.verify_email_address') }}
+        <UiButton :to="{ name: 'account' }">
+          {{ $t('actions.check_account') }}
         </UiButton>
       </template>
     </div>

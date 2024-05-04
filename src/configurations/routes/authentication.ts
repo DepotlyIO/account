@@ -7,15 +7,6 @@ export default [
     },
   },
   {
-    path: '/authentication/verify',
-    name: 'authentication-verify',
-    component: () => import('@/pages/authentication/verify.vue'),
-    meta: {
-      isAuthentication: true,
-      layout: 'authentication',
-    },
-  },
-  {
     path: '/authentication/reset',
     name: 'authentication-reset',
     component: () => import('@/pages/authentication/reset.vue'),

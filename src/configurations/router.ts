@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useGlobalStore } from '@/stores/global';
 import { useUserStore } from '@/stores/user';
 
 import main from '@/configurations/routes/main';
@@ -16,10 +17,15 @@ router.beforeEach((to) => {
   const userStore = useUserStore();
 
   switch (true) {
-    case to.meta.requiresAuth && !userStore.isAuthenticated:
+    case to.meta.requiresAuth && !userStore.isAuthenticated: {
+      const globalStore = useGlobalStore();
+      globalStore.redirectRoute = to;
+
       return { name: 'authentication-sign-in' };
-    case !to.meta.requiresAuth && userStore.isAuthenticated:
+    }
+    case !to.meta.requiresAuth && userStore.isAuthenticated: {
       return { name: 'index' };
+    }
   }
 });
 

@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
+import { useGlobalStore } from '@/stores/global';
 import { useUserStore } from '@/stores/user';
 import { useApi } from '@/composables/useApi';
 import UiText from '@/components/ui/Text.vue';
@@ -11,6 +12,7 @@ import UiButton from '@/components/ui/Button.vue';
 
 const router = useRouter();
 const { t } = useI18n();
+const globalStore = useGlobalStore();
 const userStore = useUserStore();
 const api = useApi();
 
@@ -24,7 +26,8 @@ const error = ref();
 const handleFormSubmit = async () => {
   try {
     await userStore.signIn({ user: form.value });
-    if (userStore.isAuthenticated) await router.push({ name: 'index' });
+    if (userStore.isAuthenticated)
+      await router.push(globalStore.redirectRoute ?? { name: 'index' });
   } catch (e) {
     if (api.isAxiosError(e))
       error.value = e.response?.data?.message ?? t('labels.unexpected_server_error');

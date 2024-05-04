@@ -5,9 +5,10 @@
     "password": "Password",
     "password_confirmation": "Password confirmation",
     "unexpected_server_error": "Unexpected server error",
+    "employee_account_type": "Employee account",
     "regular_account_type": "Regular account",
     "company_account_type": "Company account",
-    "app_update_available": "New app version available"
+    "app_update_available": "New app version available!"
   },
   "actions": {
     "sign_in": "Sign in",
@@ -16,7 +17,7 @@
     "create_account": "Create an account",
     "back_to_authentication": "Back to authentication",
     "update": "Update",
-    "verify_email_address": "Verify email"
+    "check_account": "Check account"
   },
   "menu": {
     "index": "Home",
