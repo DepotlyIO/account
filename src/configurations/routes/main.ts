@@ -7,4 +7,12 @@ export default [
       requiresAuth: true,
     },
   },
+  {
+    path: '/verify',
+    name: 'confirm',
+    component: () => import('@/pages/verify.vue'),
+    meta: {
+      layout: 'authentication',
+    },
+  },
 ];
