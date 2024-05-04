@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed, useCssModule } from 'vue';
 import { useCssVariable } from '@/composables/useCssVariable';
+import { RouterLink } from 'vue-router';
 import UiIcon from '@/components/ui/Icon.vue';
+import type { RouteLocationRaw } from 'vue-router';
 import type { Color } from '@/types/assets/colors';
 
 const styles = useCssModule();
 
 interface Props {
+  to?: RouteLocationRaw;
   color?: Color;
   variant?: 'default' | 'outlined' | 'text';
   size?: 'small' | 'small-compact' | 'medium' | 'medium-compact' | 'large' | 'large-compact';
@@ -26,6 +29,8 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   rectangular: false,
 });
+
+const computedComponent = computed(() => (props.to ? RouterLink : 'button'));
 
 const computedClasses = computed(() => ({
   [styles['ui-button']]: true,
@@ -54,7 +59,9 @@ const computedStyles = computed(() => {
 </script>
 
 <template>
-  <button
+  <component
+    :is="computedComponent"
+    :to="props.to"
     :disabled="props.disabled"
     :type="props.type"
     :tabindex="props.tabindex"
@@ -65,7 +72,7 @@ const computedStyles = computed(() => {
     </template>
 
     <slot v-else />
-  </button>
+  </component>
 </template>
 
 <style module lang="scss">
