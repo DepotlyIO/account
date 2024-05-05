@@ -13,6 +13,7 @@ export default [
     component: () => import('@/pages/verify.vue'),
     meta: {
       layout: 'authentication',
+      requiresAuth: true,
     },
   },
 ];

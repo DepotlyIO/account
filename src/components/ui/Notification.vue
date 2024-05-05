@@ -8,6 +8,7 @@ import type { MainIcon } from '@/types/assets/icons';
 interface Props {
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
   icon?: MainIcon;
+  title?: string;
   content?: string;
   closeable?: boolean;
 }
@@ -31,45 +32,54 @@ const computedClasses = computed(() => ({
 
 <template>
   <section :class="computedClasses">
-    <div v-if="props.icon || $slots['icon']" :class="$style['ui-notification__icon']">
-      <slot name="icon">
-        <UiIcon v-if="props.icon" :name="props.icon" color="color-inherit" />
-      </slot>
-    </div>
-
-    <div :class="$style['ui-notification__content']">
-      <slot>
-        <UiText color="color-inherit">
-          {{ props.content }}
+    <div v-if="props.title || $slots['title']" :class="$style['ui-notification__title']">
+      <slot name="title">
+        <UiText variant="h6" color="color-inherit">
+          {{ props.title }}
         </UiText>
       </slot>
     </div>
 
-    <div v-if="closeable || $slots['actions']" :class="$style['ui-notification__actions']">
-      <slot name="actions">
-        <UiButton variant="text" size="small-compact" color="color-inherit" @click="emit('close')">
-          <UiIcon name="close" color="color-inherit" size="1rem" />
-        </UiButton>
-      </slot>
+    <div :class="$style['ui-notification__middle']">
+      <div v-if="props.icon || $slots['icon']" :class="$style['ui-notification__icon']">
+        <slot name="icon">
+          <UiIcon v-if="props.icon" :name="props.icon" color="color-inherit" />
+        </slot>
+      </div>
+
+      <div :class="$style['ui-notification__content']">
+        <slot>
+          <UiText color="color-inherit">
+            {{ props.content }}
+          </UiText>
+        </slot>
+      </div>
+
+      <div v-if="closeable || $slots['actions']" :class="$style['ui-notification__actions']">
+        <slot name="actions">
+          <UiButton
+            variant="text"
+            size="small-compact"
+            color="color-inherit"
+            @click="emit('close')"
+          >
+            <UiIcon name="close" color="color-inherit" size="1rem" />
+          </UiButton>
+        </slot>
+      </div>
     </div>
   </section>
 </template>
 
 <style module lang="scss">
 .ui-notification {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   border: 1px solid var(--notification-border-color);
   border-radius: 0.375rem;
   background-color: var(--notification-background-color);
   color: var(--notification-text-color);
-
-  &,
-  &__icon,
-  &__content,
-  &__actions {
-    display: flex;
-    align-items: center;
-  }
 
   &--variant {
     &-primary {
@@ -121,18 +131,31 @@ const computedClasses = computed(() => ({
     }
   }
 
-  &__icon {
-    margin-inline-end: 1rem;
+  &__title {
+    margin-block-end: 0.5rem;
   }
 
-  &__content {
-    &:not(:last-child) {
+  &__middle {
+    &_icon,
+    &_content,
+    &_actions {
+      display: flex;
+      align-items: center;
+    }
+
+    &_icon {
       margin-inline-end: 1rem;
     }
-  }
 
-  &__actions {
-    margin-inline-start: auto;
+    &_content {
+      &:not(:last-child) {
+        margin-inline-end: 1rem;
+      }
+    }
+
+    &_actions {
+      margin-inline-start: auto;
+    }
   }
 }
 </style>

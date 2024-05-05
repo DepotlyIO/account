@@ -9,6 +9,7 @@ const i18n = createI18n({
     en,
   },
   warnHtmlInMessage: false,
+  warnHtmlMessage: false,
 });
 
 export default i18n;

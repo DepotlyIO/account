@@ -16,8 +16,7 @@
     "sign_out": "Sign out",
     "create_account": "Create an account",
     "back_to_authentication": "Back to authentication",
-    "update": "Update",
-    "check_account": "Check account"
+    "update": "Update"
   },
   "menu": {
     "index": "Home",
@@ -56,7 +55,7 @@
         "button": "Send password reset email"
       }
     },
-    "confirm": {
+    "verify": {
       "meta": {
         "title": "Email verification"
       },
@@ -70,7 +69,8 @@
           "title": "Email Confirmation Unsuccessful",
           "content": "We're sorry to inform you that your email address could not be confirmed at this time due to the following reason:",
           "additional_steps": "You can try again later or request a new confirmation link."
-        }
+        },
+        "action": "In account"
       }
     },
     "wallets": {
@@ -86,6 +86,14 @@
     "account": {
       "meta": {
         "title": "Account"
+      },
+      "email": {
+        "unverified": {
+          "title": "Please verify your email",
+          "current_email": "<b>Current email</b>: {email}",
+          "description": "Your email address hasn't been confirmed yet. To get the most out of our services, please check your email and follow the instructions in the received letter. We've sent an email to the provided address.",
+          "request_verification_letter": "Request verification letter"
+        }
       }
     }
   }

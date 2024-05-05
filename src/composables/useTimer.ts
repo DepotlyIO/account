@@ -1,11 +1,14 @@
-import { computed, ref, onUnmounted } from 'vue';
+import { computed, ref, toValue, watchEffect, onUnmounted } from 'vue';
 import { useDayJs } from '@/composables/useDayJs';
+import type { MaybeRefOrGetter } from 'vue';
 import type { Dayjs } from 'dayjs';
 
-export const useTimer = (finishTime?: string | Dayjs) => {
+export const useTimer = (finishTime: MaybeRefOrGetter<string | Dayjs>) => {
   const dayjs = useDayJs();
 
-  const diff = ref<number>(dayjs(finishTime).diff());
+  let interval: number | undefined;
+
+  const diff = ref(0);
 
   const format = computed(() => {
     switch (true) {
@@ -21,17 +24,30 @@ export const useTimer = (finishTime?: string | Dayjs) => {
     }
   });
 
-  const interval = setInterval(() => {
-    diff.value -= 1000;
+  const setupInterval = () => {
+    stopInterval();
 
-    if (diff.value < 0) {
-      clearInterval(interval);
-    }
-  }, 1000);
+    interval = setInterval(() => {
+      diff.value -= 1000;
 
-  onUnmounted(() => {
-    clearInterval(interval);
+      if (diff.value < 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+  };
+
+  const stopInterval = () => {
+    if (interval !== undefined) clearInterval(interval);
+    interval = undefined;
+  };
+
+  watchEffect(() => {
+    const value = toValue(finishTime);
+    diff.value = dayjs(value).diff();
+    setupInterval();
   });
+
+  onUnmounted(stopInterval);
 
   return computed(() =>
     diff.value > 0 ? dayjs.duration(diff.value, 'millisecond').format(format.value) : undefined,
