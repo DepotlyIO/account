@@ -44,7 +44,12 @@ useHead(() => ({
 
     <UiCard v-if="!tablet">
       <div :class="$style['page-account__sign-out']">
-        <UiButton color="color-red" size="large">
+        <UiButton
+          :loading="userStore.loading"
+          color="color-red"
+          size="large"
+          @click="() => userStore.signOut()"
+        >
           {{ t('actions.sign_out') }}
         </UiButton>
       </div>
