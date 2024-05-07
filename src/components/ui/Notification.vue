@@ -41,13 +41,13 @@ const computedClasses = computed(() => ({
     </div>
 
     <div :class="$style['ui-notification__middle']">
-      <div v-if="props.icon || $slots['icon']" :class="$style['ui-notification__icon']">
+      <div v-if="props.icon || $slots['icon']" :class="$style['ui-notification__middle_icon']">
         <slot name="icon">
           <UiIcon v-if="props.icon" :name="props.icon" color="color-inherit" />
         </slot>
       </div>
 
-      <div :class="$style['ui-notification__content']">
+      <div :class="$style['ui-notification__middle_content']">
         <slot>
           <UiText color="color-inherit">
             {{ props.content }}
@@ -55,7 +55,7 @@ const computedClasses = computed(() => ({
         </slot>
       </div>
 
-      <div v-if="closeable || $slots['actions']" :class="$style['ui-notification__actions']">
+      <div v-if="closeable || $slots['actions']" :class="$style['ui-notification__middle_actions']">
         <slot name="actions">
           <UiButton
             variant="text"
@@ -136,6 +136,7 @@ const computedClasses = computed(() => ({
   }
 
   &__middle {
+    &,
     &_icon,
     &_content,
     &_actions {
@@ -144,7 +145,7 @@ const computedClasses = computed(() => ({
     }
 
     &_icon {
-      margin-inline-end: 1rem;
+      margin-inline-end: 0.5rem;
     }
 
     &_content {
