@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@unhead/vue';
-import AppLayout from '@/components/app/Layout.vue';
+import LayoutController from '@/components/LayoutController.vue';
 
 useHead(() => ({
   titleTemplate: '%s - Depotly',
@@ -8,5 +8,7 @@ useHead(() => ({
 </script>
 
 <template>
-  <AppLayout />
+  <LayoutController>
+    <RouterView />
+  </LayoutController>
 </template>

@@ -4,6 +4,7 @@ export default [
     name: 'charts',
     component: () => import('@/pages/charts/index.vue'),
     meta: {
+      layout: 'main',
       requiresAuth: true,
     },
   },

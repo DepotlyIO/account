@@ -4,6 +4,7 @@ export default [
     name: 'account',
     component: () => import('@/pages/account/index.vue'),
     meta: {
+      layout: 'main',
       requiresAuth: true,
     },
   },

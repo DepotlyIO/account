@@ -4,6 +4,7 @@ export default [
     name: 'index',
     component: () => import('@/pages/index.vue'),
     meta: {
+      layout: 'main',
       requiresAuth: true,
     },
   },

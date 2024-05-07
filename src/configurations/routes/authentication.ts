@@ -11,8 +11,8 @@ export default [
     name: 'authentication-reset',
     component: () => import('@/pages/authentication/reset.vue'),
     meta: {
-      isAuthentication: true,
       layout: 'authentication',
+      isAuthentication: true,
     },
   },
   {
@@ -20,8 +20,8 @@ export default [
     name: 'authentication-sign-in',
     component: () => import('@/pages/authentication/sign-in.vue'),
     meta: {
-      isAuthentication: true,
       layout: 'authentication',
+      isAuthentication: true,
     },
   },
   {
@@ -29,8 +29,8 @@ export default [
     name: 'authentication-sign-up',
     component: () => import('@/pages/authentication/sign-up.vue'),
     meta: {
-      isAuthentication: true,
       layout: 'authentication',
+      isAuthentication: true,
     },
   },
 ];
