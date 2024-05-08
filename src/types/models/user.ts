@@ -1,3 +1,5 @@
+import type { FiatCurrencyCode } from '@/types/models/currency';
+
 type AccountType = 'employee' | 'regular' | 'company';
 
 export interface User {
@@ -9,6 +11,8 @@ export interface User {
   password_reset_sent_at: string | null;
   account_type: AccountType;
   is_account_verified: boolean;
+  locale: string;
+  currency: FiatCurrencyCode;
 }
 
 export interface UserCreateRequest {

@@ -20,6 +20,10 @@ export const useApi = (): Api => {
         resendVerificationEmail: () =>
           axios('/v1/user/resend-email-verification', { method: 'post' }),
       },
+      currencies: {
+        list: () => axios('/v1/currencies', { method: 'get' }),
+        rates: (params) => axios('/v1/currencies/rates', { method: 'get', params }),
+      },
       isAxiosError,
     };
   }
