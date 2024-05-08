@@ -132,6 +132,7 @@ const menuItems = computed(() =>
 
       &_item {
         height: auto;
+        min-height: 30px;
       }
 
       &:not(:first-child) {
