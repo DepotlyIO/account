@@ -1,6 +1,8 @@
-export type Sprite = 'main';
+export type Sprite = 'currencies' | 'main';
 
-export type Icon = MainIcon;
+export type Icon = CurrencyIcon | MainIcon;
+
+export type CurrencyIcon = 'btc' | 'busd' | 'eth' | 'eur' | 'pln' | 'usd' | 'usdc' | 'usdt' | 'xrp';
 
 export type MainIcon =
   | 'account-circle'

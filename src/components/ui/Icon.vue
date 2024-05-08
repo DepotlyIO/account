@@ -2,6 +2,7 @@
 import { computed, useCssModule } from 'vue';
 import { useCssVariable } from '@/composables/useCssVariable';
 import main from '@/assets/sprites/main.svg';
+import currencies from '@/assets/sprites/currencies.svg';
 import type { Color } from '@/types/assets/colors';
 import type { Icon, Sprite } from '@/types/assets/icons';
 
@@ -25,7 +26,14 @@ const props = withDefaults(defineProps<Props>(), {
   rotateTransition: false,
 });
 
-const spriteUrl = computed(() => main);
+const spriteUrl = computed(() => {
+  switch (props.sprite) {
+    case 'currencies':
+      return currencies;
+    default:
+      return main;
+  }
+});
 
 const computedStyles = computed(() => ({
   color: useCssVariable(props.color).value,

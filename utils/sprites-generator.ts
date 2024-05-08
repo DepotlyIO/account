@@ -3,7 +3,7 @@ import path from 'path';
 // @ts-expect-error
 import svgstore from 'svgstore';
 
-const SPRITES = ['main'];
+const SPRITES = ['main', 'currencies'];
 const EXTENSION = '.svg';
 
 const iconsDirectory = path.resolve(import.meta.dirname, '../src/assets/icons');
