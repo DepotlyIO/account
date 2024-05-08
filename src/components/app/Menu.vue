@@ -100,7 +100,9 @@ const menuItems = computed(() =>
 
     &_item {
       height: 100%;
+      min-width: 15%;
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 10px;
       color: $color-black;
@@ -131,7 +133,8 @@ const menuItems = computed(() =>
       gap: 10px;
 
       &_item {
-        height: auto;
+        height: unset;
+        min-width: unset;
         min-height: 30px;
       }
 
