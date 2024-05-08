@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useUserStore } from '@/stores/user';
-import type { AxiosInstance } from 'axios';
+import type { AxiosResponse, AxiosInstance } from 'axios';
 
 let instance: AxiosInstance;
+let refresh: Promise<AxiosResponse>;
 
 export const useAxiosInstance = (): AxiosInstance => {
   if (!instance) {
@@ -27,9 +28,8 @@ export const useAxiosInstance = (): AxiosInstance => {
       async (error) => {
         if (
           axios.isAxiosError(error) &&
+          error.response?.status === 401 &&
           error.config &&
-          error.response &&
-          error.response.status === 401 &&
           // @ts-expect-error
           !error._refresh &&
           // @ts-expect-error
@@ -40,16 +40,21 @@ export const useAxiosInstance = (): AxiosInstance => {
           error.config._retry = true;
 
           try {
-            const { data } = await instance('/v1/authentications/refresh', {
-              method: 'post',
-              // @ts-expect-error
-              _refresh: true,
-            });
+            if (!refresh) {
+              refresh = instance('/v1/authentications/refresh', {
+                method: 'post',
+                // @ts-expect-error
+                _refresh: true,
+              });
 
-            userStore.updateTokens(data.tokens);
+              const { data } = await refresh;
+              userStore.updateTokens(data.tokens);
+            } else {
+              await refresh;
+            }
 
             return await instance(error.config);
-          } catch (e) {
+          } catch (error) {
             await userStore.signOut(true);
             return Promise.reject(error);
           }
