@@ -64,6 +64,10 @@ import AppUpdate from '@/components/app/Update.vue';
     &__menu {
       width: $app-menu-desktop-width;
     }
+
+    &__main {
+      max-width: $app-main-desktop-max-width;
+    }
   }
 }
 </style>
