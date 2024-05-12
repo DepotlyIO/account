@@ -7,7 +7,11 @@ const { needRefresh, updateServiceWorker } = useRegisterSW();
 </script>
 
 <template>
-  <Transition name="slide-down">
+  <Transition
+    :enter-active-class="$style['slide-down-enter-active']"
+    :leave-active-class="$style['slide-down-leave-active']"
+    :enter-from-class="$style['slide-down-enter-from']"
+  >
     <div v-if="needRefresh" :class="$style['app-update']">
       <div :class="$style['app-update__inner']">
         <UiNotification :content="$t('labels.app_update_available')" icon="update">
@@ -30,7 +34,7 @@ const { needRefresh, updateServiceWorker } = useRegisterSW();
   &.slide-down {
     &-enter-active,
     &-leave-active {
-      transition: grid-template-rows $duration-fast ease-out;
+      transition: grid-template-rows $duration-medium ease-out;
     }
 
     &-enter-from,
