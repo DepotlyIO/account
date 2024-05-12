@@ -43,9 +43,6 @@ import AppUpdate from '@/components/app/Update.vue';
   }
 
   @media #{$media-query-tablet} {
-    &__wrapper {
-    }
-
     &__menu {
       inset-block-start: 20px;
       inset-block-end: 20px;
@@ -56,7 +53,6 @@ import AppUpdate from '@/components/app/Update.vue';
 
     &__main {
       &_wrapper {
-        padding-inline-start: calc($app-menu-tablet-width + 40px);
         padding-block: 20px;
       }
       max-width: $app-main-tablet-max-width;
@@ -67,12 +63,6 @@ import AppUpdate from '@/components/app/Update.vue';
   @media #{$media-query-desktop} {
     &__menu {
       width: $app-menu-desktop-width;
-    }
-
-    &__main {
-      &_wrapper {
-        padding-inline-start: calc($app-menu-desktop-width + 40px);
-      }
     }
   }
 }
