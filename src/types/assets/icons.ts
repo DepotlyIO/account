@@ -6,6 +6,8 @@ export type CurrencyIcon = 'btc' | 'busd' | 'eth' | 'eur' | 'pln' | 'usd' | 'usd
 
 export type MainIcon =
   | 'account-circle'
+  | 'arrow-down-thin'
+  | 'arrow-up-thin'
   | 'chart-bar'
   | 'check-decagram'
   | 'close'
