@@ -149,6 +149,8 @@ const menuItems = computed(() =>
       padding: 20px;
 
       &_item {
+        justify-content: flex-start;
+
         &-text {
           display: unset;
         }
