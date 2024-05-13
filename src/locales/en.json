@@ -94,6 +94,9 @@
           "description": "Your email address hasn't been confirmed yet. To get the most out of our services, please check your email and follow the instructions in the received letter. We've sent an email to the provided address.",
           "request_verification_letter": "Request verification letter"
         }
+      },
+      "authentications": {
+        "title": "Authentications"
       }
     }
   }
