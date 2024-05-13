@@ -199,7 +199,9 @@ const computedStyles = computed(() => {
   }
 
   &__icon {
-    animation: spin 0.5s linear infinite;
+    & :global {
+      animation: keyframes-spinner 0.5s linear infinite;
+    }
   }
 }
 </style>

@@ -8,7 +8,7 @@ import type { Tokens, AuthenticationRequest } from '@/types/models/authenticatio
 export const useUserStore = defineStore('user', () => {
   const api = useApi();
 
-  const loading = ref(false);
+  const loading = ref(true);
   const user = ref<User>();
 
   const isAuthenticated = computed(() => !!user.value);
