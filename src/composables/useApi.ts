@@ -10,6 +10,7 @@ export const useApi = (): Api => {
 
     api = {
       authentication: {
+        list: () => axios('/v1/authentications', { method: 'get' }),
         sign_in: (data) => axios('/v1/authentications', { method: 'post', data }),
         sign_out: () => axios('/v1/authentications', { method: 'delete' }),
       },

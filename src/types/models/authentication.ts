@@ -3,6 +3,14 @@ export interface Tokens {
   refresh: string;
 }
 
+export interface Authentication {
+  id: number;
+  os: string;
+  os_version: string;
+  browser: string;
+  browser_version: string;
+}
+
 export interface AuthenticationRequest {
   user: {
     email: string;
