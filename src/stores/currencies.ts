@@ -11,7 +11,7 @@ export const useCurrenciesStore = defineStore('currencies', () => {
   const currencies = ref<Currency[]>();
   const rates = ref<CurrencyRate[]>();
 
-  const defaultFiatCurrency = computed(() => userStore.user?.currency || 'USD');
+  const defaultFiatCurrency = computed(() => userStore.user?.currency_code || 'USD');
 
   const loadCurrencies = async () => {
     try {
