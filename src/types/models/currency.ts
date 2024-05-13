@@ -14,7 +14,7 @@ export interface CurrencyRate {
   to: FiatCurrencyCode;
   rate: string;
   percent_change_24h: string;
-  last_updated: string;
+  updated_at: string;
 }
 
 export interface CurrencyRatesParams {

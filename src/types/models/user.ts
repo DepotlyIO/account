@@ -12,7 +12,7 @@ export interface User {
   account_type: AccountType;
   is_account_verified: boolean;
   locale: string;
-  currency: FiatCurrencyCode;
+  currency_code: FiatCurrencyCode;
 }
 
 export interface UserCreateRequest {
