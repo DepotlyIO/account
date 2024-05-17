@@ -59,12 +59,6 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'any',
           },
-          {
-            src: 'pwa/logo-512x512-maskable.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
         ],
         name: 'Depotly',
         short_name: 'Depotly',
