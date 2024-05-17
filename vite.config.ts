@@ -49,6 +49,17 @@ export default defineConfig({
             type: 'image/png',
           },
           {
+            src: 'pwa/logo-180x180.png',
+            sizes: '180x180',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa/logo-180x180-maskable.png',
+            sizes: '180x180',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
             src: 'pwa/logo-192x192.png',
             sizes: '192x192',
             type: 'image/png',
@@ -58,6 +69,12 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
+          },
+          {
+            src: 'pwa/logo-512x512-maskable.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
           },
         ],
         name: 'Depotly',
