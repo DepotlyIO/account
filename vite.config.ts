@@ -44,34 +44,22 @@ export default defineConfig({
         description: 'Depotly application',
         icons: [
           {
-            src: 'pwa/logo-64x64.png',
+            src: 'pwa/pwa-64x64.png',
             sizes: '64x64',
             type: 'image/png',
           },
           {
-            src: 'pwa/logo-180x180.png',
-            sizes: '180x180',
-            type: 'image/png',
-          },
-          {
-            src: 'pwa/logo-180x180-maskable.png',
-            sizes: '180x180',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-          {
-            src: 'pwa/logo-192x192.png',
+            src: 'pwa/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'pwa/logo-512x512.png',
+            src: 'pwa/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any',
           },
           {
-            src: 'pwa/logo-512x512-maskable.png',
+            src: 'pwa/maskable-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
