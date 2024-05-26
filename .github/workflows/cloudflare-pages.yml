@@ -23,6 +23,9 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
 
+      - name: Enable corepack
+        run: corepack enable
+
       - name: Install dependencies
         run: pnpm install
 
