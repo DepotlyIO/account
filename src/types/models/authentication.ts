@@ -5,6 +5,7 @@ export interface Tokens {
 
 export interface Authentication {
   id: number;
+  updated_at: string;
   os: string;
   os_version: string;
   browser: string;
