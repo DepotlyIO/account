@@ -96,6 +96,7 @@ const menuItems = computed(() =>
     align-items: center;
     background: $color-white;
     border: 1px solid $color-border;
+    box-shadow: 0 0.25rem 1.5rem rgba(25, 28, 31, 0.1);
     border-radius: 20px;
 
     &_item {
@@ -126,6 +127,7 @@ const menuItems = computed(() =>
     gap: 20px;
 
     &__block {
+      box-shadow: unset;
       padding: 20px 13px;
       flex-direction: column;
       justify-content: flex-start;
