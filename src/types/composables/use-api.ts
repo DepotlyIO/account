@@ -13,6 +13,7 @@ export interface Api {
     list: () => Promise<AxiosResponse<Authentication[]>>;
     sign_in: (data: AuthenticationRequest) => Promise<AxiosResponse<AuthenticationResponse>>;
     sign_out: () => Promise<AxiosResponse<never>>;
+    revoke: (id: number) => Promise<AxiosResponse<Authentication[]>>;
   };
   user: {
     info: () => Promise<AxiosResponse<User>>;

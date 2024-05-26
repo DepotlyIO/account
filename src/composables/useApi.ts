@@ -13,6 +13,7 @@ export const useApi = (): Api => {
         list: () => axios('/v1/authentications', { method: 'get' }),
         sign_in: (data) => axios('/v1/authentications', { method: 'post', data }),
         sign_out: () => axios('/v1/authentications', { method: 'delete' }),
+        revoke: (id) => axios(`/v1/authentications/revoke/${id}`, { method: 'delete' }),
       },
       user: {
         info: () => axios('/v1/user', { method: 'get' }),
