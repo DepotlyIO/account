@@ -8,11 +8,13 @@ export type MainIcon =
   | 'account-circle'
   | 'arrow-down-thin'
   | 'arrow-up-thin'
+  | 'cellphone'
   | 'chart-bar'
   | 'check-decagram'
   | 'close'
   | 'exit-to-app'
   | 'home'
   | 'loading'
+  | 'monitor'
   | 'update'
   | 'wallet-bifold';
