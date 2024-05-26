@@ -8,7 +8,10 @@
     "employee_account_type": "Employee account",
     "regular_account_type": "Regular account",
     "company_account_type": "Company account",
-    "app_update_available": "New app version available!"
+    "app_update_available": "New app version available!",
+    "os": "OS",
+    "browser": "Browser",
+    "latest_activity": "Latest activity"
   },
   "actions": {
     "sign_in": "Sign in",
