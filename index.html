@@ -24,25 +24,24 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: opacity 1.5s ease-in;
+        transition: opacity 1s ease-in;
       }
 
       #loader > svg {
         width: 50%;
         max-width: 250px;
-        color: #7baae4;
-        animation: spin 1s linear infinite;
+        animation: pulse 2s ease-in-out infinite;
       }
 
-      @keyframes spin {
+      @keyframes pulse {
         0% {
-          transform: rotate(0deg);
+          transform: scale(100%);
         }
         50% {
-          transform: rotate(180deg);
+          transform: scale(115%);
         }
         100% {
-          transform: rotate(360deg);
+          transform: scale(100%);
         }
       }
     </style>
@@ -50,8 +49,29 @@
   </head>
   <body>
     <div id="loader">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" fill="currentColor" />
+      <svg viewBox="0.0 0.0 718.0314960629921 715.5748031496063" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill="currentColor"
+          d="m196.13512 323.5543l38.960632 38.960632l-163.77954 163.77951l-38.960632 -38.9606z"
+        />
+        <path
+          fill="currentColor"
+          d="m371.2021 56.771652l321.63782 306.44257l-321.63782 300.0141z"
+        />
+        <path
+          fill="currentColor"
+          d="m311.01575 20.110352l0.5420227 132.30836l-199.18768 199.1877l-0.54203033 -132.30836z"
+        />
+        <path
+          fill="currentColor"
+          d="m112.37008 239.3387l-0.54203033 132.30836l199.1877 199.18771l0.5420227 -132.30838z"
+        />
+        <path
+          fill="currentColor"
+          d="m68.53544 451.35696l-0.29529572 72.08267l124.42128 124.421265l0.29530334 -72.08264z"
+        />
+        <path fill="currentColor" d="m310.3596 360.0l-67.33859 -63.448822l67.33859 -63.448822z" />
+        <path fill="currentColor" d="m113.09974 372.9265l-79.46457 -77.51181l79.46457 -77.51181z" />
       </svg>
     </div>
 
