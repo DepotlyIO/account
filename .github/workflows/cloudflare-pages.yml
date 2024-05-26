@@ -5,12 +5,12 @@ on:
     branches: ['main']
 
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   publish:
-    name: Publish to Cloudflare Pages
-    runs-on: ubuntu-latest
+    name: build & publish
+    runs-on: [self-hosted, linux, arm64]
 
     steps:
       - name: Checkout
