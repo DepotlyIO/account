@@ -3,7 +3,7 @@ import { useUserStore } from '@/stores/user';
 import type { AxiosResponse, AxiosInstance } from 'axios';
 
 let instance: AxiosInstance;
-let refresh: Promise<AxiosResponse>;
+let refresh: Promise<AxiosResponse> | undefined;
 
 export const useAxiosInstance = (): AxiosInstance => {
   if (!instance) {
@@ -14,9 +14,8 @@ export const useAxiosInstance = (): AxiosInstance => {
     });
 
     instance.interceptors.request.use((config) => {
-      const token = userStore.getToken(
-        '_refresh' in config && config._refresh ? 'refresh' : 'access',
-      );
+      const tokenName = '_refresh' in config && config._refresh ? 'refresh' : 'access'
+      const token = userStore.getToken(tokenName);
 
       if (token) config.headers.Authorization = token;
 
@@ -57,6 +56,8 @@ export const useAxiosInstance = (): AxiosInstance => {
           } catch (error) {
             await userStore.signOut(true);
             return Promise.reject(error);
+          } finally {
+            refresh = undefined
           }
         } else {
           return Promise.reject(error);
