@@ -14,7 +14,7 @@ export const useAxiosInstance = (): AxiosInstance => {
     });
 
     instance.interceptors.request.use((config) => {
-      const tokenName = '_refresh' in config && config._refresh ? 'refresh' : 'access'
+      const tokenName = '_refresh' in config && config._refresh ? 'refresh' : 'access';
       const token = userStore.getToken(tokenName);
 
       if (token) config.headers.Authorization = token;
@@ -57,7 +57,7 @@ export const useAxiosInstance = (): AxiosInstance => {
             await userStore.signOut(true);
             return Promise.reject(error);
           } finally {
-            refresh = undefined
+            refresh = undefined;
           }
         } else {
           return Promise.reject(error);
