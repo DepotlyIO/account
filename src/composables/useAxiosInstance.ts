@@ -29,21 +29,21 @@ export const useAxiosInstance = (): AxiosInstance => {
           axios.isAxiosError(error) &&
           error.response?.status === 401 &&
           error.config &&
-          // @ts-expect-error
-          !error._refresh &&
-          // @ts-expect-error
-          !error._retry &&
+          !error.config.custom?.refresh &&
+          !error.config.custom?.retry &&
           userStore.getToken('refresh')
         ) {
-          // @ts-expect-error
-          error.config._retry = true;
+          error.config.custom = {
+            retry: true,
+          };
 
           try {
             if (!refresh) {
               refresh = instance('/v1/authentications/refresh', {
                 method: 'post',
-                // @ts-expect-error
-                _refresh: true,
+                custom: {
+                  refresh: true,
+                },
               });
 
               const { data } = await refresh;
