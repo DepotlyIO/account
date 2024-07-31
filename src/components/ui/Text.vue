@@ -38,7 +38,9 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const computedComponent = computed(() =>
-  props.tag ?? ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(props.variant) ? props.variant : 'div',
+  (props.tag ?? ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(props.variant))
+    ? props.variant
+    : 'div',
 );
 
 const computedClasses = computed(() => ({
