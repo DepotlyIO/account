@@ -23,7 +23,7 @@
     "axios": "^1.7.4",
     "dayjs": "^1.11.12",
     "pinia": "^2.2.1",
-    "uuid": "^9.0.1",
+    "uuid": "^10.0.0",
     "vue": "^3.4.37",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.4.3"
@@ -32,7 +32,7 @@
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.14.15",
-    "@types/uuid": "^9.0.8",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
