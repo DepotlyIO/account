@@ -14,7 +14,7 @@ export const useAxiosInstance = (): AxiosInstance => {
     });
 
     instance.interceptors.request.use((config) => {
-      const tokenName = '_refresh' in config && config._refresh ? 'refresh' : 'access';
+      const tokenName = 'refresh' in config && config.refresh ? 'refresh' : 'access';
       const token = userStore.getToken(tokenName);
 
       if (token) config.headers.Authorization = token;
