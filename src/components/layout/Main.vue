@@ -52,11 +52,12 @@ import AppUpdate from '@/components/app/Update.vue';
     }
 
     &__main {
+      max-width: $app-main-tablet-max-width;
+      margin-inline: auto;
+
       &_wrapper {
         padding-block: 20px;
       }
-      max-width: $app-main-tablet-max-width;
-      margin-inline: auto;
     }
   }
 
