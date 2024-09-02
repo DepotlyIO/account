@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@unhead/vue": "^1.10.0",
-    "axios": "^1.7.5",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "pinia": "^2.2.2",
     "uuid": "^10.0.0",
