@@ -19,7 +19,7 @@
     "generate-sprites": "tsx utils/sprites-generator"
   },
   "dependencies": {
-    "@unhead/vue": "^1.10.0",
+    "@unhead/vue": "^1.10.4",
     "axios": "^1.7.5",
     "dayjs": "^1.11.13",
     "pinia": "^2.2.2",
