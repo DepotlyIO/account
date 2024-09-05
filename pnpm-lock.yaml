@@ -88,8 +88,8 @@ importers:
         specifier: ^0.20.3
         version: 0.20.3(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(workbox-build@7.1.0)(workbox-window@7.1.0)
       vite-plugin-vue-devtools:
-        specifier: ^7.4.3
-        version: 7.4.3(rollup@2.79.1)(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4))
+        specifier: ^7.4.4
+        version: 7.4.4(rollup@2.79.1)(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4))
       vue-tsc:
         specifier: ^2.1.4
         version: 2.1.4(typescript@5.5.4)
@@ -1361,16 +1361,16 @@ packages:
   '@vue/devtools-api@6.6.3':
     resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
 
-  '@vue/devtools-core@7.4.3':
-    resolution: {integrity: sha512-qhcZfiNujvR9KsoNy5l5IG7n7ie3Vd62XYvLrqBdUMF51gav4Dwj1OfgjOokrfbGBQouzvHuzQOT21OkX+n7PQ==}
+  '@vue/devtools-core@7.4.4':
+    resolution: {integrity: sha512-DLxgA3DfeADkRzhAfm3G2Rw/cWxub64SdP5b+s5dwL30+whOGj+QNhmyFpwZ8ZTrHDFRIPj0RqNzJ8IRR1pz7w==}
     peerDependencies:
       vue: ^3.0.0
 
-  '@vue/devtools-kit@7.4.3':
-    resolution: {integrity: sha512-IXLms+1O7Je4Z/drGb2srEzA1ONeiIUrEj0X/J4wb15Bcn8DFfCNtes7t9FNryIMsvpC5ZkL4SWpmjiaQidOeg==}
+  '@vue/devtools-kit@7.4.4':
+    resolution: {integrity: sha512-awK/4NfsUG0nQ7qnTM37m7ZkEUMREyPh8taFCX+uQYps/MTFEum0AD05VeGDRMXwWvMmGIcWX9xp8ZiBddY0jw==}
 
-  '@vue/devtools-shared@7.4.3':
-    resolution: {integrity: sha512-gcrQtLteurIh3A9QC0x3Q5TvAp599Pcr9aBbbBd9jAICxUpX2qcXlDczQauWuRWmZwXeCI6i7OfrTVd/QMMgqA==}
+  '@vue/devtools-shared@7.4.4':
+    resolution: {integrity: sha512-yeJULXFHOKIm8yL2JFO050a9ztTVqOCKTqN9JHFxGTJN0b+gjtfn6zC+FfyHUgjwCwf6E3hfKrlohtthcqoYqw==}
 
   '@vue/eslint-config-prettier@9.0.0':
     resolution: {integrity: sha512-z1ZIAAUS9pKzo/ANEfd2sO+v2IUalz7cM/cTLOZ7vRFOPk5/xuRKQteOu1DErFLAh/lYGXMVZ0IfYKlyInuDVg==}
@@ -2917,8 +2917,8 @@ packages:
       '@vite-pwa/assets-generator':
         optional: true
 
-  vite-plugin-vue-devtools@7.4.3:
-    resolution: {integrity: sha512-1mC3OtuESuzZB77LFGN5eGnjjE8ToJwUrd95TPvDLAf8dRdCgMgooBM9/Py07TsZeh6wJJEBE+Bo7cFaIvEi5A==}
+  vite-plugin-vue-devtools@7.4.4:
+    resolution: {integrity: sha512-lJ7Vr6gznv1nf2S75XJTpXl4XcwnHfyvqJQ7szOvTUfumQALDGo772TEH69wx8gkY/ZWZQea4DZR5IQZMOZKUA==}
     engines: {node: '>=v14.21.3'}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0-0 || ^5.0.0-0
@@ -4444,10 +4444,10 @@ snapshots:
 
   '@vue/devtools-api@6.6.3': {}
 
-  '@vue/devtools-core@7.4.3(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4))':
+  '@vue/devtools-core@7.4.4(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4))':
     dependencies:
-      '@vue/devtools-kit': 7.4.3
-      '@vue/devtools-shared': 7.4.3
+      '@vue/devtools-kit': 7.4.4
+      '@vue/devtools-shared': 7.4.4
       mitt: 3.0.1
       nanoid: 3.3.7
       pathe: 1.1.2
@@ -4456,9 +4456,9 @@ snapshots:
     transitivePeerDependencies:
       - vite
 
-  '@vue/devtools-kit@7.4.3':
+  '@vue/devtools-kit@7.4.4':
     dependencies:
-      '@vue/devtools-shared': 7.4.3
+      '@vue/devtools-shared': 7.4.4
       birpc: 0.2.17
       hookable: 5.5.3
       mitt: 3.0.1
@@ -4466,7 +4466,7 @@ snapshots:
       speakingurl: 14.0.1
       superjson: 2.2.1
 
-  '@vue/devtools-shared@7.4.3':
+  '@vue/devtools-shared@7.4.4':
     dependencies:
       rfdc: 1.4.1
 
@@ -6127,11 +6127,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-vue-devtools@7.4.3(rollup@2.79.1)(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4)):
+  vite-plugin-vue-devtools@7.4.4(rollup@2.79.1)(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4)):
     dependencies:
-      '@vue/devtools-core': 7.4.3(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4))
-      '@vue/devtools-kit': 7.4.3
-      '@vue/devtools-shared': 7.4.3
+      '@vue/devtools-core': 7.4.4(vite@5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6))(vue@3.5.0(typescript@5.5.4))
+      '@vue/devtools-kit': 7.4.4
+      '@vue/devtools-shared': 7.4.4
       execa: 8.0.1
       sirv: 2.0.4
       vite: 5.4.3(@types/node@22.5.3)(sass@1.78.0)(terser@5.31.6)
