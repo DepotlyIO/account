@@ -30,7 +30,7 @@ jobs:
         run: pnpm install
 
       - name: Generate sprites
-        run: pnpm generate-sprites
+        run: pnpm generate:sprites
 
       - name: Build project
         run: pnpm build
