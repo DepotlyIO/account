@@ -52,7 +52,7 @@ useHead(() => ({
 <style module lang="scss">
 .page-orders {
   &__title {
-    margin-block-end: 20px;
+    margin-block-end: 10px;
   }
 
   &__list {
