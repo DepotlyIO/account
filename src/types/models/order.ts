@@ -14,7 +14,7 @@ export interface OrderUser {
   name: string;
 }
 
-export interface OrdersListOrder {
+interface BaseOrder {
   id: number;
   title: string;
   price: string;
@@ -23,10 +23,13 @@ export interface OrdersListOrder {
   created_at: string;
   updated_at: string;
   customer: OrderUser;
+}
+
+export interface OrdersListOrder extends BaseOrder{
   performer: null;
 }
 
-export interface Order extends OrdersListOrder {
+export interface Order extends BaseOrder {
   performer: OrderUser | null;
   content: string;
 }

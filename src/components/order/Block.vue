@@ -23,7 +23,7 @@ const date = computed(() => {
 
 const sum = computed(() =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' })
-    .format(props.order.price)
+    .format(+props.order.price)
     .replace('USD', props.order.currency_code),
 );
 </script>
