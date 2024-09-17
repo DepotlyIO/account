@@ -13,6 +13,7 @@ export type MainIcon =
   | 'check-decagram'
   | 'close'
   | 'exit-to-app'
+  | 'file-document'
   | 'home'
   | 'loading'
   | 'monitor'

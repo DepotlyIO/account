@@ -23,8 +23,8 @@
   },
   "menu": {
     "index": "Home",
+    "orders": "Orders",
     "wallets": "Wallets",
-    "charts": "Charts",
     "account": "Account"
   },
   "pages": {
@@ -81,9 +81,9 @@
         "title": "Wallets"
       }
     },
-    "charts": {
+    "orders": {
       "meta": {
-        "title": "Charts"
+        "title": "Orders"
       }
     },
     "account": {

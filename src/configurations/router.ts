@@ -5,12 +5,12 @@ import { useUserStore } from '@/stores/user';
 import main from '@/configurations/routes/main';
 import account from '@/configurations/routes/account';
 import authentication from '@/configurations/routes/authentication';
-import charts from '@/configurations/routes/charts';
+import orders from '@/configurations/routes/orders';
 import wallets from '@/configurations/routes/wallets';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...main, ...account, ...authentication, ...charts, ...wallets],
+  routes: [...main, ...account, ...authentication, ...orders, ...wallets],
 });
 
 router.beforeEach((to) => {

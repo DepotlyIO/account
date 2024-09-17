@@ -22,12 +22,12 @@ const menuItems = computed(() =>
         icon: 'home',
       },
       {
-        name: 'wallets',
-        icon: 'wallet-bifold',
+        name: 'orders',
+        icon: 'file-document',
       },
       {
-        name: 'charts',
-        icon: 'chart-bar',
+        name: 'wallets',
+        icon: 'wallet-bifold',
       },
       {
         name: 'account',

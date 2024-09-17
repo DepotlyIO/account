@@ -16,7 +16,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write .",
-    "generate-sprites": "tsx utils/sprites-generator"
+    "generate:sprites": "tsx utils/sprites-generator"
   },
   "dependencies": {
     "@unhead/vue": "^1.11.6",

@@ -5,12 +5,12 @@ import { useHead } from '@unhead/vue';
 const { t } = useI18n();
 
 useHead(() => ({
-  title: t('pages.charts.meta.title'),
+  title: t('pages.orders.meta.title'),
 }));
 </script>
 
 <template>
-  <div>Charts</div>
+  <div>Orders</div>
 </template>
 
-<style module lang="scss"></style>
+<style lang="scss"></style>
