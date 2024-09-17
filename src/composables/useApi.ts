@@ -26,6 +26,10 @@ export const useApi = (): Api => {
         list: () => axios('/v1/currencies', { method: 'get' }),
         rates: (params) => axios('/v1/currencies/rates', { method: 'get', params }),
       },
+      orders: {
+        list: () => axios('/v1/orders', { method: 'get' }),
+        one: (id) => axios(`/v1/orders/${id}`, { method: 'get' }),
+      },
       isAxiosError,
     };
   }

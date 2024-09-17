@@ -8,4 +8,22 @@ export default [
       requiresAuth: true,
     },
   },
+  {
+    path: '/orders/create',
+    name: 'orders-create',
+    component: () => import('@/pages/orders/create.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/orders/:id',
+    name: 'orders-id',
+    component: () => import('@/pages/orders/[id].vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true,
+    },
+  },
 ];

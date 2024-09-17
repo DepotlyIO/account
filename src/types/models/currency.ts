@@ -1,6 +1,6 @@
 export type FiatCurrencyCode = 'USD' | 'EUR' | 'PLN';
 
-type CryptoCurrencyCode = 'USDT' | 'USDC' | 'BUSD' | 'BTC' | 'ETH' | 'XRP';
+export type CryptoCurrencyCode = 'USDT' | 'USDC' | 'BUSD' | 'BTC' | 'ETH' | 'XRP';
 
 type CurrencyCode = FiatCurrencyCode | CryptoCurrencyCode;
 
