@@ -7,6 +7,7 @@ import type {
 } from '@/types/models/authentication';
 import type { EmailVerificationRequest, User, UserCreateRequest } from '@/types/models/user';
 import type { Currency, CurrencyRate, CurrencyRatesParams } from '@/types/models/currency';
+import type { Company, CompanyData } from '@/types/models/company';
 
 export interface Api {
   authentication: {
@@ -24,6 +25,13 @@ export interface Api {
   currencies: {
     list: () => Promise<AxiosResponse<Currency[]>>;
     rates: (params: CurrencyRatesParams) => Promise<AxiosResponse<CurrencyRate[]>>;
+  };
+  companies: {
+    list: () => Promise<AxiosResponse<Company[]>>;
+    create: (data: CompanyData) => Promise<AxiosResponse<Company>>;
+    one: (id: number | string) => Promise<AxiosResponse<Company>>;
+    update: (id: number | string, data: CompanyData) => Promise<AxiosResponse<Company>>;
+    delete: (id: number | string) => Promise<AxiosResponse<void>>;
   };
   isAxiosError: typeof isAxiosError;
 }

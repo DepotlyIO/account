@@ -26,6 +26,13 @@ export const useApi = (): Api => {
         list: () => axios('/v1/currencies', { method: 'get' }),
         rates: (params) => axios('/v1/currencies/rates', { method: 'get', params }),
       },
+      companies: {
+        list: () => axios('/v1/companies', { method: 'get' }),
+        create: (data) => axios('/v1/companies', { method: 'post', data }),
+        one: (id) => axios(`/v1/companies/${id}`, { method: 'get' }),
+        update: (id, data) => axios(`/v1/companies/${id}`, { method: 'put', data }),
+        delete: (id) => axios(`/v1/companies/${id}`, { method: 'delete' }),
+      },
       isAxiosError,
     };
   }
