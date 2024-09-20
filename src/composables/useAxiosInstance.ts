@@ -54,7 +54,8 @@ export const useAxiosInstance = (): AxiosInstance => {
 
             return await instance(error.config);
           } catch (error) {
-            if (isAxiosError(error) && error.response?.status === 401) await userStore.signOut(true);
+            if (isAxiosError(error) && error.response?.status === 401)
+              await userStore.signOut(true);
             return Promise.reject(error);
           } finally {
             refresh = undefined;
