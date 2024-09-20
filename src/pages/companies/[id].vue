@@ -13,7 +13,7 @@ const loading = ref(false);
 const company = ref<Company>();
 
 const loadCompany = async () => {
-  if (loading.value) return;
+  if (loading.value || typeof route.params.id !== 'string') return;
 
   loading.value = true;
   try {
