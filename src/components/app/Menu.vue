@@ -26,10 +26,6 @@ const menuItems = computed(() =>
         icon: 'wallet-bifold',
       },
       {
-        name: 'charts',
-        icon: 'chart-bar',
-      },
-      {
         name: 'account',
         icon: 'account-circle',
       },

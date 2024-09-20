@@ -9,7 +9,6 @@ export type MainIcon =
   | 'arrow-down-thin'
   | 'arrow-up-thin'
   | 'cellphone'
-  | 'chart-bar'
   | 'check-decagram'
   | 'close'
   | 'exit-to-app'

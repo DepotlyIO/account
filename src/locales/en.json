@@ -24,7 +24,6 @@
   "menu": {
     "index": "Home",
     "wallets": "Wallets",
-    "charts": "Charts",
     "account": "Account"
   },
   "pages": {
@@ -79,11 +78,6 @@
     "wallets": {
       "meta": {
         "title": "Wallets"
-      }
-    },
-    "charts": {
-      "meta": {
-        "title": "Charts"
       }
     },
     "account": {
