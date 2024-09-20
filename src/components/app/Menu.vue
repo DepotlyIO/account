@@ -22,6 +22,10 @@ const menuItems = computed(() =>
         icon: 'home',
       },
       {
+        name: 'companies',
+        icon: 'domain',
+      },
+      {
         name: 'wallets',
         icon: 'wallet-bifold',
       },

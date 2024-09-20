@@ -11,9 +11,11 @@ export type MainIcon =
   | 'cellphone'
   | 'check-decagram'
   | 'close'
+  | 'domain'
   | 'exit-to-app'
   | 'home'
   | 'loading'
   | 'monitor'
+  | 'plus'
   | 'update'
   | 'wallet-bifold';

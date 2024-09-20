@@ -19,10 +19,12 @@
     "sign_out": "Sign out",
     "create_account": "Create an account",
     "back_to_authentication": "Back to authentication",
-    "update": "Update"
+    "update": "Update",
+    "create": "Create"
   },
   "menu": {
     "index": "Home",
+    "companies": "Companies",
     "wallets": "Wallets",
     "account": "Account"
   },
@@ -73,6 +75,24 @@
           "additional_steps": "You can try again later or request a new confirmation link."
         },
         "action": "In account"
+      }
+    },
+    "companies": {
+      "meta": {
+        "title": "Companies"
+      },
+      "title": "Companies",
+      "create": {
+        "meta": {
+          "title": "Create company"
+        },
+        "title": "New company",
+        "form": {
+          "name": {
+            "title": "Name",
+            "placeholder": "Company name"
+          }
+        }
       }
     },
     "wallets": {
