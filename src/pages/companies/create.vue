@@ -31,8 +31,8 @@ const createCompany = async () => {
     console.error(e);
 
     if (api.isAxiosError(e) && e.status === 422) {
-      errorMessage.value = e.response.data.message;
-      errors.value = e.response.data.errors;
+      errorMessage.value = e.response?.data.message;
+      errors.value = e.response?.data.errors;
     }
   }
   loading.value = false;
