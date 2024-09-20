@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import { useUserStore } from '@/stores/user';
 import type { AxiosResponse, AxiosInstance } from 'axios';
 
@@ -54,7 +54,7 @@ export const useAxiosInstance = (): AxiosInstance => {
 
             return await instance(error.config);
           } catch (error) {
-            await userStore.signOut(true);
+            if (isAxiosError(error) && error.response?.status === 401) await userStore.signOut(true);
             return Promise.reject(error);
           } finally {
             refresh = undefined;
