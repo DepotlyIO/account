@@ -13,7 +13,7 @@ const props = defineProps<Props>();
 const router = useRouter();
 
 const companyPath = computed(() =>
-  router.resolve({ name: 'companies-id', params: { id: props.company.id } }),
+  router.resolve({ name: 'companies-company-id', params: { company_id: props.company.id } }),
 );
 </script>
 

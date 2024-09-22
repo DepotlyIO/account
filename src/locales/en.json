@@ -11,7 +11,17 @@
     "app_update_available": "New app version available!",
     "os": "OS",
     "browser": "Browser",
-    "latest_activity": "Latest activity"
+    "latest_activity": "Latest activity",
+    "amount": "Amount",
+    "due_date": "Due date",
+    "latest_payment": "Latest payment",
+    "next_payment": "Next payment",
+    "updated_at": "Updated at",
+    "status": "Status",
+    "permanent": "Permanent",
+    "temporary": "Temporary",
+    "wallet": "Wallet",
+    "currency": "Currency"
   },
   "actions": {
     "sign_in": "Sign in",
@@ -20,7 +30,8 @@
     "create_account": "Create an account",
     "back_to_authentication": "Back to authentication",
     "update": "Update",
-    "create": "Create"
+    "create": "Create",
+    "create_contract": "Create contract"
   },
   "menu": {
     "index": "Home",
@@ -91,6 +102,38 @@
           "name": {
             "title": "Name",
             "placeholder": "Company name"
+          },
+          "identification_number": {
+            "title": "Identification number",
+            "placeholder": "BP324234"
+          },
+          "country": {
+            "title": "Country",
+            "placeholder": "Poland"
+          },
+          "city": {
+            "title": "City",
+            "placeholder": "Warsaw"
+          },
+          "address": {
+            "title": "Address",
+            "placeholder": "address"
+          },
+          "zip": {
+            "title": "ZIP",
+            "placeholder": "101-01"
+          }
+        }
+      },
+      "company": {
+        "tables_name": {
+          "temporary": "Temporary/one time contracts",
+          "permanent": "Permanent contracts",
+          "closed": "Revoked/closed contracts"
+        },
+        "contract": {
+          "new": {
+            "title": "New contract"
           }
         }
       }

@@ -32,7 +32,7 @@ export const useApi = (): Api => {
         one: (id) => axios(`/v1/companies/${id}`, { method: 'get' }),
         update: (id, data) => axios(`/v1/companies/${id}`, { method: 'put', data }),
         delete: (id) => axios(`/v1/companies/${id}`, { method: 'delete' }),
-        workers: (id) => axios(`/v1/companies/${id}/workers`, { method: 'get' }),
+        contracts: (id) => axios(`/v1/companies/${id}/contracts`, { method: 'get' }),
       },
       isAxiosError,
     };

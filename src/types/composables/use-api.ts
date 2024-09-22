@@ -8,7 +8,7 @@ import type {
 import type { EmailVerificationRequest, User, UserCreateRequest } from '@/types/models/user';
 import type { Currency, CurrencyRate, CurrencyRatesParams } from '@/types/models/currency';
 import type { Company, CompanyData } from '@/types/models/company';
-import type { CompanyWorker } from '@/types/models/company-worker';
+import type { CompanyContract } from '@/types/models/company-contract';
 
 export interface Api {
   authentication: {
@@ -33,7 +33,7 @@ export interface Api {
     one: (id: number | string) => Promise<AxiosResponse<Company>>;
     update: (id: number | string, data: CompanyData) => Promise<AxiosResponse<Company>>;
     delete: (id: number | string) => Promise<AxiosResponse<void>>;
-    workers: (id: number | string) => Promise<AxiosResponse<CompanyWorker[]>>;
+    contracts: (id: number | string) => Promise<AxiosResponse<CompanyContract[]>>;
   };
   isAxiosError: typeof isAxiosError;
 }

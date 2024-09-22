@@ -5,13 +5,17 @@ import UiText from '@/components/ui/Text.vue';
 const styles = useCssModule();
 const id = useId();
 
+export interface UiFormSelectOption {
+  text: string;
+  value: string;
+}
+
 interface Props {
+  options: UiFormSelectOption[];
   name: string;
   label?: string;
   placeholder?: string;
   hint?: string;
-  type?: 'text' | 'email' | 'password' | 'number';
-  autocomplete?: 'off' | 'email' | 'current-password' | 'new-password' | 'name';
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
@@ -20,16 +24,10 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  autocomplete: 'off',
   required: false,
   disabled: false,
   readonly: false,
 });
-
-const emit = defineEmits<{
-  focus: [value: void];
-}>();
 
 const model = defineModel<T>();
 
@@ -39,14 +37,12 @@ const inputAttributes = computed(() => ({
   id: computedId.value,
   name: props.name,
   placeholder: props.placeholder,
-  type: props.type,
-  autocomplete: props.autocomplete,
   disabled: props.disabled,
   readonly: props.readonly,
   required: props.required,
   tabindex: props.tabindex,
   class: {
-    [styles['ui-form-text__input']]: true,
+    [styles['ui-form-select__input']]: true,
   },
 }));
 
@@ -56,25 +52,30 @@ const computedError = computed(() =>
 </script>
 
 <template>
-  <section :class="$style['ui-form-text']">
-    <div :class="$style['ui-form-text__head']">
+  <section :class="$style['ui-form-select']">
+    <div :class="$style['ui-form-select__head']">
       <UiText
         variant="underline"
         :for="computedId"
         tag="label"
-        :class="$style['ui-form-text__head_label']"
+        :class="$style['ui-form-select__head_label']"
       >
         {{ props.label }}
       </UiText>
 
-      <div v-if="$slots['label']" :class="$style['ui-form-text__head_label-slot']">
+      <div v-if="$slots['label']" :class="$style['ui-form-select__head_label-slot']">
         <slot name="label" />
       </div>
     </div>
 
-    <input v-model="model" v-bind="inputAttributes" @focus="() => emit('focus')" />
+    <select v-model="model" v-bind="inputAttributes">
+      <option disabled value="">{{ props.placeholder }}</option>
+      <option v-for="option in props.options" :key="option.value" :value="option.value">
+        {{ option.text }}
+      </option>
+    </select>
 
-    <div v-if="props.error" :class="$style['ui-form-text__error']">
+    <div v-if="props.error" :class="$style['ui-form-select__error']">
       {{ computedError }}
     </div>
 
@@ -85,7 +86,7 @@ const computedError = computed(() =>
 </template>
 
 <style module lang="scss">
-.ui-form-text {
+.ui-form-select {
   width: 100%;
   @include children-margin-block(0.25rem);
 
@@ -122,16 +123,6 @@ const computedError = computed(() =>
       border-color: $color-border-active;
       outline: 0;
       box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    }
-
-    &[type='number'] {
-      -moz-appearance: textfield;
-
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
     }
   }
 

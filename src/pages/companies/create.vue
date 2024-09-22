@@ -16,6 +16,11 @@ const api = useApi();
 const loading = ref(false);
 const company = ref<CompanyData['company']>({
   name: '',
+  identification_number: '',
+  country: '',
+  city: '',
+  address: '',
+  zip: '',
 });
 const errorMessage = ref('');
 const errors = ref<any>();
@@ -26,7 +31,7 @@ const createCompany = async () => {
   loading.value = true;
   try {
     const { data } = await api.companies.create({ company: company.value });
-    await router.replace({ name: 'companies-id', params: { id: data.id } });
+    await router.replace({ name: 'companies-company-id', params: { id: data.id } });
   } catch (e) {
     console.error(e);
 
@@ -61,6 +66,51 @@ useHead(() => ({
         :error="errors?.name"
         :label="$t('pages.companies.create.form.name.title')"
         :placeholder="$t('pages.companies.create.form.name.placeholder')"
+      />
+
+      <UiFormInput
+        v-model="company.identification_number"
+        name="identification_number"
+        :disabled="loading"
+        :error="errors?.identification_number"
+        :label="$t('pages.companies.create.form.identification_number.title')"
+        :placeholder="$t('pages.companies.create.form.identification_number.placeholder')"
+      />
+
+      <UiFormInput
+        v-model="company.country"
+        name="country"
+        :disabled="loading"
+        :error="errors?.country"
+        :label="$t('pages.companies.create.form.country.title')"
+        :placeholder="$t('pages.companies.create.form.country.placeholder')"
+      />
+
+      <UiFormInput
+        v-model="company.city"
+        name="city"
+        :disabled="loading"
+        :error="errors?.city"
+        :label="$t('pages.companies.create.form.city.title')"
+        :placeholder="$t('pages.companies.create.form.city.placeholder')"
+      />
+
+      <UiFormInput
+        v-model="company.address"
+        name="address"
+        :disabled="loading"
+        :error="errors?.address"
+        :label="$t('pages.companies.create.form.address.title')"
+        :placeholder="$t('pages.companies.create.form.address.placeholder')"
+      />
+
+      <UiFormInput
+        v-model="company.zip"
+        name="zip"
+        :disabled="loading"
+        :error="errors?.zip"
+        :label="$t('pages.companies.create.form.zip.title')"
+        :placeholder="$t('pages.companies.create.form.zip.placeholder')"
       />
 
       <UiButton

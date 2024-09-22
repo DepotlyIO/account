@@ -18,9 +18,27 @@ export default [
     },
   },
   {
-    path: '/companies/:id',
-    name: 'companies-id',
-    component: () => import('@/pages/companies/[id].vue'),
+    path: '/companies/:company_id',
+    name: 'companies-company-id',
+    component: () => import('@/pages/companies/[company_id]/index.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/companies/:company_id/contract/new',
+    name: 'companies-company-id-contracts-new',
+    component: () => import('@/pages/companies/[company_id]/contracts/new.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/companies/:company_id/contract/:contract_id',
+    name: 'companies-company-id-contracts-contract-id',
+    component: () => import('@/pages/companies/[company_id]/contracts/[contract_id].vue'),
     meta: {
       layout: 'main',
       requiresAuth: true,
