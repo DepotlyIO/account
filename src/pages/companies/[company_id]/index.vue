@@ -24,7 +24,17 @@ const workers = ref<CompanyContract[]>([]);
 const groupedWorkers = computed<Record<ContractGroup, CompanyContract[]>>(() =>
   workers.value.reduce(
     (acc, value) => {
-      acc[value.status].push(value);
+      switch (true) {
+        case value.recurrent:
+          acc.permanent.push(value);
+          break;
+        case !value.recurrent:
+          acc.temporary.push(value);
+          break;
+        default:
+          acc.closed.push(value);
+      }
+
       return acc;
     },
     {

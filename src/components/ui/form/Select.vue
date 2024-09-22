@@ -2,9 +2,6 @@
 import { computed, useId, useCssModule } from 'vue';
 import UiText from '@/components/ui/Text.vue';
 
-const styles = useCssModule();
-const id = useId();
-
 export interface UiFormSelectOption {
   text: string;
   value: string;
@@ -30,6 +27,9 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const model = defineModel<T>();
+
+const styles = useCssModule();
+const id = useId();
 
 const computedId = computed(() => `${props.name}-${id}`);
 

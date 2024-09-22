@@ -31,7 +31,7 @@ const inputProps = computed(() => ({
 }));
 
 const showDatePicker = () => {
-  picker.value.focus();
+  picker.value?.focus();
 };
 
 const model = defineModel<string>({ required: true });
