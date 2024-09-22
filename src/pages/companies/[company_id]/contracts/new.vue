@@ -8,6 +8,7 @@ import UiFormSelect from '@/components/ui/form/Select.vue';
 import UiFormCheckbox from '@/components/ui/form/Checkbox.vue';
 import UiFormDate from '@/components/ui/form/Date.vue';
 import UiButton from '@/components/ui/Button.vue';
+import UiDivider from '@/components/ui/Divider.vue';
 import type { UiFormSelectOption } from '@/components/ui/form/Select.vue';
 import type { CompanyContractData } from '@/types/models/company-contract';
 
@@ -151,6 +152,15 @@ const handleFormSubmit = async () => {
         :disabled="loading"
       />
 
+      <UiFortInput
+        v-model="contract.invoice_number"
+        name="invoice-number"
+        :label="$t('pages.companies.company.contract.new.form.invoice_number.title')"
+        :placeholder="$t('pages.companies.company.contract.new.form.invoice_number.placeholder')"
+        :error="errors?.invoice_number"
+        :disabled="loading"
+      />
+
       <div
         :class="[
           $style['page-companies-company-id-contract-new__form__row'],
@@ -175,14 +185,7 @@ const handleFormSubmit = async () => {
         />
       </div>
 
-      <UiFortInput
-        v-model="contract.invoice_number"
-        name="invoice-number"
-        :label="$t('pages.companies.company.contract.new.form.invoice_number.title')"
-        :placeholder="$t('pages.companies.company.contract.new.form.invoice_number.placeholder')"
-        :error="errors?.invoice_number"
-        :disabled="loading"
-      />
+      <UiDivider />
 
       <UiFortInput
         v-model="contract.wallet"
