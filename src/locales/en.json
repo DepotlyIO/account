@@ -21,7 +21,8 @@
     "permanent": "Permanent",
     "temporary": "Temporary",
     "wallet": "Wallet",
-    "currency": "Currency"
+    "currency": "Currency",
+    "id": "ID"
   },
   "actions": {
     "sign_in": "Sign in",
@@ -133,6 +134,9 @@
         },
         "contract": {
           "new": {
+            "meta": {
+              "title": "Create contract"
+            },
             "title": "New contract",
             "form": {
               "name": {

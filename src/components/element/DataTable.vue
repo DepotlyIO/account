@@ -97,7 +97,7 @@ const props = withDefaults(defineProps<Props>(), {});
       transition: background-color $duration-medium ease-in-out;
 
       &:hover {
-        background-color: $color-gray;
+        background-color: $color-border;
       }
 
       td {

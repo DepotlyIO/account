@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
@@ -14,6 +14,7 @@ import type { CompanyContract } from '@/types/models/company-contract';
 type ContractGroup = 'temporary' | 'permanent' | 'closed';
 
 const route = useRoute();
+const router = useRouter();
 const { t } = useI18n();
 const api = useApi();
 
@@ -45,73 +46,88 @@ const groupedWorkers = computed<Record<ContractGroup, CompanyContract[]>>(() =>
   ),
 );
 
-const tables = computed(() => [
-  {
-    key: 'temporary',
-    title: t('pages.companies.company.tables_name.temporary'),
-    columns: [
-      {
-        name: 'name',
-        title: t('labels.name'),
-      },
-      {
-        name: 'email',
-        title: t('labels.email'),
-      },
-      {
-        name: 'amount',
-        title: t('labels.amount'),
-      },
-      {
-        name: 'due_date',
-        title: t('labels.due_date'),
-      },
-    ],
-    items: groupedWorkers.value.temporary,
-  },
-  {
-    key: 'permanent',
-    title: t('pages.companies.company.tables_name.permanent'),
-    columns: [
-      {
-        name: 'name',
-        title: t('labels.name'),
-      },
-      {
-        name: 'email',
-        title: t('labels.email'),
-      },
-      {
-        name: 'latest_payment',
-        title: t('labels.latest_payment'),
-      },
-      {
-        name: 'next_payment',
-        title: t('labels.next_payment'),
-      },
-    ],
-    items: groupedWorkers.value.permanent,
-  },
-  {
-    key: 'closed',
-    title: t('pages.companies.company.tables_name.closed'),
-    columns: [
-      {
-        name: 'name',
-        title: t('labels.name'),
-      },
-      {
-        name: 'email',
-        title: t('labels.email'),
-      },
-      {
-        name: 'updated_at',
-        title: t('labels.updated_at'),
-      },
-    ],
-    items: groupedWorkers.value.closed,
-  },
-]);
+const tables = computed(() =>
+  [
+    {
+      key: 'temporary',
+      title: t('pages.companies.company.tables_name.temporary'),
+      columns: [
+        {
+          name: 'id',
+          title: t('labels.id'),
+        },
+        {
+          name: 'name',
+          title: t('labels.name'),
+        },
+        {
+          name: 'amount',
+          title: t('labels.amount'),
+        },
+        {
+          name: 'due_date',
+          title: t('labels.due_date'),
+        },
+      ],
+      items: groupedWorkers.value.temporary,
+    },
+    {
+      key: 'permanent',
+      title: t('pages.companies.company.tables_name.permanent'),
+      columns: [
+        {
+          name: 'id',
+          title: t('labels.id'),
+        },
+        {
+          name: 'name',
+          title: t('labels.name'),
+        },
+        {
+          name: 'latest_payment',
+          title: t('labels.latest_payment'),
+        },
+        {
+          name: 'due_date',
+          title: t('labels.next_payment'),
+        },
+      ],
+      items: groupedWorkers.value.permanent,
+    },
+    {
+      key: 'closed',
+      title: t('pages.companies.company.tables_name.closed'),
+      columns: [
+        {
+          name: 'id',
+          title: t('labels.id'),
+        },
+        {
+          name: 'name',
+          title: t('labels.name'),
+        },
+        {
+          name: 'email',
+          title: t('labels.email'),
+        },
+        {
+          name: 'updated_at',
+          title: t('labels.updated_at'),
+        },
+      ],
+      items: groupedWorkers.value.closed,
+    },
+  ].map(({ items, ...table }) => ({
+    ...table,
+    items: items.map((item) => ({
+      ...item,
+      rowLink: router.resolve({
+        name: 'companies-company-id-contracts-contract-id',
+        params: { company_id: item.company_id, contract_id: item.id },
+      }),
+    })),
+  })),
+);
 
 const loadCompany = async () => {
   if (loading.value || typeof route.params.company_id !== 'string') return;

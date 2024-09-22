@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
 import UiText from '@/components/ui/Text.vue';
 import UiFortInput from '@/components/ui/form/Input.vue';
@@ -14,6 +16,7 @@ import type { CompanyContractData } from '@/types/models/company-contract';
 
 const route = useRoute();
 const router = useRouter();
+const { t } = useI18n();
 const api = useApi();
 
 const loading = ref(false);
@@ -70,6 +73,10 @@ const handleFormSubmit = async () => {
   }
   loading.value = false;
 };
+
+useHead(() => ({
+  title: t('pages.companies.company.contract.new.meta.title'),
+}));
 </script>
 
 <template>
