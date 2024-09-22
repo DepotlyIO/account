@@ -133,7 +133,37 @@
         },
         "contract": {
           "new": {
-            "title": "New contract"
+            "title": "New contract",
+            "form": {
+              "name": {
+                "title": "Name",
+                "placeholder": "Name"
+              },
+              "identification_number": {
+                "title": "Identification Number",
+                "placeholder": "Identification Number"
+              },
+              "country": {
+                "title": "Country",
+                "placeholder": "Country"
+              },
+              "city": {
+                "title": "City",
+                "placeholder": "City"
+              },
+              "zip": {
+                "title": "ZIP",
+                "placeholder": "ZIP"
+              },
+              "address": {
+                "title": "Address",
+                "placeholder": "Address"
+              },
+              "invoice_number": {
+                "title": "Invoice number",
+                "placeholder": "Invoice number"
+              }
+            }
           }
         }
       }

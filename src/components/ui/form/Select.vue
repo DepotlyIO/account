@@ -75,9 +75,9 @@ const computedError = computed(() =>
       </option>
     </select>
 
-    <div v-if="props.error" :class="$style['ui-form-select__error']">
+    <UiText v-if="props.error" variant="underline" color="color-red">
       {{ computedError }}
-    </div>
+    </UiText>
 
     <UiText v-if="props.hint" variant="underline" color="color-gray">
       {{ props.hint }}
@@ -124,10 +124,6 @@ const computedError = computed(() =>
       outline: 0;
       box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     }
-  }
-
-  &__error {
-    color: $color-red;
   }
 }
 </style>

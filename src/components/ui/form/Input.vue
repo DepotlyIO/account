@@ -2,9 +2,6 @@
 import { computed, useId, useCssModule } from 'vue';
 import UiText from '@/components/ui/Text.vue';
 
-const styles = useCssModule();
-const id = useId();
-
 interface Props {
   name: string;
   label?: string;
@@ -32,6 +29,9 @@ const emit = defineEmits<{
 }>();
 
 const model = defineModel<T>();
+
+const styles = useCssModule();
+const id = useId();
 
 const computedId = computed(() => `${props.name}-${id}`);
 
@@ -74,9 +74,9 @@ const computedError = computed(() =>
 
     <input v-model="model" v-bind="inputAttributes" @focus="() => emit('focus')" />
 
-    <div v-if="props.error" :class="$style['ui-form-text__error']">
+    <UiText v-if="props.error" variant="underline" color="color-red">
       {{ computedError }}
-    </div>
+    </UiText>
 
     <UiText v-if="props.hint" variant="underline" color="color-gray">
       {{ props.hint }}
@@ -133,10 +133,6 @@ const computedError = computed(() =>
         margin: 0;
       }
     }
-  }
-
-  &__error {
-    color: $color-red;
   }
 }
 </style>

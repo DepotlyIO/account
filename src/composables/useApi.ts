@@ -33,6 +33,8 @@ export const useApi = (): Api => {
         update: (id, data) => axios(`/v1/companies/${id}`, { method: 'put', data }),
         delete: (id) => axios(`/v1/companies/${id}`, { method: 'delete' }),
         contracts: (id) => axios(`/v1/companies/${id}/contracts`, { method: 'get' }),
+        create_contract: (id, data) =>
+          axios(`/v1/companies/${id}/contracts`, { method: 'post', data }),
       },
       isAxiosError,
     };

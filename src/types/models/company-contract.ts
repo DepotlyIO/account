@@ -11,6 +11,12 @@ export interface CompanyContract {
   company_id: number;
   user_id: number;
   name: string;
+  identification_number: string;
+  country: string;
+  city: string;
+  address: string;
+  zip: string;
+  invoice_number: string;
   wallet: string;
   recurrent: boolean;
   status: CompanyContractStatus;
@@ -30,5 +36,10 @@ export interface CompanyContractData {
     address: string;
     zip: string;
     invoice_number: string;
+    wallet: string;
+    payment_amount: string;
+    currency_code: string;
+    due_date: string;
+    recurrent: boolean;
   };
 }

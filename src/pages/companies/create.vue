@@ -23,11 +23,13 @@ const company = ref<CompanyData['company']>({
   zip: '',
 });
 const errorMessage = ref('');
-const errors = ref<any>();
+const errors = ref<any | undefined>();
 
 const createCompany = async () => {
   if (loading.value) return;
 
+  errors.value = undefined;
+  errorMessage.value = '';
   loading.value = true;
   try {
     const { data } = await api.companies.create({ company: company.value });
