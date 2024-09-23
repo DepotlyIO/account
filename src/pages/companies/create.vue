@@ -33,7 +33,7 @@ const createCompany = async () => {
   loading.value = true;
   try {
     const { data } = await api.companies.create({ company: company.value });
-    await router.replace({ name: 'companies-company-id', params: { id: data.id } });
+    await router.replace({ name: 'companies-company-id', params: { company_id: data.id } });
   } catch (e) {
     console.error(e);
 

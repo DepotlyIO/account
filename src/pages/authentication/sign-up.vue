@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
@@ -7,6 +8,7 @@ import UiText from '@/components/ui/Text.vue';
 import UiFormInput from '@/components/ui/form/Input.vue';
 import UiButton from '@/components/ui/Button.vue';
 
+const router = useRouter();
 const { t, locale } = useI18n();
 const api = useApi();
 
@@ -30,7 +32,15 @@ const handleFormSubmit = async () => {
         locale: locale.value,
       },
     });
-    // TODO: add logic after registration
+
+    await api.authentication.sign_in({
+      user: {
+        email: form.value.email,
+        password: form.value.password,
+      },
+    });
+
+    await router.replace({ name: 'index' });
   } catch (e) {
     console.error(e);
   }
