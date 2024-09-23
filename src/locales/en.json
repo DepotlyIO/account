@@ -30,7 +30,8 @@
     "address": "Address",
     "invoice_number": "Invoice number",
     "payee": "Payee",
-    "payer": "Payer"
+    "payer": "Payer",
+    "request_id": "Request ID"
   },
   "actions": {
     "sign_in": "Sign in",
@@ -40,7 +41,8 @@
     "back_to_authentication": "Back to authentication",
     "update": "Update",
     "create": "Create",
-    "create_contract": "Create contract"
+    "create_contract": "Create contract",
+    "pay_contract": "Pay contract"
   },
   "menu": {
     "index": "Home",

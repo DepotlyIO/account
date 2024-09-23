@@ -49,6 +49,7 @@ export interface Api {
       company_id: number | string,
       company_contract_id: number | string,
     ) => Promise<AxiosResponse<BlockchainContract>>;
+    pay_blockchain_contract: (id: number | string) => Promise<AxiosResponse<BlockchainContract>>;
   };
   isAxiosError: typeof isAxiosError;
 }

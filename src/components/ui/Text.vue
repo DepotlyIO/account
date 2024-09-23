@@ -10,6 +10,7 @@ interface Props {
   tag?: 'div' | 'label';
   color?: Color;
   align?: 'start' | 'center' | 'end';
+  breakWord?: boolean;
   fontWeight?:
     | 100
     | 200
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   variant: 'regular',
   color: 'color-black',
   align: 'start',
+  breakWord: false,
 });
 
 const computedComponent = computed(
@@ -47,6 +49,7 @@ const computedClasses = computed(() => ({
   [styles['ui-text']]: true,
   [styles[`ui-text--variant-${props.variant}`]]: props.variant,
   [styles[`ui-text--align-${props.align}`]]: props.align,
+  [styles['ui-text--break-word']]: props.breakWord,
 }));
 
 const computedStyles = computed(() => ({
@@ -60,7 +63,7 @@ const computedStyles = computed(() => ({
       <slot name="start" />
     </div>
 
-    <div :style="{ fontWeight: props.fontWeight }">
+    <div :class="$style['ui-text__content']" :style="{ fontWeight: props.fontWeight }">
       <slot />
     </div>
 
@@ -72,6 +75,8 @@ const computedStyles = computed(() => ({
 
 <style module lang="scss">
 .ui-text {
+  $component-class: &;
+
   gap: 0.25rem;
   color: v-bind('computedStyles.color');
 
@@ -140,6 +145,14 @@ const computedStyles = computed(() => ({
 
     &-end {
       justify-content: flex-end;
+    }
+  }
+
+  &--break-word {
+    #{$component-class} {
+      &__content {
+        word-break: break-all;
+      }
     }
   }
 }

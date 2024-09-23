@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
+import type { BlockchainContract } from '@/types/models/blockchain-contract';
+import { BlockchainContractStatus } from '@/types/models/blockchain-contract';
 import UiText from '@/components/ui/Text.vue';
-import UiDivider from '@/components/ui/Divider.vue';
 import UiButton from '@/components/ui/Button.vue';
+import UiIcon from '@/components/ui/Icon.vue';
 import type { CompanyContract } from '@/types/models/company-contract';
 import type { Company } from '@/types/models/company';
 
@@ -13,7 +15,7 @@ const route = useRoute();
 const api = useApi();
 
 const loading = ref(false);
-const create_contract_loading = ref(false);
+const contract_manipulating_loading = ref(false);
 const company = ref<Company>();
 const contract = ref<CompanyContract>();
 
@@ -37,6 +39,29 @@ const amount = computed(
 
 const isCreateContractButtonVisible = computed(
   () => contract.value && !contract.value.blockchain_contracts.length,
+);
+
+const lastContract = computed<BlockchainContract | undefined>(() => {
+  if (!contract.value) return undefined;
+
+  // @ts-expect-error TODO: some strange TS behaviour
+  const [element] = contract.value.blockchain_contracts.toSorted((a, b) => b.id - a.id);
+
+  return element;
+});
+
+const isUpdateVisible = computed(
+  () =>
+    !!lastContract.value &&
+    [
+      BlockchainContractStatus.UNKNOWN,
+      BlockchainContractStatus.CREATING,
+      BlockchainContractStatus.CREATED,
+    ].includes(lastContract.value.status),
+);
+
+const isPayVisible = computed(
+  () => !!lastContract.value && lastContract.value.status === BlockchainContractStatus.APPROVED,
 );
 
 const loadCompanyAndContract = async () => {
@@ -64,13 +89,13 @@ const loadCompanyAndContract = async () => {
 
 const createContract = async () => {
   if (
-    create_contract_loading.value ||
+    contract_manipulating_loading.value ||
     typeof route.params.company_id !== 'string' ||
     typeof route.params.contract_id !== 'string'
   )
     return;
 
-  create_contract_loading.value = true;
+  contract_manipulating_loading.value = true;
   try {
     const { data } = await api.company_contracts.create_blockchain_contract(
       route.params.company_id,
@@ -80,7 +105,25 @@ const createContract = async () => {
   } catch (e) {
     console.error(e);
   }
-  create_contract_loading.value = false;
+  contract_manipulating_loading.value = false;
+};
+
+const payContract = async () => {
+  if (contract_manipulating_loading.value || !contract.value || typeof route.params.contract_id !== 'string') return;
+
+  contract_manipulating_loading.value = true;
+  try {
+    const { data } = await api.company_contracts.pay_blockchain_contract(route.params.contract_id);
+
+    const updatedContractIndex = contract.value.blockchain_contracts.findIndex(
+      (contract) => contract.id === data.id,
+    );
+
+    if (updatedContractIndex > -1) contract.value.blockchain_contracts[updatedContractIndex] = data;
+  } catch (e) {
+    console.error(e);
+  }
+  contract_manipulating_loading.value = false;
 };
 
 loadCompanyAndContract();
@@ -248,25 +291,49 @@ useHead(() => ({
           {{ contract?.due_date }}
         </UiText>
       </div>
+    </div>
 
-      <UiDivider />
+    <div
+      v-if="lastContract"
+      :class="$style['page-companies-company-id-contracts-contract-id__data']"
+    >
+      <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+        <UiText font-weight="600"> {{ $t('labels.request_id') }}: </UiText>
+
+        <UiText variant="underline" break-word>
+          {{ lastContract.request_id }}
+        </UiText>
+      </div>
 
       <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
         <UiText font-weight="600"> {{ $t('labels.status') }}: </UiText>
 
-        <UiText>
-          {{ contract?.status }}
+        <UiText variant="underline" break-word>
+          {{ lastContract.status }}
         </UiText>
+
+        <UiButton v-if="isUpdateVisible" size="small-compact" @click="loadCompanyAndContract">
+          <UiIcon name="update" color="color-white" />
+        </UiButton>
       </div>
     </div>
 
     <UiButton
       v-if="isCreateContractButtonVisible"
-      :loading="create_contract_loading"
+      :loading="contract_manipulating_loading"
       color="color-green"
       @click="createContract"
     >
       {{ $t('actions.create_contract') }}
+    </UiButton>
+
+    <UiButton
+      v-if="isPayVisible"
+      :loading="contract_manipulating_loading"
+      color="color-green"
+      @click="payContract"
+    >
+      {{ $t('actions.pay_contract') }}
     </UiButton>
   </div>
 </template>

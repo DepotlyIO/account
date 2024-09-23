@@ -44,6 +44,8 @@ export const useApi = (): Api => {
             `/v1/companies/${company_id}/contracts/${company_contract_id}/blockchain-contract`,
             { method: 'post' },
           ),
+        pay_blockchain_contract: (id) =>
+          axios(`/v1/blockchain-contracts/${id}/pay`, { method: 'post' }),
       },
       isAxiosError,
     };
