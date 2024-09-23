@@ -21,7 +21,7 @@ const date = computed(
 
 const amount = computed(
   () =>
-    contract.value?.payment_amount &&
+    contract.value &&
     new Intl.NumberFormat('en-GB', {
       style: 'currency',
       currency: 'USD',

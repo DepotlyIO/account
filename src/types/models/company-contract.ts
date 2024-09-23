@@ -20,8 +20,8 @@ export interface CompanyContract {
   wallet: string;
   recurrent: boolean;
   status: CompanyContractStatus;
-  payment_amount: string | null;
-  currency_code: CryptoCurrencyCode | null;
+  payment_amount: string;
+  currency_code: CryptoCurrencyCode;
   due_date: string | null;
   created_at: string;
   updated_at: string;
