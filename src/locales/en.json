@@ -22,7 +22,13 @@
     "temporary": "Temporary",
     "wallet": "Wallet",
     "currency": "Currency",
-    "id": "ID"
+    "id": "ID",
+    "identification_number": "Identification number",
+    "country": "Country",
+    "city": "City",
+    "zip": "ZIP",
+    "address": "Address",
+    "invoice_number": "Invoice number"
   },
   "actions": {
     "sign_in": "Sign in",

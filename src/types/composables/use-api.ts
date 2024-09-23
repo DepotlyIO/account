@@ -39,5 +39,11 @@ export interface Api {
       data: CompanyContractData,
     ) => Promise<AxiosResponse<CompanyContract>>;
   };
+  company_contracts: {
+    one: (
+      company_id: number | string,
+      contract_id: number | string,
+    ) => Promise<AxiosResponse<CompanyContract>>;
+  };
   isAxiosError: typeof isAxiosError;
 }
