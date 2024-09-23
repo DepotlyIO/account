@@ -5,12 +5,16 @@ import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
 import UiText from '@/components/ui/Text.vue';
 import UiDivider from '@/components/ui/Divider.vue';
+import UiButton from '@/components/ui/Button.vue';
 import type { CompanyContract } from '@/types/models/company-contract';
+import type { Company } from '@/types/models/company';
 
 const route = useRoute();
 const api = useApi();
 
 const loading = ref(false);
+const create_contract_loading = ref(false);
+const company = ref<Company>();
 const contract = ref<CompanyContract>();
 
 const date = computed(
@@ -31,7 +35,11 @@ const amount = computed(
       .replace('USD', contract.value.currency_code),
 );
 
-const loadContract = async () => {
+const isCreateContractButtonVisible = computed(
+  () => contract.value && !contract.value.blockchain_contracts.length,
+);
+
+const loadCompanyAndContract = async () => {
   if (
     loading.value ||
     typeof route.params.company_id !== 'string' ||
@@ -41,19 +49,41 @@ const loadContract = async () => {
 
   loading.value = true;
   try {
-    const { data } = await api.company_contracts.one(
-      route.params.company_id,
-      route.params.contract_id,
-    );
+    const [{ data: companyData }, { data: contractData }] = await Promise.all([
+      api.companies.one(route.params.company_id),
+      api.company_contracts.one(route.params.company_id, route.params.contract_id),
+    ]);
 
-    contract.value = data;
+    company.value = companyData;
+    contract.value = contractData;
   } catch (e) {
     console.error(e);
   }
   loading.value = false;
 };
 
-loadContract();
+const createContract = async () => {
+  if (
+    create_contract_loading.value ||
+    typeof route.params.company_id !== 'string' ||
+    typeof route.params.contract_id !== 'string'
+  )
+    return;
+
+  create_contract_loading.value = true;
+  try {
+    const { data } = await api.company_contracts.create_blockchain_contract(
+      route.params.company_id,
+      route.params.contract_id,
+    );
+    contract.value?.blockchain_contracts.push(data);
+  } catch (e) {
+    console.error(e);
+  }
+  create_contract_loading.value = false;
+};
+
+loadCompanyAndContract();
 
 useHead(() => ({
   title: contract.value?.name,
@@ -73,6 +103,79 @@ useHead(() => ({
     </div>
 
     <div :class="$style['page-companies-company-id-contracts-contract-id__data']">
+      <UiText variant="h4">
+        {{ $t('labels.payer') }}
+      </UiText>
+
+      <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+        <UiText font-weight="600"> {{ $t('labels.name') }}: </UiText>
+
+        <UiText>
+          {{ company?.name }}
+        </UiText>
+      </div>
+
+      <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+        <UiText font-weight="600"> {{ $t('labels.identification_number') }}: </UiText>
+
+        <UiText>
+          {{ company?.identification_number }}
+        </UiText>
+      </div>
+
+      <div
+        :class="[
+          $style['page-companies-company-id-contracts-contract-id__row'],
+          $style['page-companies-company-id-contracts-contract-id__row--3'],
+        ]"
+      >
+        <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+          <UiText font-weight="600"> {{ $t('labels.country') }}: </UiText>
+
+          <UiText>
+            {{ company?.country }}
+          </UiText>
+        </div>
+
+        <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+          <UiText font-weight="600"> {{ $t('labels.city') }}: </UiText>
+
+          <UiText>
+            {{ company?.city }}
+          </UiText>
+        </div>
+
+        <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+          <UiText font-weight="600"> {{ $t('labels.zip') }}: </UiText>
+
+          <UiText>
+            {{ company?.zip }}
+          </UiText>
+        </div>
+      </div>
+
+      <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+        <UiText font-weight="600"> {{ $t('labels.address') }}: </UiText>
+
+        <UiText>
+          {{ company?.address }}
+        </UiText>
+      </div>
+    </div>
+
+    <div :class="$style['page-companies-company-id-contracts-contract-id__data']">
+      <UiText variant="h4">
+        {{ $t('labels.payee') }}
+      </UiText>
+
+      <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
+        <UiText font-weight="600"> {{ $t('labels.name') }}: </UiText>
+
+        <UiText>
+          {{ contract?.name }}
+        </UiText>
+      </div>
+
       <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
         <UiText font-weight="600"> {{ $t('labels.identification_number') }}: </UiText>
 
@@ -127,9 +230,9 @@ useHead(() => ({
           {{ contract?.invoice_number }}
         </UiText>
       </div>
+    </div>
 
-      <UiDivider />
-
+    <div :class="$style['page-companies-company-id-contracts-contract-id__data']">
       <div :class="$style['page-companies-company-id-contracts-contract-id__data__element']">
         <UiText font-weight="600"> {{ $t('labels.amount') }}: </UiText>
 
@@ -156,6 +259,15 @@ useHead(() => ({
         </UiText>
       </div>
     </div>
+
+    <UiButton
+      v-if="isCreateContractButtonVisible"
+      :loading="create_contract_loading"
+      color="color-green"
+      @click="createContract"
+    >
+      {{ $t('actions.create_contract') }}
+    </UiButton>
   </div>
 </template>
 

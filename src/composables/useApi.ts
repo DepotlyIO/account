@@ -39,6 +39,11 @@ export const useApi = (): Api => {
       company_contracts: {
         one: (company_id, contract_id) =>
           axios(`/v1/companies/${company_id}/contracts/${contract_id}`, { method: 'get' }),
+        create_blockchain_contract: (company_id, company_contract_id) =>
+          axios(
+            `/v1/companies/${company_id}/contracts/${company_contract_id}/blockchain-contract`,
+            { method: 'post' },
+          ),
       },
       isAxiosError,
     };

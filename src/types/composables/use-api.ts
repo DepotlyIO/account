@@ -9,6 +9,7 @@ import type { EmailVerificationRequest, User, UserCreateRequest } from '@/types/
 import type { Currency, CurrencyRate, CurrencyRatesParams } from '@/types/models/currency';
 import type { Company, CompanyData } from '@/types/models/company';
 import type { CompanyContract, CompanyContractData } from '@/types/models/company-contract';
+import type { BlockchainContract } from '@/types/models/blockchain-contract';
 
 export interface Api {
   authentication: {
@@ -44,6 +45,10 @@ export interface Api {
       company_id: number | string,
       contract_id: number | string,
     ) => Promise<AxiosResponse<CompanyContract>>;
+    create_blockchain_contract: (
+      company_id: number | string,
+      company_contract_id: number | string,
+    ) => Promise<AxiosResponse<BlockchainContract>>;
   };
   isAxiosError: typeof isAxiosError;
 }

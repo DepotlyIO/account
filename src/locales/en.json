@@ -28,7 +28,9 @@
     "city": "City",
     "zip": "ZIP",
     "address": "Address",
-    "invoice_number": "Invoice number"
+    "invoice_number": "Invoice number",
+    "payee": "Payee",
+    "payer": "Payer"
   },
   "actions": {
     "sign_in": "Sign in",
