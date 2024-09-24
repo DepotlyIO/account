@@ -19,13 +19,12 @@ export default defineConfig({
         assetFileNames: 'assets/[hash][extname]',
       },
     },
-    target: 'es2022',
+    target: 'es2023',
     cssCodeSplit: false,
   },
   css: {
     modules: {
-      generateScopedName:
-        process.env.NODE_ENV === 'production' ? getCssModulesNamesGenerator() : (name) => name,
+      generateScopedName: (name) => name,
     },
     preprocessorOptions: {
       scss: {
