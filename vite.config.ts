@@ -20,6 +20,7 @@ export default defineConfig({
       },
     },
     target: 'es2022',
+    cssCodeSplit: false,
   },
   css: {
     modules: {
