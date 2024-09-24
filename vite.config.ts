@@ -24,7 +24,8 @@ export default defineConfig({
   },
   css: {
     modules: {
-      generateScopedName: (name) => name,
+      generateScopedName:
+        process.env.NODE_ENV === 'production' ? getCssModulesNamesGenerator() : (name) => name,
     },
     preprocessorOptions: {
       scss: {
