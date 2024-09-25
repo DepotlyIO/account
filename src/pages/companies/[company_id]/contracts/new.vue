@@ -114,7 +114,7 @@ useHead(() => ({
         ]"
       >
         <UiFortInput
-          :model-value="company.name"
+          :model-value="company?.name"
           name="company-name"
           :label="$t('labels.name')"
           :placeholder="$t('labels.name')"
@@ -122,7 +122,7 @@ useHead(() => ({
         />
 
         <UiFortInput
-          :model-value="company.identification_number"
+          :model-value="company?.identification_number"
           name="company-identification-number"
           :label="$t('labels.identification_number')"
           :placeholder="$t('labels.identification_number')"
