@@ -12,6 +12,7 @@ interface Props {
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
+  step?: string | number;
   error?: string | string[];
   tabindex?: number | string;
 }
@@ -44,6 +45,7 @@ const inputAttributes = computed(() => ({
   disabled: props.disabled,
   readonly: props.readonly,
   required: props.required,
+  step: props.step,
   tabindex: props.tabindex,
   class: {
     [styles['ui-form-text__input']]: true,

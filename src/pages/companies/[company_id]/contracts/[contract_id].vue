@@ -109,7 +109,12 @@ const createContract = async () => {
 };
 
 const payContract = async () => {
-  if (contract_manipulating_loading.value || !contract.value || typeof route.params.contract_id !== 'string') return;
+  if (
+    contract_manipulating_loading.value ||
+    !contract.value ||
+    typeof route.params.contract_id !== 'string'
+  )
+    return;
 
   contract_manipulating_loading.value = true;
   try {

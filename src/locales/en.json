@@ -19,6 +19,7 @@
     "updated_at": "Updated at",
     "status": "Status",
     "permanent": "Permanent",
+    "recurrent": "Recurrent",
     "temporary": "Temporary",
     "wallet": "Wallet",
     "currency": "Currency",
@@ -148,9 +149,13 @@
               "title": "Create contract"
             },
             "title": "New contract",
+            "info": {
+              "company": "Payer info",
+              "payee": "Payee info"
+            },
             "form": {
               "name": {
-                "title": "Name",
+                "title": "Сontractor / Company / Full Name",
                 "placeholder": "Name"
               },
               "identification_number": {
