@@ -37,14 +37,12 @@ export default defineConfig({
     vue(),
     VueDevTools(),
     VitePWA({
-      selfDestroying: true,
       injectManifest: {
         injectionPoint: undefined,
       },
       devOptions: {
         enabled: false,
       },
-      injectRegister: false,
       manifest: false,
       registerType: 'prompt',
       workbox: {
