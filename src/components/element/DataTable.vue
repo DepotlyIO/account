@@ -93,7 +93,7 @@ const props = withDefaults(defineProps<Props>(), {});
 
   tbody {
     tr {
-      position: relative;
+      transform: rotate(0);
       transition: background-color $duration-medium ease-in-out;
 
       &:hover {
