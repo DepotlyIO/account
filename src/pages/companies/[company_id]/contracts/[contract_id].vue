@@ -109,16 +109,13 @@ const createContract = async () => {
 };
 
 const payContract = async () => {
-  if (
-    contract_manipulating_loading.value ||
-    !contract.value ||
-    typeof route.params.contract_id !== 'string'
-  )
-    return;
+  if (contract_manipulating_loading.value || !contract.value) return;
 
   contract_manipulating_loading.value = true;
   try {
-    const { data } = await api.company_contracts.pay_blockchain_contract(route.params.contract_id);
+    const [lastBlockchainContract] = contract.value.blockchain_contracts;
+
+    const { data } = await api.company_contracts.pay_blockchain_contract(lastBlockchainContract.id);
 
     const updatedContractIndex = contract.value.blockchain_contracts.findIndex(
       (contract) => contract.id === data.id,
