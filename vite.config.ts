@@ -37,39 +37,15 @@ export default defineConfig({
     vue(),
     VueDevTools(),
     VitePWA({
+      selfDestroying: true,
+      injectManifest: {
+        injectionPoint: undefined,
+      },
       devOptions: {
         enabled: false,
       },
-      injectRegister: 'auto',
-      manifest: {
-        description: 'Depotly application',
-        icons: [
-          {
-            src: 'pwa/pwa-64x64.png',
-            sizes: '64x64',
-            type: 'image/png',
-          },
-          {
-            src: 'pwa/pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'pwa/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: 'pwa/maskable-icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-        ],
-        name: 'Depotly',
-        short_name: 'Depotly',
-        theme_color: '#f6f8fa',
-      },
+      injectRegister: false,
+      manifest: false,
       registerType: 'prompt',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'],
