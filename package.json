@@ -20,19 +20,19 @@
     "generate:sprites": "tsx utils/sprites-generator"
   },
   "dependencies": {
-    "@unhead/vue": "^1.11.6",
+    "@unhead/vue": "^1.11.7",
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "pinia": "^2.2.2",
     "uuid": "^10.0.0",
-    "vue": "^3.5.9",
+    "vue": "^3.5.10",
     "vue-i18n": "^10.0.3",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node22": "^22.0.0",
-    "@types/node": "^22.7.3",
+    "@types/node": "^22.7.4",
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vue/eslint-config-prettier": "^9.0.0",
@@ -42,7 +42,7 @@
     "eslint-plugin-vue": "^9.28.0",
     "npm-run-all2": "^6.2.3",
     "prettier": "^3.3.3",
-    "sass": "^1.79.3",
+    "sass": "^1.79.4",
     "svgstore": "^3.0.1",
     "tsx": "^4.19.1",
     "typescript": "~5.5.4",
