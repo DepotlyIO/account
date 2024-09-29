@@ -12,6 +12,9 @@ import type { CompanyContract, CompanyContractData } from '@/types/models/compan
 import type { BlockchainContract } from '@/types/models/blockchain-contract';
 
 export interface Api {
+  datasets: {
+    countries: () => Promise<AxiosResponse<string[]>>;
+  };
   authentication: {
     list: () => Promise<AxiosResponse<Authentication[]>>;
     sign_in: (data: AuthenticationRequest) => Promise<AxiosResponse<AuthenticationResponse>>;

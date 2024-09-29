@@ -9,6 +9,9 @@ export const useApi = (): Api => {
     const axios = useAxiosInstance();
 
     api = {
+      datasets: {
+        countries: () => axios('/v1/datasets/countries', { method: 'get' }),
+      },
       authentication: {
         list: () => axios('/v1/authentications', { method: 'get' }),
         sign_in: (data) => axios('/v1/authentications', { method: 'post', data }),
