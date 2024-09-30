@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
+import { useDatasetsStore } from '@/stores/datasets';
 import UiText from '@/components/ui/Text.vue';
 import UiFormInput from '@/components/ui/form/Input.vue';
+import UiFormSelect from '@/components/ui/form/Select.vue';
 import UiButton from '@/components/ui/Button.vue';
 import type { CompanyData } from '@/types/models/company';
 
 const router = useRouter();
 const { t } = useI18n();
 const api = useApi();
+const datasetsStore = useDatasetsStore();
 
 const loading = ref(false);
 const company = ref<CompanyData['company']>({
@@ -24,6 +27,13 @@ const company = ref<CompanyData['company']>({
 });
 const errorMessage = ref('');
 const errors = ref<any | undefined>();
+
+const countryOptions = computed(() =>
+  datasetsStore.countries.map((country) => ({
+    text: country,
+    value: country,
+  })),
+);
 
 const createCompany = async () => {
   if (loading.value) return;
@@ -44,6 +54,8 @@ const createCompany = async () => {
   }
   loading.value = false;
 };
+
+datasetsStore.loadCountries();
 
 useHead(() => ({
   title: t('pages.companies.create.meta.title'),
@@ -79,8 +91,9 @@ useHead(() => ({
         :placeholder="$t('pages.companies.create.form.identification_number.placeholder')"
       />
 
-      <UiFormInput
+      <UiFormSelect
         v-model="company.country"
+        :options="countryOptions"
         name="country"
         :disabled="loading"
         :error="errors?.country"

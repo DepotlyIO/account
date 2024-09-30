@@ -5,7 +5,7 @@ import { useApi } from '@/composables/useApi';
 export const useDatasetsStore = defineStore('datasets', () => {
   const api = useApi();
 
-  const countries = ref<string[]>();
+  const countries = ref<string[]>([]);
 
   const loadCountries = async () => {
     if (countries.value?.length) return;

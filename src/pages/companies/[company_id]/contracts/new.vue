@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
+import { useDatasetsStore } from '@/stores/datasets';
 import UiText from '@/components/ui/Text.vue';
 import UiFortInput from '@/components/ui/form/Input.vue';
 import UiFormSelect from '@/components/ui/form/Select.vue';
@@ -19,6 +20,7 @@ const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
 const api = useApi();
+const datasetsStore = useDatasetsStore();
 
 const loading = ref(false);
 const company = ref<Company>();
@@ -38,6 +40,13 @@ const contract = ref<CompanyContractData['company_contract']>({
 });
 const errors = ref<any | undefined>();
 const errorMessage = ref('');
+
+const countryOptions = computed(() =>
+  datasetsStore.countries.map((country) => ({
+    text: country,
+    value: country,
+  })),
+);
 
 const currencyCodeOptions = computed<UiFormSelectOption[]>(() => [
   {
@@ -89,6 +98,7 @@ const handleFormSubmit = async () => {
   loading.value = false;
 };
 
+datasetsStore.loadCountries();
 loadCompany();
 
 useHead(() => ({
@@ -173,8 +183,9 @@ useHead(() => ({
             $style['page-companies-company-id-contract-new__row--3'],
           ]"
         >
-          <UiFortInput
+          <UiFormSelect
             v-model="contract.country"
+            :options="countryOptions"
             name="country"
             :label="$t('pages.companies.company.contract.new.form.country.title')"
             :placeholder="$t('pages.companies.company.contract.new.form.country.placeholder')"
