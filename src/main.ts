@@ -20,5 +20,5 @@ userStore.getUserInfo().finally(() => {
 
   setTimeout(() => {
     document.querySelector('#loader')?.remove();
-  }, 1000);
+  }, 1500);
 });
