@@ -42,13 +42,13 @@ export const useApi = (): Api => {
       company_contracts: {
         one: (company_id, contract_id) =>
           axios(`/v1/companies/${company_id}/contracts/${contract_id}`, { method: 'get' }),
-        create_blockchain_contract: (company_id, company_contract_id) =>
+        create_request_network_contract: (company_id, company_contract_id) =>
           axios(
-            `/v1/companies/${company_id}/contracts/${company_contract_id}/blockchain-contract`,
+            `/v1/companies/${company_id}/contracts/${company_contract_id}/request-network-contract`,
             { method: 'post' },
           ),
-        pay_blockchain_contract: (id) =>
-          axios(`/v1/blockchain-contracts/${id}/pay`, { method: 'post' }),
+        pay_request_network_contract: (id) =>
+          axios(`/v1/request-network-contracts/${id}/pay`, { method: 'post' }),
       },
       isAxiosError,
     };

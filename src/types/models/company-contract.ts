@@ -1,5 +1,5 @@
 import type { CryptoCurrencyCode } from '@/types/models/currency';
-import type { BlockchainContract } from '@/types/models/blockchain-contract';
+import type { RequestNetworkContract } from '@/types/models/request-network-contract';
 
 export enum CompanyContractStatus {
   INACTIVE = 'inactive',
@@ -10,7 +10,7 @@ export enum CompanyContractStatus {
 export interface CompanyContract {
   id: number;
   company_id: number;
-  blockchain_contracts: BlockchainContract[];
+  request_network_contracts: RequestNetworkContract[];
   user_id: number;
   name: string;
   identification_number: string;

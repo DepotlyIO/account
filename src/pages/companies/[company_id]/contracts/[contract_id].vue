@@ -3,11 +3,11 @@ import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
-import type { BlockchainContract } from '@/types/models/blockchain-contract';
-import { BlockchainContractStatus } from '@/types/models/blockchain-contract';
+import { RequestNetworkContractStatus } from '@/types/models/request-network-contract';
 import UiText from '@/components/ui/Text.vue';
 import UiButton from '@/components/ui/Button.vue';
 import UiIcon from '@/components/ui/Icon.vue';
+import type { RequestNetworkContract } from '@/types/models/request-network-contract';
 import type { CompanyContract } from '@/types/models/company-contract';
 import type { Company } from '@/types/models/company';
 
@@ -38,14 +38,14 @@ const amount = computed(
 );
 
 const isCreateContractButtonVisible = computed(
-  () => contract.value && !contract.value.blockchain_contracts.length,
+  () => contract.value && !contract.value.request_network_contracts.length,
 );
 
-const lastContract = computed<BlockchainContract | undefined>(() => {
+const lastContract = computed<RequestNetworkContract | undefined>(() => {
   if (!contract.value) return undefined;
 
   // @ts-expect-error TODO: some strange TS behaviour
-  const [element] = contract.value.blockchain_contracts.toSorted((a, b) => b.id - a.id);
+  const [element] = contract.value.request_network_contracts.toSorted((a, b) => b.id - a.id);
 
   return element;
 });
@@ -54,14 +54,14 @@ const isUpdateVisible = computed(
   () =>
     !!lastContract.value &&
     [
-      BlockchainContractStatus.UNKNOWN,
-      BlockchainContractStatus.CREATING,
-      BlockchainContractStatus.CREATED,
+      RequestNetworkContractStatus.UNKNOWN,
+      RequestNetworkContractStatus.CREATING,
+      RequestNetworkContractStatus.CREATED,
     ].includes(lastContract.value.status),
 );
 
 const isPayVisible = computed(
-  () => !!lastContract.value && lastContract.value.status === BlockchainContractStatus.APPROVED,
+  () => !!lastContract.value && lastContract.value.status === RequestNetworkContractStatus.APPROVED,
 );
 
 const loadCompanyAndContract = async () => {
@@ -97,11 +97,11 @@ const createContract = async () => {
 
   contract_manipulating_loading.value = true;
   try {
-    const { data } = await api.company_contracts.create_blockchain_contract(
+    const { data } = await api.company_contracts.create_request_network_contract(
       route.params.company_id,
       route.params.contract_id,
     );
-    contract.value?.blockchain_contracts.push(data);
+    contract.value?.request_network_contracts.push(data);
   } catch (e) {
     console.error(e);
   }
@@ -113,15 +113,15 @@ const payContract = async () => {
 
   contract_manipulating_loading.value = true;
   try {
-    const [lastBlockchainContract] = contract.value.blockchain_contracts;
+    const [lastRequestNetworkContract] = contract.value.request_network_contracts;
 
-    const { data } = await api.company_contracts.pay_blockchain_contract(lastBlockchainContract.id);
+    const { data } = await api.company_contracts.pay_request_network_contract(lastRequestNetworkContract.id);
 
-    const updatedContractIndex = contract.value.blockchain_contracts.findIndex(
+    const updatedContractIndex = contract.value.request_network_contracts.findIndex(
       (contract) => contract.id === data.id,
     );
 
-    if (updatedContractIndex > -1) contract.value.blockchain_contracts[updatedContractIndex] = data;
+    if (updatedContractIndex > -1) contract.value.request_network_contracts[updatedContractIndex] = data;
   } catch (e) {
     console.error(e);
   }

@@ -1,4 +1,4 @@
-export enum BlockchainContractStatus {
+export enum RequestNetworkContractStatus {
   UNKNOWN = 'unknown',
   CREATING = 'creating',
   CREATED = 'created',
@@ -9,10 +9,10 @@ export enum BlockchainContractStatus {
   REJECTED = 'rejected',
 }
 
-export interface BlockchainContract {
+export interface RequestNetworkContract {
   id: number;
   company_contract_id: number;
-  status: BlockchainContractStatus;
+  status: RequestNetworkContractStatus;
   request_id: string;
   created_at: string;
   updated_at: string;
