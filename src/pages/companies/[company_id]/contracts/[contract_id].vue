@@ -115,13 +115,16 @@ const payContract = async () => {
   try {
     const [lastRequestNetworkContract] = contract.value.request_network_contracts;
 
-    const { data } = await api.company_contracts.pay_request_network_contract(lastRequestNetworkContract.id);
+    const { data } = await api.company_contracts.pay_request_network_contract(
+      lastRequestNetworkContract.id,
+    );
 
     const updatedContractIndex = contract.value.request_network_contracts.findIndex(
       (contract) => contract.id === data.id,
     );
 
-    if (updatedContractIndex > -1) contract.value.request_network_contracts[updatedContractIndex] = data;
+    if (updatedContractIndex > -1)
+      contract.value.request_network_contracts[updatedContractIndex] = data;
   } catch (e) {
     console.error(e);
   }

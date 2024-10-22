@@ -50,6 +50,11 @@ export const useApi = (): Api => {
         pay_request_network_contract: (id) =>
           axios(`/v1/request-network-contracts/${id}/pay`, { method: 'post' }),
       },
+      wallets: {
+        list: () => axios('/v1/wallets', { method: 'get' }),
+        one: (blockchain) => axios(`/v1/wallets/${blockchain}`, { method: 'get' }),
+        create: (data) => axios(`/v1/wallets`, { method: 'post', data }),
+      },
       isAxiosError,
     };
   }
