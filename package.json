@@ -42,7 +42,7 @@
     "eslint-plugin-vue": "^9.29.1",
     "npm-run-all2": "^7.0.0",
     "prettier": "^3.3.3",
-    "sass": "^1.80.3",
+    "sass": "^1.80.4",
     "svgstore": "^3.0.1",
     "tsx": "^4.19.1",
     "typescript": "~5.5.4",
