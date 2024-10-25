@@ -29,7 +29,7 @@ export interface Contract {
 }
 
 export interface ContractData {
-  company_contract: {
+  contract: {
     name: string;
     identification_number: string;
     country: string;

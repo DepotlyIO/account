@@ -1,6 +1,6 @@
 import type { FiatCurrencyCode } from '@/types/models/currency';
 
-type AccountType = 'employee' | 'regular' | 'company';
+type AccountType = 'employee' | 'regular';
 
 export interface User {
   id: number;

@@ -11,7 +11,7 @@ export enum RequestNetworkContractStatus {
 
 export interface RequestNetworkContract {
   id: number;
-  company_contract_id: number;
+  contract_id: number;
   status: RequestNetworkContractStatus;
   request_id: string;
   created_at: string;
