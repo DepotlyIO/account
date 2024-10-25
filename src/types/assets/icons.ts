@@ -13,6 +13,7 @@ export type MainIcon =
   | 'close'
   | 'domain'
   | 'exit-to-app'
+  | 'file-document-multiple'
   | 'home'
   | 'loading'
   | 'monitor'

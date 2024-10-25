@@ -7,7 +7,6 @@
     "unexpected_server_error": "Unexpected server error",
     "employee_account_type": "Employee account",
     "regular_account_type": "Regular account",
-    "company_account_type": "Company account",
     "app_update_available": "New app version available!",
     "os": "OS",
     "browser": "Browser",
@@ -47,7 +46,7 @@
   },
   "menu": {
     "index": "Home",
-    "companies": "Companies",
+    "contracts": "Contracts",
     "wallets": "Wallets",
     "account": "Account"
   },
@@ -98,93 +97,6 @@
           "additional_steps": "You can try again later or request a new confirmation link."
         },
         "action": "In account"
-      }
-    },
-    "companies": {
-      "meta": {
-        "title": "Companies"
-      },
-      "title": "Companies",
-      "create": {
-        "meta": {
-          "title": "Create company"
-        },
-        "title": "New company",
-        "form": {
-          "name": {
-            "title": "Name",
-            "placeholder": "Company name"
-          },
-          "identification_number": {
-            "title": "Identification number",
-            "placeholder": "BP324234"
-          },
-          "country": {
-            "title": "Country",
-            "placeholder": "Poland"
-          },
-          "city": {
-            "title": "City",
-            "placeholder": "Warsaw"
-          },
-          "address": {
-            "title": "Address",
-            "placeholder": "address"
-          },
-          "zip": {
-            "title": "ZIP",
-            "placeholder": "101-01"
-          }
-        }
-      },
-      "company": {
-        "tables_name": {
-          "temporary": "Temporary/one time contracts",
-          "permanent": "Permanent contracts",
-          "closed": "Revoked/closed contracts"
-        },
-        "contract": {
-          "new": {
-            "meta": {
-              "title": "Create contract"
-            },
-            "title": "New contract",
-            "info": {
-              "company": "Payer info",
-              "payee": "Payee info"
-            },
-            "form": {
-              "name": {
-                "title": "Сontractor / Company / Full Name",
-                "placeholder": "Name"
-              },
-              "identification_number": {
-                "title": "Identification Number",
-                "placeholder": "Identification Number"
-              },
-              "country": {
-                "title": "Country",
-                "placeholder": "Country"
-              },
-              "city": {
-                "title": "City",
-                "placeholder": "City"
-              },
-              "zip": {
-                "title": "ZIP",
-                "placeholder": "ZIP"
-              },
-              "address": {
-                "title": "Address",
-                "placeholder": "Address"
-              },
-              "invoice_number": {
-                "title": "Invoice number",
-                "placeholder": "Invoice number"
-              }
-            }
-          }
-        }
       }
     },
     "wallets": {

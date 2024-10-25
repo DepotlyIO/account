@@ -7,24 +7,25 @@ export interface UiFormSelectOption {
   value: string;
 }
 
-interface Props {
-  options: UiFormSelectOption[];
-  name: string;
-  label?: string;
-  placeholder?: string;
-  hint?: string;
-  required?: boolean;
-  disabled?: boolean;
-  readonly?: boolean;
-  error?: string | string[];
-  tabindex?: number | string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  required: false,
-  disabled: false,
-  readonly: false,
-});
+const props = withDefaults(
+  defineProps<{
+    options: UiFormSelectOption[];
+    name: string;
+    label?: string;
+    placeholder?: string;
+    hint?: string;
+    required?: boolean;
+    disabled?: boolean;
+    readonly?: boolean;
+    error?: string | string[];
+    tabindex?: number | string;
+  }>(),
+  {
+    required: false,
+    disabled: false,
+    readonly: false,
+  },
+);
 
 const model = defineModel<T>();
 

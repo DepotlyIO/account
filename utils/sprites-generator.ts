@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-// @ts-expect-error
+// @ts-expect-error lib without types
 import svgstore from 'svgstore';
 
 const SPRITES = ['main', 'currencies'];

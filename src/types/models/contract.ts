@@ -1,15 +1,14 @@
 import type { CryptoCurrencyCode } from '@/types/models/currency';
 import type { RequestNetworkContract } from '@/types/models/request-network-contract';
 
-export enum CompanyContractStatus {
+export enum ContractStatus {
   INACTIVE = 'inactive',
   ACTIVE = 'active',
   REVOKED = 'revoked',
 }
 
-export interface CompanyContract {
+export interface Contract {
   id: number;
-  company_id: number;
   request_network_contracts: RequestNetworkContract[];
   user_id: number;
   name: string;
@@ -21,7 +20,7 @@ export interface CompanyContract {
   invoice_number: string;
   wallet: string;
   recurrent: boolean;
-  status: CompanyContractStatus;
+  status: ContractStatus;
   payment_amount: string;
   currency_code: CryptoCurrencyCode;
   due_date: string | null;
@@ -29,7 +28,7 @@ export interface CompanyContract {
   updated_at: string;
 }
 
-export interface CompanyContractData {
+export interface ContractData {
   company_contract: {
     name: string;
     identification_number: string;

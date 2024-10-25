@@ -13,12 +13,13 @@ export interface ElementTableItem {
   [key: string]: any;
 }
 
-interface Props {
-  columns: C[];
-  items: T[];
-}
-
-const props = withDefaults(defineProps<Props>(), {});
+const props = withDefaults(
+  defineProps<{
+    columns: C[];
+    items: T[];
+  }>(),
+  {},
+);
 </script>
 
 <template>

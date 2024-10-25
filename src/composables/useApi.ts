@@ -29,24 +29,12 @@ export const useApi = (): Api => {
         list: () => axios('/v1/currencies', { method: 'get' }),
         rates: (params) => axios('/v1/currencies/rates', { method: 'get', params }),
       },
-      companies: {
-        list: () => axios('/v1/companies', { method: 'get' }),
-        create: (data) => axios('/v1/companies', { method: 'post', data }),
-        one: (id) => axios(`/v1/companies/${id}`, { method: 'get' }),
-        update: (id, data) => axios(`/v1/companies/${id}`, { method: 'put', data }),
-        delete: (id) => axios(`/v1/companies/${id}`, { method: 'delete' }),
-        contracts: (id) => axios(`/v1/companies/${id}/contracts`, { method: 'get' }),
-        create_contract: (id, data) =>
-          axios(`/v1/companies/${id}/contracts`, { method: 'post', data }),
-      },
-      company_contracts: {
-        one: (company_id, contract_id) =>
-          axios(`/v1/companies/${company_id}/contracts/${contract_id}`, { method: 'get' }),
-        create_request_network_contract: (company_id, company_contract_id) =>
-          axios(
-            `/v1/companies/${company_id}/contracts/${company_contract_id}/request-network-contract`,
-            { method: 'post' },
-          ),
+      contracts: {
+        list: () => axios('/v1/contracts', { method: 'get' }),
+        one: (id) => axios(`/v1/contracts/${id}`, { method: 'get' }),
+        create: (data) => axios('/v1/contracts', { method: 'post', data }),
+        create_request_network_contract: (contract_id) =>
+          axios(`/v1/contracts/${contract_id}/request-network-contract`, { method: 'post' }),
         pay_request_network_contract: (id) =>
           axios(`/v1/request-network-contracts/${id}/pay`, { method: 'post' }),
       },

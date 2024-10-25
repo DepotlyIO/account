@@ -22,8 +22,8 @@ const menuItems = computed(() =>
         icon: 'home',
       },
       {
-        name: 'companies',
-        icon: 'domain',
+        name: 'contracts',
+        icon: 'file-document-multiple',
       },
       {
         name: 'wallets',

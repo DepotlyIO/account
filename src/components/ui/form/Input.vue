@@ -2,28 +2,29 @@
 import { computed, useId, useCssModule } from 'vue';
 import UiText from '@/components/ui/Text.vue';
 
-interface Props {
-  name: string;
-  label?: string;
-  placeholder?: string;
-  hint?: string;
-  type?: 'text' | 'email' | 'password' | 'number';
-  autocomplete?: 'off' | 'email' | 'current-password' | 'new-password' | 'name';
-  required?: boolean;
-  disabled?: boolean;
-  readonly?: boolean;
-  step?: string | number;
-  error?: string | string[];
-  tabindex?: number | string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  autocomplete: 'off',
-  required: false,
-  disabled: false,
-  readonly: false,
-});
+const props = withDefaults(
+  defineProps<{
+    name: string;
+    label?: string;
+    placeholder?: string;
+    hint?: string;
+    type?: 'text' | 'email' | 'password' | 'number';
+    autocomplete?: 'off' | 'email' | 'current-password' | 'new-password' | 'name';
+    required?: boolean;
+    disabled?: boolean;
+    readonly?: boolean;
+    step?: string | number;
+    error?: string | string[];
+    tabindex?: number | string;
+  }>(),
+  {
+    type: 'text',
+    autocomplete: 'off',
+    required: false,
+    disabled: false,
+    readonly: false,
+  },
+);
 
 const emit = defineEmits<{
   focus: [value: void];
