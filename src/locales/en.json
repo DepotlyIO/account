@@ -39,6 +39,7 @@
     "company": "Company",
     "individual": "Individual",
     "no": "No",
+    "balance": "Balance",
     "day_of_week": {
       "1": {
         "text": "Monday",
@@ -139,7 +140,8 @@
     "wallets": {
       "meta": {
         "title": "Wallets"
-      }
+      },
+      "title": "Wallets"
     },
     "account": {
       "edit": {
