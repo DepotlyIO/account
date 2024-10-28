@@ -19,7 +19,11 @@ const computedValue = computed(() => props.value ?? '-');
     </UiText>
 
     <UiText>
-      {{ computedValue }}
+      <slot v-if="$slots.value" name="value" />
+
+      <template v-else>
+        {{ computedValue }}
+      </template>
     </UiText>
   </div>
 </template>

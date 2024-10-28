@@ -23,6 +23,7 @@ export interface Contract {
   country: string;
   city: string;
   address: string;
+  region: string;
   zip: string;
   invoice_number: string;
   wallet: string;
@@ -41,6 +42,7 @@ export interface ContractData {
     name: string;
     identification_number: string;
     country: string;
+    region: string;
     city: string;
     address: string;
     zip: string;

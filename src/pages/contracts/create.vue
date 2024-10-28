@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
@@ -14,6 +15,7 @@ import UiFormCheckbox from '@/components/ui/form/Checkbox.vue';
 import UiButton from '@/components/ui/Button.vue';
 import type { ContractData } from '@/types/models/contract';
 
+const router = useRouter();
 const { t } = useI18n();
 const api = useApi();
 const datasetsStore = useDatasetsStore();
@@ -23,6 +25,7 @@ const contract = ref<ContractData['contract']>({
   name: '',
   identification_number: '',
   country: '',
+  region: '',
   city: '',
   address: '',
   zip: '',
@@ -105,7 +108,7 @@ const createContract = async () => {
   loading.value = true;
   try {
     const { data } = await api.contracts.create({ contract: contract.value });
-    console.log(data);
+    await router.push({ name: 'contracts-id', params: { id: data.id } });
   } catch (e) {
     console.error(e);
 
@@ -162,12 +165,32 @@ useHead(() => ({
             />
 
             <UiFormInput
+              v-model="contract.region"
+              :label="$t('pages.contracts.create.form.region.label')"
+              :placeholder="$t('pages.contracts.create.form.region.placeholder')"
+              :disabled="loading"
+              :error="errors?.region"
+              name="region"
+            />
+
+            <UiFormInput
               v-model="contract.city"
               :label="$t('pages.contracts.create.form.city.label')"
               :placeholder="$t('pages.contracts.create.form.city.placeholder')"
               :disabled="loading"
               :error="errors?.city"
               name="city"
+            />
+          </div>
+
+          <div :class="$style['page-contracts-create__row__2']">
+            <UiFormInput
+              v-model="contract.address"
+              :label="$t('pages.contracts.create.form.address.label')"
+              :placeholder="$t('pages.contracts.create.form.address.placeholder')"
+              :disabled="loading"
+              :error="errors?.address"
+              name="address"
             />
 
             <UiFormInput
@@ -179,15 +202,6 @@ useHead(() => ({
               name="zip"
             />
           </div>
-
-          <UiFormInput
-            v-model="contract.address"
-            :label="$t('pages.contracts.create.form.address.label')"
-            :placeholder="$t('pages.contracts.create.form.address.placeholder')"
-            :disabled="loading"
-            :error="errors?.address"
-            name="address"
-          />
         </div>
       </UiCard>
 

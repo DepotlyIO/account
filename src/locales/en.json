@@ -38,6 +38,7 @@
     "profile": "Profile",
     "company": "Company",
     "individual": "Individual",
+    "no": "No",
     "day_of_week": {
       "1": {
         "text": "Monday",
@@ -222,6 +223,22 @@
         },
         "title": "Contracts"
       },
+      "id": {
+        "index": {
+          "meta": {
+            "title": "Contract #{id}"
+          },
+          "title": "Contract #{id}",
+          "payee_info": "Payee info",
+          "payee_requisites": "Payee requisites",
+          "payment_amount": "Payment amount",
+          "payment_settings": "Payment settings",
+          "recurrence": "Recurrence",
+          "every_n": "Every {name}",
+          "every_n_day_of_month": "Every {day} day of month",
+          "invoice_reference_number": "Invoice/Reference number"
+        }
+      },
       "create": {
         "meta": {
           "title": "Create new contract"
@@ -242,6 +259,10 @@
           "country": {
             "label": "Country",
             "placeholder": "Country"
+          },
+          "region": {
+            "label": "Region",
+            "placeholder": "Region"
           },
           "city": {
             "label": "City",
