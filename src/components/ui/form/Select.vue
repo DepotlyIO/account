@@ -3,8 +3,8 @@ import { computed, useId, useCssModule } from 'vue';
 import UiText from '@/components/ui/Text.vue';
 
 export interface UiFormSelectOption {
-  text: string;
-  value: string;
+  text: string | number;
+  value: string | number;
 }
 
 const props = withDefaults(

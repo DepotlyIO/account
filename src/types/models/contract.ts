@@ -7,6 +7,13 @@ export enum ContractStatus {
   REVOKED = 'revoked',
 }
 
+export enum RecurrenceType {
+  NON_RECURRENT = 'non_recurrent',
+  DAILY = 'daily',
+  WEEKLY = 'weekly',
+  MONTHLY = 'monthly',
+}
+
 export interface Contract {
   id: number;
   request_network_contracts: RequestNetworkContract[];
@@ -19,11 +26,12 @@ export interface Contract {
   zip: string;
   invoice_number: string;
   wallet: string;
-  recurrent: boolean;
   status: ContractStatus;
   payment_amount: string;
   currency_code: CryptoCurrencyCode;
   due_date: string | null;
+  recurrence_type: RecurrenceType;
+  recurrence_day: number | null;
   created_at: string;
   updated_at: string;
 }
@@ -41,6 +49,7 @@ export interface ContractData {
     payment_amount: string;
     currency_code: string;
     due_date: string;
-    recurrent: boolean;
+    recurrence_type: RecurrenceType;
+    recurrence_day: number;
   };
 }

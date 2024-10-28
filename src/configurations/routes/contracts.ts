@@ -8,4 +8,13 @@ export default [
       requiresAuth: true,
     },
   },
+  {
+    path: '/contracts/create',
+    name: 'contracts-create',
+    component: () => import('@/pages/contracts/create.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true,
+    },
+  },
 ];

@@ -32,7 +32,7 @@ export interface Api {
     rates: (params: CurrencyRatesParams) => Promise<AxiosResponse<CurrencyRate[]>>;
   };
   contracts: {
-    list: (id: number | string) => Promise<AxiosResponse<Contract[]>>;
+    list: () => Promise<AxiosResponse<Contract[]>>;
     one: (id: number | string) => Promise<AxiosResponse<Contract>>;
     create: (data: ContractData) => Promise<AxiosResponse<Contract>>;
     create_request_network_contract: (

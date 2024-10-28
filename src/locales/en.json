@@ -31,7 +31,40 @@
     "invoice_number": "Invoice number",
     "payee": "Payee",
     "payer": "Payer",
-    "request_id": "Request ID"
+    "request_id": "Request ID",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "day_of_week": {
+      "1": {
+        "text": "Monday",
+        "value": "1"
+      },
+      "2": {
+        "text": "Tuesday",
+        "value": "2"
+      },
+      "3": {
+        "text": "Wednesday",
+        "value": "3"
+      },
+      "4": {
+        "text": "Thursday",
+        "value": "4"
+      },
+      "5": {
+        "text": "Friday",
+        "value": "5"
+      },
+      "6": {
+        "text": "Saturday",
+        "value": "6"
+      },
+      "7": {
+        "text": "Sunday",
+        "value": "7"
+      }
+    }
   },
   "actions": {
     "sign_in": "Sign in",
@@ -118,6 +151,85 @@
       },
       "authentications": {
         "title": "Authentications"
+      }
+    },
+    "contracts": {
+      "index": {
+        "meta": {
+          "title": "Contracts"
+        },
+        "title": "Contracts"
+      },
+      "create": {
+        "meta": {
+          "title": "Create new contract"
+        },
+        "title": "Create contract",
+        "payee_info": "Payee info",
+        "payee_requisites": "Payee requisites",
+        "payment_settings": "Payment settings",
+        "form": {
+          "name": {
+            "label": "Company/Individual name",
+            "placeholder": "Vector LTD"
+          },
+          "identification_number": {
+            "label": "Identification number",
+            "placeholder": "Identification number"
+          },
+          "country": {
+            "label": "Country",
+            "placeholder": "Country"
+          },
+          "city": {
+            "label": "City",
+            "placeholder": "Warsaw"
+          },
+          "address": {
+            "label": "Address",
+            "placeholder": "Main st., 54-185"
+          },
+          "zip": {
+            "label": "ZIP-code",
+            "placeholder": "101-01"
+          },
+          "invoice_number": {
+            "label": "Invoice Number",
+            "placeholder": "RC952385643"
+          },
+          "invoice_number_recurrent": {
+            "label": "Reference number",
+            "placeholder": "RC952385643"
+          },
+          "wallet": {
+            "label": "Wallet address",
+            "placeholder": "0x8gs45j..."
+          },
+          "payment_amount": {
+            "label": "Payment amount",
+            "placeholder": "750.00"
+          },
+          "currency_code": {
+            "label": "Currency",
+            "placeholder": "ETH"
+          },
+          "due_date": {
+            "label": "Due date"
+          },
+          "recurrent": {
+            "label": "Recurrent payment"
+          },
+          "recurrence_type": {
+            "label": "Recurrence type",
+            "placeholder": "Recurrence type"
+          },
+          "week_day": {
+            "label": "Week's day"
+          },
+          "month_day": {
+            "label": "Month's day"
+          }
+        }
       }
     }
   }

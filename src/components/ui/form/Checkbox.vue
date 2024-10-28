@@ -21,6 +21,8 @@ const computedId = computed(() => `${props.name}_${id}`);
 
 <template>
   <section :class="$style['ui-form-checkbox']">
+    <input v-model="model" :id="computedId" :disabled="props.disabled" type="checkbox" />
+
     <UiText
       variant="underline"
       :for="computedId"
@@ -29,8 +31,6 @@ const computedId = computed(() => `${props.name}_${id}`);
     >
       {{ props.label }}
     </UiText>
-
-    <input v-model="model" :id="computedId" :disabled="props.disabled" type="checkbox" />
   </section>
 </template>
 
