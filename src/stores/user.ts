@@ -81,6 +81,21 @@ export const useUserStore = defineStore('user', () => {
     }
   };
 
+  const loadUserProfile = async () => {
+    if (loading.value || !user.value) return;
+
+    try {
+      loading.value = true;
+      const { data } = await api.user.profile.load();
+      user.value.profile = data;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    } finally {
+      loading.value = false;
+    }
+  };
+
   return {
     loading,
     user,
@@ -90,5 +105,6 @@ export const useUserStore = defineStore('user', () => {
     signIn,
     signOut,
     getUserInfo,
+    loadUserProfile,
   };
 });

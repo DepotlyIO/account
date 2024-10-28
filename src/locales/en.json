@@ -35,6 +35,9 @@
     "daily": "Daily",
     "weekly": "Weekly",
     "monthly": "Monthly",
+    "profile": "Profile",
+    "company": "Company",
+    "individual": "Individual",
     "day_of_week": {
       "1": {
         "text": "Monday",
@@ -138,6 +141,52 @@
       }
     },
     "account": {
+      "edit": {
+        "profile": {
+          "meta": {
+            "title": "Edit profile"
+          },
+          "title": "Edit account profile",
+          "fields": {
+            "profile_type": {
+              "label": "Profile type",
+              "placeholder": "Profile type"
+            },
+            "name": {
+              "label": "Company/Individual name",
+              "placeholder": "Home Depot LLC"
+            },
+            "identification_number": {
+              "label": "Identification Number",
+              "placeholder": "Identification Number"
+            },
+            "email": {
+              "label": "Email",
+              "placeholder": "Email"
+            },
+            "country": {
+              "label": "Country",
+              "placeholder": "Country"
+            },
+            "city": {
+              "label": "City",
+              "placeholder": "City"
+            },
+            "region": {
+              "label": "Region",
+              "placeholder": "Region"
+            },
+            "zip": {
+              "label": "ZIP-code",
+              "placeholder": "101-00"
+            },
+            "address": {
+              "label": "Address",
+              "placeholder": "Address"
+            }
+          }
+        }
+      },
       "meta": {
         "title": "Account"
       },
@@ -147,6 +196,19 @@
           "current_email": "<b>Current email</b>: {email}",
           "description": "Your email address hasn't been confirmed yet. To get the most out of our services, please check your email and follow the instructions in the received letter. We've sent an email to the provided address.",
           "request_verification_letter": "Request verification letter"
+        }
+      },
+      "profile": {
+        "fields": {
+          "profile_type": "Profile type",
+          "name": "Name",
+          "identification_number": "Identification number",
+          "email": "Email",
+          "country": "Country",
+          "city": "City",
+          "region": "Region",
+          "zip": "ZIP-code",
+          "address": "Address"
         }
       },
       "authentications": {

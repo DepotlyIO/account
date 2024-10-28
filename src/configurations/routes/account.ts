@@ -8,4 +8,13 @@ export default [
       requiresAuth: true,
     },
   },
+  {
+    path: '/account/edit/profile',
+    name: 'account-edit-profile',
+    component: () => import('@/pages/account/edit/profile.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true,
+    },
+  },
 ];

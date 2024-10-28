@@ -5,6 +5,7 @@ import { useHead } from '@unhead/vue';
 import { useUserStore } from '@/stores/user';
 import { useScreenSize } from '@/composables/useScreenSize';
 import PageAccountEmail from '@/components/page/account/Email.vue';
+import PageAccountLegalData from '@/components/page/account/LegalData.vue';
 import PageAccountAuthentications from '@/components/page/account/Authentications.vue';
 import UiCard from '@/components/ui/Card.vue';
 import UiIcon from '@/components/ui/Icon.vue';
@@ -42,6 +43,8 @@ useHead(() => ({
     </UiCard>
 
     <PageAccountEmail />
+
+    <PageAccountLegalData />
 
     <PageAccountAuthentications />
 

@@ -24,6 +24,10 @@ export const useApi = (): Api => {
         verifyEmail: (data) => axios('/v1/user/email-verification', { method: 'post', data }),
         resendVerificationEmail: () =>
           axios('/v1/user/resend-email-verification', { method: 'post' }),
+        profile: {
+          load: () => axios('/v1/user/profile', { method: 'get' }),
+          update: (data) => axios('/v1/user/profile', { method: 'put', data }),
+        },
       },
       currencies: {
         list: () => axios('/v1/currencies', { method: 'get' }),

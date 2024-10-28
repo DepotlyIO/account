@@ -5,7 +5,13 @@ import type {
   AuthenticationRequest,
   AuthenticationResponse,
 } from '@/types/models/authentication';
-import type { EmailVerificationRequest, User, UserCreateRequest } from '@/types/models/user';
+import type {
+  EmailVerificationRequest,
+  Profile,
+  ProfileUpdateRequest,
+  User,
+  UserCreateRequest,
+} from '@/types/models/user';
 import type { Currency, CurrencyRate, CurrencyRatesParams } from '@/types/models/currency';
 import type { Contract, ContractData } from '@/types/models/contract';
 import type { RequestNetworkContract } from '@/types/models/request-network-contract';
@@ -26,6 +32,10 @@ export interface Api {
     create: (data: UserCreateRequest) => Promise<AxiosResponse<User>>;
     verifyEmail: (data: EmailVerificationRequest) => Promise<AxiosResponse<User>>;
     resendVerificationEmail: () => Promise<AxiosResponse<User>>;
+    profile: {
+      load: () => Promise<AxiosResponse<Profile>>;
+      update: (data: ProfileUpdateRequest) => Promise<AxiosResponse<Profile>>;
+    };
   };
   currencies: {
     list: () => Promise<AxiosResponse<Currency[]>>;
