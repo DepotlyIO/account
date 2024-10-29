@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppMenu from '@/components/app/Menu.vue';
 import AppUpdate from '@/components/app/Update.vue';
+import AppModal from '@/components/app/Modal.vue';
 </script>
 
 <template>
@@ -16,6 +17,8 @@ import AppUpdate from '@/components/app/Update.vue';
         </main>
       </div>
     </div>
+
+    <AppModal />
   </div>
 </template>
 

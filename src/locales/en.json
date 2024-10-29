@@ -84,7 +84,9 @@
     "update": "Update",
     "create": "Create",
     "create_contract": "Create contract",
-    "pay_contract": "Pay contract"
+    "pay_contract": "Pay contract",
+    "close": "Close",
+    "open_wallet": "Open Wallet"
   },
   "menu": {
     "index": "Home",
@@ -145,7 +147,8 @@
       "meta": {
         "title": "Wallets"
       },
-      "title": "Wallets"
+      "title": "Wallets",
+      "no_wallets": "You don’t have any open wallets yet"
     },
     "account": {
       "edit": {
@@ -319,6 +322,17 @@
             "label": "Month's day"
           }
         }
+      }
+    }
+  },
+  "modals": {
+    "create_wallet": {
+      "can_create": {
+        "title": "By clicking \"Create Wallet\" you confirm your agreement with the service usage policy.",
+        "action": "Create Wallet"
+      },
+      "cannot_create": {
+        "title": "Wallet was already created"
       }
     }
   }
