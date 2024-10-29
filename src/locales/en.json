@@ -40,6 +40,10 @@
     "individual": "Individual",
     "no": "No",
     "balance": "Balance",
+    "one_time_contract": "One-time contract",
+    "one_time_contracts": "One-time contracts",
+    "recurrent_contract": "Recurrent contract",
+    "recurrent_contracts": "Recurrent contracts",
     "day_of_week": {
       "1": {
         "text": "Monday",
