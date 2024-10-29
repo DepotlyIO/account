@@ -37,10 +37,10 @@ export const useApi = (): Api => {
         list: () => axios('/v1/contracts', { method: 'get' }),
         one: (id) => axios(`/v1/contracts/${id}`, { method: 'get' }),
         create: (data) => axios('/v1/contracts', { method: 'post', data }),
-        create_request_network_contract: (contract_id) =>
-          axios(`/v1/contracts/${contract_id}/request-network-contract`, { method: 'post' }),
-        pay_request_network_contract: (id) =>
-          axios(`/v1/request-network-contracts/${id}/pay`, { method: 'post' }),
+        activate: (id) => axios(`/v1/contracts/${id}/activate`, { method: 'post' }),
+      },
+      request_network_contracts: {
+        pay: (id) => axios(`/v1/request-network-contracts/${id}/pay`, { method: 'post' }),
       },
       wallets: {
         list: () => axios('/v1/wallets', { method: 'get' }),

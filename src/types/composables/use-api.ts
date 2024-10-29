@@ -45,12 +45,10 @@ export interface Api {
     list: () => Promise<AxiosResponse<Contract[]>>;
     one: (id: number | string) => Promise<AxiosResponse<Contract>>;
     create: (data: ContractData) => Promise<AxiosResponse<Contract>>;
-    create_request_network_contract: (
-      contract_id: number | string,
-    ) => Promise<AxiosResponse<RequestNetworkContract>>;
-    pay_request_network_contract: (
-      id: number | string,
-    ) => Promise<AxiosResponse<RequestNetworkContract>>;
+    activate: (id: number | string) => Promise<AxiosResponse<RequestNetworkContract>>;
+  };
+  request_network_contracts: {
+    pay: (id: number | string) => Promise<AxiosResponse<RequestNetworkContract>>;
   };
   wallets: {
     list: () => Promise<AxiosResponse<Wallet[]>>;
