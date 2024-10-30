@@ -6,9 +6,11 @@ import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
 import { useEtherscan } from '@/composables/useEtherscan';
 import UiText from '@/components/ui/Text.vue';
+import UiBadge from '@/components/ui/Badge.vue';
 import UiCard from '@/components/ui/Card.vue';
 import UiField from '@/components/ui/Field.vue';
-import { type Contract, RecurrenceType } from '@/types/models/contract';
+import type { Color } from '@/types/assets/colors';
+import { type Contract, ContractStatus, RecurrenceType } from '@/types/models/contract';
 
 const route = useRoute();
 const { t } = useI18n();
@@ -21,6 +23,16 @@ const contract = ref<Contract>();
 const routeContractId = computed(() => {
   const id = +route.params.id;
   return Number.isSafeInteger(id) ? id : undefined;
+});
+const badgeColor = computed<Color>(() => {
+  switch (contract.value?.status) {
+    case ContractStatus.ACTIVE:
+      return 'color-green';
+    case ContractStatus.REVOKED:
+      return 'color-red';
+    default:
+      return 'color-gray';
+  }
 });
 const walletUrl = computed(() => contract.value?.wallet && createAddressUrl(contract.value.wallet));
 const paymentAmount = computed(
@@ -80,9 +92,15 @@ useHead(() => ({
 
 <template>
   <div :class="$style['page-contracts-id']">
-    <UiText variant="h1">
-      {{ $t('pages.contracts.id.index.title', { id: contract?.id }) }}
-    </UiText>
+    <div :class="$style['page-contracts-id__header']">
+      <UiText variant="h1">
+        {{ $t('pages.contracts.id.index.title', { id: contract?.id }) }}
+      </UiText>
+
+      <UiText variant="h4">
+        <UiBadge :color="badgeColor">{{ contract?.status }}</UiBadge>
+      </UiText>
+    </div>
 
     <UiCard :title="$t('pages.contracts.id.index.payee_info')">
       <div :class="$style['page-contracts-id__card']">
@@ -160,6 +178,12 @@ useHead(() => ({
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
   &__card {
     display: flex;
