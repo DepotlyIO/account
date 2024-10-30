@@ -20,6 +20,7 @@ import type { Blockchain, Wallet, WalletCreateData } from '@/types/models/wallet
 export interface Api {
   datasets: {
     countries: () => Promise<AxiosResponse<string[]>>;
+    requestNetworkCurrencies: () => Promise<AxiosResponse<any>>;
   };
   authentication: {
     list: () => Promise<AxiosResponse<Authentication[]>>;

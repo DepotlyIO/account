@@ -11,6 +11,8 @@ export const useApi = (): Api => {
     api = {
       datasets: {
         countries: () => axios('/v1/datasets/countries', { method: 'get' }),
+        requestNetworkCurrencies: () =>
+          axios('/v1/datasets/request-network-currencies', { method: 'get' }),
       },
       authentication: {
         list: () => axios('/v1/authentications', { method: 'get' }),

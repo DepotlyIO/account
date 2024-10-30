@@ -9,6 +9,7 @@ export const useCurrenciesStore = defineStore('currencies', () => {
   const userStore = useUserStore();
 
   const currencies = ref<Currency[]>();
+  const request_network_currencies = ref();
   const rates = ref<CurrencyRate[]>();
 
   const defaultFiatCurrency = computed(() => userStore.user?.currency_code || 'USD');
@@ -17,6 +18,15 @@ export const useCurrenciesStore = defineStore('currencies', () => {
     try {
       const { data } = await api.currencies.list();
       currencies.value = data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const loadRequestNetworkCurrencies = async () => {
+    try {
+      const { data } = await api.datasets.requestNetworkCurrencies();
+      request_network_currencies.value = data;
     } catch (e) {
       console.error(e);
     }
@@ -33,9 +43,11 @@ export const useCurrenciesStore = defineStore('currencies', () => {
 
   return {
     currencies,
+    request_network_currencies,
     rates,
     defaultFiatCurrency,
     loadCurrencies,
+    loadRequestNetworkCurrencies,
     loadCurrenciesRates,
   };
 });
