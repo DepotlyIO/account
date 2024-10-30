@@ -12,7 +12,12 @@ import type {
   User,
   UserCreateRequest,
 } from '@/types/models/user';
-import type { Currency, CurrencyRate, CurrencyRatesParams } from '@/types/models/currency';
+import type {
+  Currency,
+  CurrencyRate,
+  CurrencyRatesParams,
+  RequestNetworkCurrency,
+} from '@/types/models/currency';
 import type { Contract, ContractData } from '@/types/models/contract';
 import type { RequestNetworkContract } from '@/types/models/request-network-contract';
 import type { Blockchain, Wallet, WalletCreateData } from '@/types/models/wallet';
@@ -20,7 +25,7 @@ import type { Blockchain, Wallet, WalletCreateData } from '@/types/models/wallet
 export interface Api {
   datasets: {
     countries: () => Promise<AxiosResponse<string[]>>;
-    requestNetworkCurrencies: () => Promise<AxiosResponse<any>>;
+    requestNetworkCurrencies: () => Promise<AxiosResponse<RequestNetworkCurrency[]>>;
   };
   authentication: {
     list: () => Promise<AxiosResponse<Authentication[]>>;

@@ -20,3 +20,14 @@ export interface CurrencyRate {
 export interface CurrencyRatesParams {
   currency_code: FiatCurrencyCode;
 }
+
+export interface RequestNetworkCurrency {
+  name: string;
+  value: string;
+  type: 'cryptocurrency' | 'token';
+  decimals: number;
+  params: {
+    type: 'ETH' | 'ERC20';
+    value: 'ETH' | string;
+  };
+}

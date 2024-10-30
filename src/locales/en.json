@@ -303,7 +303,7 @@
           },
           "currency_code": {
             "label": "Currency",
-            "placeholder": "ETH"
+            "placeholder": "Cryptocurrency"
           },
           "due_date": {
             "label": "Due date"

@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
 import { useDatasetsStore } from '@/stores/datasets';
+import { useCurrenciesStore } from '@/stores/currencies';
 import { RecurrenceType } from '@/types/models/contract';
 import UiText from '@/components/ui/Text.vue';
 import UiCard from '@/components/ui/Card.vue';
@@ -19,6 +20,7 @@ const router = useRouter();
 const { t } = useI18n();
 const api = useApi();
 const datasetsStore = useDatasetsStore();
+const currenciesStore = useCurrenciesStore();
 
 const loading = ref(false);
 const contract = ref<ContractData['contract']>({
@@ -61,6 +63,13 @@ const recurrenceTypeOptions = computed(() => [
     value: RecurrenceType.MONTHLY,
   },
 ]);
+
+const currencyOptions = computed(() =>
+  currenciesStore.request_network_currencies.map((currency) => ({
+    text: currency.name,
+    value: currency.value,
+  })),
+);
 
 const weekDayOptions = computed(() =>
   Array.from({ length: 7 }, (_, i) => {
@@ -118,6 +127,7 @@ const createContract = async () => {
 };
 
 datasetsStore.loadCountries();
+currenciesStore.loadRequestNetworkCurrencies();
 
 useHead(() => ({
   title: t('pages.contracts.create.meta.title'),
@@ -226,8 +236,9 @@ useHead(() => ({
               name="payment_amount"
             />
 
-            <UiFormInput
+            <UiFormSelect
               v-model="contract.currency_code"
+              :options="currencyOptions"
               :label="$t('pages.contracts.create.form.currency_code.label')"
               :placeholder="$t('pages.contracts.create.form.currency_code.placeholder')"
               :disabled="loading"

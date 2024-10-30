@@ -2,14 +2,14 @@ import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import { useApi } from '@/composables/useApi';
 import { useUserStore } from '@/stores/user';
-import type { Currency, CurrencyRate } from '@/types/models/currency';
+import type { Currency, CurrencyRate, RequestNetworkCurrency } from '@/types/models/currency';
 
 export const useCurrenciesStore = defineStore('currencies', () => {
   const api = useApi();
   const userStore = useUserStore();
 
   const currencies = ref<Currency[]>();
-  const request_network_currencies = ref();
+  const request_network_currencies = ref<RequestNetworkCurrency[]>([]);
   const rates = ref<CurrencyRate[]>();
 
   const defaultFiatCurrency = computed(() => userStore.user?.currency_code || 'USD');
