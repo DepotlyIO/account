@@ -5,17 +5,18 @@ import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 import { useApi } from '@/composables/useApi';
 import { useEtherscan } from '@/composables/useEtherscan';
+import { useWalletsStore } from '@/stores/wallets';
+import PageContractsIdPayment from '@/components/page/contracts/id/Payment.vue';
 import UiText from '@/components/ui/Text.vue';
-import UiBadge from '@/components/ui/Badge.vue';
 import UiCard from '@/components/ui/Card.vue';
 import UiField from '@/components/ui/Field.vue';
-import type { Color } from '@/types/assets/colors';
-import { type Contract, ContractStatus, RecurrenceType } from '@/types/models/contract';
+import { type Contract, RecurrenceType } from '@/types/models/contract';
 
 const route = useRoute();
 const { t } = useI18n();
 const api = useApi();
 const { createAddressUrl } = useEtherscan();
+const walletsStore = useWalletsStore();
 
 const loading = ref(false);
 const contract = ref<Contract>();
@@ -24,17 +25,14 @@ const routeContractId = computed(() => {
   const id = +route.params.id;
   return Number.isSafeInteger(id) ? id : undefined;
 });
-const badgeColor = computed<Color>(() => {
-  switch (contract.value?.status) {
-    case ContractStatus.ACTIVE:
-      return 'color-green';
-    case ContractStatus.REVOKED:
-      return 'color-red';
-    default:
-      return 'color-gray';
-  }
+const requestNetworkRequest = computed(() => {
+  const [request] = contract.value?.request_network_contracts.toSorted((a, b) => b.id - a.id) ?? [];
+
+  return request;
 });
-const walletUrl = computed(() => contract.value?.wallet && createAddressUrl(contract.value.wallet));
+const walletUrl = computed(
+  () => contract.value && createAddressUrl(contract.value.payee_wallet_address),
+);
 const paymentAmount = computed(
   () =>
     contract.value &&
@@ -71,12 +69,56 @@ const recurrence = computed(() => {
 const hasDueDate = computed(() => contract.value?.recurrence_type === RecurrenceType.NON_RECURRENT);
 
 const loadContract = async () => {
-  if (loading.value || !routeContractId.value) return;
+  if (!routeContractId.value || loading.value) return;
 
   loading.value = true;
   try {
     const { data } = await api.contracts.one(routeContractId.value);
     contract.value = data;
+  } catch (e) {
+    console.error(e);
+  }
+  loading.value = false;
+};
+
+// value: 'depotly' | 'web3'
+const choseWallet = async () => {
+  if (!contract.value || loading.value) return;
+
+  loading.value = true;
+  try {
+    const id = walletsStore.wallets[0].id;
+    const { data } = await api.contracts.assignWallet(contract.value.id, { wallet: { id } });
+    contract.value.contract_wallet_id = data.contract_wallet_id;
+  } catch (e) {
+    console.error(e);
+  }
+  loading.value = false;
+};
+
+const activateContract = async () => {
+  if (!contract.value || loading.value) return;
+
+  loading.value = true;
+  try {
+    const { data } = await api.contracts.activate(contract.value.id);
+    contract.value = data;
+  } catch (e) {
+    console.error(e);
+  }
+  loading.value = false;
+};
+
+const payRequestNetworkRequest = async () => {
+  if (!contract.value || loading.value) return;
+
+  loading.value = true;
+  try {
+    const { data } = await api.request_network_contracts.pay(requestNetworkRequest.value.id);
+    const requestIndex = contract.value.request_network_contracts.findIndex(
+      (contract) => contract.id === data.id,
+    );
+    if (requestIndex >= 0) contract.value.request_network_contracts.splice(requestIndex, 1, data);
   } catch (e) {
     console.error(e);
   }
@@ -92,15 +134,52 @@ useHead(() => ({
 
 <template>
   <div :class="$style['page-contracts-id']">
-    <div :class="$style['page-contracts-id__header']">
-      <UiText variant="h1">
-        {{ $t('pages.contracts.id.index.title', { id: contract?.id }) }}
-      </UiText>
+    <UiText variant="h1">
+      {{ $t('pages.contracts.id.index.title', { id: contract?.id }) }}
+    </UiText>
 
-      <UiText variant="h4">
-        <UiBadge :color="badgeColor">{{ contract?.status }}</UiBadge>
-      </UiText>
-    </div>
+    <PageContractsIdPayment
+      v-if="contract"
+      :contract
+      :request-network-request
+      :loading
+      @choose-wallet="choseWallet"
+      @activate="activateContract"
+      @pay="payRequestNetworkRequest"
+    />
+
+    <UiCard :title="$t('pages.contracts.id.index.payee_requisites')">
+      <div :class="$style['page-contracts-id__card']">
+        <UiField :title="$t('pages.contracts.create.form.payee_wallet_address.label')">
+          <template #value>
+            <a :href="walletUrl" target="_blank" :class="$style['page-contracts-id__wallet']">
+              {{ contract?.payee_wallet_address }}
+            </a>
+          </template>
+        </UiField>
+
+        <UiField :title="$t('pages.contracts.id.index.payment_amount')" :value="paymentAmount" />
+      </div>
+    </UiCard>
+
+    <UiCard :title="$t('pages.contracts.id.index.payment_settings')">
+      <div :class="$style['page-contracts-id__card']">
+        <div :class="$style['page-contracts-id__row--2']">
+          <UiField :title="$t('pages.contracts.id.index.recurrence')" :value="recurrence" />
+
+          <UiField
+            v-if="hasDueDate"
+            :title="$t('pages.contracts.create.form.due_date.label')"
+            :value="contract?.due_date"
+          />
+        </div>
+
+        <UiField
+          :title="$t('pages.contracts.id.index.invoice_reference_number')"
+          :value="contract?.invoice_number"
+        />
+      </div>
+    </UiCard>
 
     <UiCard :title="$t('pages.contracts.id.index.payee_info')">
       <div :class="$style['page-contracts-id__card']">
@@ -137,39 +216,6 @@ useHead(() => ({
         </div>
       </div>
     </UiCard>
-
-    <UiCard :title="$t('pages.contracts.id.index.payee_requisites')">
-      <div :class="$style['page-contracts-id__card']">
-        <UiField :title="$t('pages.contracts.create.form.wallet.label')">
-          <template #value>
-            <a :href="walletUrl" target="_blank" :class="$style['page-contracts-id__wallet']">
-              {{ contract?.wallet }}
-            </a>
-          </template>
-        </UiField>
-
-        <UiField :title="$t('pages.contracts.id.index.payment_amount')" :value="paymentAmount" />
-      </div>
-    </UiCard>
-
-    <UiCard :title="$t('pages.contracts.id.index.payment_settings')">
-      <div :class="$style['page-contracts-id__card']">
-        <div :class="$style['page-contracts-id__row--2']">
-          <UiField :title="$t('pages.contracts.id.index.recurrence')" :value="recurrence" />
-
-          <UiField
-            v-if="hasDueDate"
-            :title="$t('pages.contracts.create.form.due_date.label')"
-            :value="contract?.due_date"
-          />
-        </div>
-
-        <UiField
-          :title="$t('pages.contracts.id.index.invoice_reference_number')"
-          :value="contract?.invoice_number"
-        />
-      </div>
-    </UiCard>
   </div>
 </template>
 
@@ -179,13 +225,8 @@ useHead(() => ({
   flex-direction: column;
   gap: 1rem;
 
-  &__header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  &__card {
+  &__card,
+  &__payment {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

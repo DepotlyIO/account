@@ -18,7 +18,12 @@ import type {
   CurrencyRatesParams,
   RequestNetworkCurrency,
 } from '@/types/models/currency';
-import type { Contract, ContractData } from '@/types/models/contract';
+import type {
+  AssignWalletData,
+  AssignWalletResponse,
+  Contract,
+  ContractData,
+} from '@/types/models/contract';
 import type { RequestNetworkContract } from '@/types/models/request-network-contract';
 import type { Blockchain, Wallet, WalletCreateData } from '@/types/models/wallet';
 
@@ -51,7 +56,11 @@ export interface Api {
     list: () => Promise<AxiosResponse<Contract[]>>;
     one: (id: number | string) => Promise<AxiosResponse<Contract>>;
     create: (data: ContractData) => Promise<AxiosResponse<Contract>>;
-    activate: (id: number | string) => Promise<AxiosResponse<RequestNetworkContract>>;
+    assignWallet: (
+      id: number | string,
+      data: AssignWalletData,
+    ) => Promise<AxiosResponse<AssignWalletResponse>>;
+    activate: (id: number | string) => Promise<AxiosResponse<Contract>>;
   };
   request_network_contracts: {
     pay: (id: number | string) => Promise<AxiosResponse<RequestNetworkContract>>;

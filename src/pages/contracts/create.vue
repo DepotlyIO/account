@@ -32,7 +32,7 @@ const contract = ref<ContractData['contract']>({
   address: '',
   zip: '',
   invoice_number: '',
-  wallet: '',
+  payee_wallet_address: '',
   payment_amount: '',
   currency_code: '',
   due_date: '',
@@ -218,12 +218,12 @@ useHead(() => ({
       <UiCard :title="$t('pages.contracts.create.payee_requisites')">
         <div :class="$style['page-contracts-create__card']">
           <UiFormInput
-            v-model="contract.wallet"
-            :label="$t('pages.contracts.create.form.wallet.label')"
-            :placeholder="$t('pages.contracts.create.form.wallet.placeholder')"
+            v-model="contract.payee_wallet_address"
+            :label="$t('pages.contracts.create.form.payee_wallet_address.label')"
+            :placeholder="$t('pages.contracts.create.form.payee_wallet_address.placeholder')"
             :disabled="loading"
-            :error="errors?.wallet"
-            name="wallet"
+            :error="errors?.payee_wallet_address"
+            name="payee_wallet_address"
           />
 
           <div :class="$style['page-contracts-create__row__2']">

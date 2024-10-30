@@ -39,6 +39,7 @@ export const useApi = (): Api => {
         list: () => axios('/v1/contracts', { method: 'get' }),
         one: (id) => axios(`/v1/contracts/${id}`, { method: 'get' }),
         create: (data) => axios('/v1/contracts', { method: 'post', data }),
+        assignWallet: (id, data) => axios(`/v1/contracts/${id}/wallet`, { method: 'post', data }),
         activate: (id) => axios(`/v1/contracts/${id}/activate`, { method: 'post' }),
       },
       request_network_contracts: {

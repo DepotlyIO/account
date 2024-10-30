@@ -1,9 +1,9 @@
 export enum RequestNetworkContractStatus {
-  UNKNOWN = 'unknown',
   CREATING = 'creating',
   CREATED = 'created',
-  APPROVED = 'approved',
-  WAIT_CONFIRMATION = 'wait_confirmation',
+  READY_TO_PAY = 'ready_to_pay',
+  TRANSACTION_CREATION = 'transaction_creation',
+  TRANSACTION_CONFIRMATION = 'transaction_confirmation',
   PAYED_PARTIALLY = 'payed_partially',
   PAYED = 'payed',
   REJECTED = 'rejected',

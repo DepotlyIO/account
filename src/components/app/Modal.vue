@@ -12,6 +12,8 @@ const component = computed(() => {
   switch (modalStore.modal_name) {
     case ModalName.CREATE_WALLET:
       return defineAsyncComponent(() => import('@/components/modal/CreateWallet.vue'));
+    case ModalName.WALLET_REQUIRED:
+      return defineAsyncComponent(() => import('@/components/modal/WalletRequired.vue'));
     default:
       return undefined;
   }
@@ -31,11 +33,9 @@ watch(
     if (!dialog.value) return;
 
     if (newValue) {
-      console.log('open');
       dialog.value.showModal();
       dialog.value.addEventListener('mousedown', handleClickEvent);
     } else {
-      console.log('close');
       dialog.value.close();
       dialog.value.removeEventListener('mousedown', handleClickEvent);
     }

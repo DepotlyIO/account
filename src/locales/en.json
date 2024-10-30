@@ -32,6 +32,7 @@
     "payee": "Payee",
     "payer": "Payer",
     "request_id": "Request ID",
+    "request_status": "Request status",
     "daily": "Daily",
     "weekly": "Weekly",
     "monthly": "Monthly",
@@ -44,6 +45,11 @@
     "one_time_contracts": "One-time contracts",
     "recurrent_contract": "Recurrent contract",
     "recurrent_contracts": "Recurrent contracts",
+    "payment": "Payment",
+    "depotly_wallet": "Depotly wallet",
+    "web3_wallet": "WEB3 Wallet",
+    "soon": "Soon",
+    "payment_wallet": "Payment wallet",
     "day_of_week": {
       "1": {
         "text": "Monday",
@@ -73,6 +79,22 @@
         "text": "Sunday",
         "value": "7"
       }
+    },
+    "contract_status": {
+      "inactive": "Inactive",
+      "active": "Active",
+      "rejected": "Rejected"
+    },
+    "request_network_contract_status": {
+      "creating": "Creating",
+      "created": "Created",
+      "ready_to_pay": "Ready to pay",
+      "transaction_creation": "Transaction creation",
+      "transaction_confirmation": "Transaction confirmation",
+      "payed_partially": "Payed partially",
+      "payed": "Payed",
+      "rejected": "Rejected",
+      "not_enough_funds": "Not enough funds"
     }
   },
   "actions": {
@@ -86,7 +108,8 @@
     "create_contract": "Create contract",
     "pay_contract": "Pay contract",
     "close": "Close",
-    "open_wallet": "Open Wallet"
+    "open_wallet": "Open Wallet",
+    "activate_contract": "Activate contract"
   },
   "menu": {
     "index": "Home",
@@ -293,7 +316,7 @@
             "label": "Reference number",
             "placeholder": "RC952385643"
           },
-          "wallet": {
+          "payee_wallet_address": {
             "label": "Wallet address",
             "placeholder": "0x8gs45j..."
           },
@@ -334,6 +357,10 @@
       "cannot_create": {
         "title": "Wallet was already created"
       }
+    },
+    "wallet_required": {
+      "title": "You don't have opened Depotly wallets",
+      "action": "Go to wallets page"
     }
   }
 }
