@@ -5,6 +5,7 @@ import { useModalStore } from '@/stores/modal';
 import { useWalletsStore } from '@/stores/wallets';
 import { ModalName } from '@/types/stores/modal';
 import UiCard from '@/components/ui/Card.vue';
+import UiIcon from '@/components/ui/Icon.vue';
 import UiField from '@/components/ui/Field.vue';
 import UiBadge from '@/components/ui/Badge.vue';
 import UiText from '@/components/ui/Text.vue';
@@ -20,6 +21,7 @@ interface Props {
   contract: Contract;
   requestNetworkRequest: RequestNetworkContract;
   loading: boolean;
+  observing: boolean;
 }
 
 const props = defineProps<Props>();
@@ -74,7 +76,17 @@ walletsStore.loadWallets();
 <template>
   <UiCard :title="$t('labels.payment')">
     <template #header-end>
-      <UiBadge :color="badge.color">{{ badge.title }}</UiBadge>
+      <div :class="$style['page-contracts-id-payment__status']">
+        <UiIcon
+          v-if="props.observing"
+          name="loading"
+          color="color-gray"
+          size="1.3em"
+          :class="$style['page-contracts-id-payment__spinner']"
+        />
+
+        <UiBadge :color="badge.color">{{ badge.title }}</UiBadge>
+      </div>
     </template>
 
     <div :class="$style['page-contracts-id-payment__payment']">
@@ -129,6 +141,18 @@ walletsStore.loadWallets();
 
 <style module lang="scss">
 .page-contracts-id-payment {
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__spinner {
+    & :global {
+      animation: keyframes-spinner 0.5s linear infinite;
+    }
+  }
+
   &__payment,
   &__fields {
     display: flex;

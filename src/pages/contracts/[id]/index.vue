@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
@@ -11,6 +11,7 @@ import UiText from '@/components/ui/Text.vue';
 import UiCard from '@/components/ui/Card.vue';
 import UiField from '@/components/ui/Field.vue';
 import { type Contract, RecurrenceType } from '@/types/models/contract';
+import { RequestNetworkContractStatus } from '@/types/models/request-network-contract';
 
 const route = useRoute();
 const { t } = useI18n();
@@ -19,6 +20,7 @@ const { createAddressUrl } = useEtherscan();
 const walletsStore = useWalletsStore();
 
 const loading = ref(false);
+const interval = ref<number>();
 const contract = ref<Contract>();
 
 const routeContractId = computed(() => {
@@ -68,8 +70,8 @@ const recurrence = computed(() => {
 });
 const hasDueDate = computed(() => contract.value?.recurrence_type === RecurrenceType.NON_RECURRENT);
 
-const loadContract = async () => {
-  if (!routeContractId.value || loading.value) return;
+const loadContract = async (skipLoadingCheck = false) => {
+  if (!routeContractId.value || (loading.value && !skipLoadingCheck)) return;
 
   loading.value = true;
   try {
@@ -125,7 +127,34 @@ const payRequestNetworkRequest = async () => {
   loading.value = false;
 };
 
+const switchInterval = (enable: boolean) => {
+  if (enable) {
+    interval.value = setInterval(() => loadContract(true), 3000);
+  } else {
+    clearInterval(interval.value);
+  }
+};
+
 loadContract();
+
+watch(
+  () => contract.value,
+  () => {
+    if (!requestNetworkRequest.value) return;
+
+    const isObservableStatus = [
+      RequestNetworkContractStatus.CREATING,
+      RequestNetworkContractStatus.TRANSACTION_CREATION,
+      RequestNetworkContractStatus.TRANSACTION_CONFIRMATION,
+    ].includes(requestNetworkRequest.value.status);
+
+    if (isObservableStatus) {
+      if (!interval.value) switchInterval(true);
+    } else if (interval.value) {
+      switchInterval(false);
+    }
+  },
+);
 
 useHead(() => ({
   title: t('pages.contracts.id.index.meta.title', { id: contract.value?.id ?? '' }),
@@ -143,6 +172,7 @@ useHead(() => ({
       :contract
       :request-network-request
       :loading
+      :observing="!!interval"
       @choose-wallet="choseWallet"
       @activate="activateContract"
       @pay="payRequestNetworkRequest"
