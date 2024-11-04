@@ -112,6 +112,7 @@ useHead(() => ({
 
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
+    gap: 20px;
   }
 
   @media #{$media-query-tablet} {

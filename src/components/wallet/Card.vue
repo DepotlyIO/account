@@ -35,7 +35,9 @@ const balance = computed(() =>
 
     <div :class="$style['wallet-card__address']">
       <UiText variant="h6">{{ $t('labels.address') }}: </UiText>
-      <UiText>{{ props.walletCurrency.address }}</UiText>
+      <UiText :class="$style['wallet-card__address__address']">
+        {{ props.walletCurrency.address }}
+      </UiText>
     </div>
 
     <div :class="$style['wallet-card__balance']">
@@ -62,6 +64,12 @@ const balance = computed(() =>
 
   &__header {
     margin-block-end: 0.5rem;
+  }
+
+  &__address {
+    &_address {
+      word-break: break-all;
+    }
   }
 }
 </style>
