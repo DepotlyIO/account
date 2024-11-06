@@ -1,3 +1,6 @@
+@use 'sass:list';
+@use 'sass:color';
+
 $colors: (
   'inherit': inherit,
   'transparent': transparent,
@@ -29,22 +32,22 @@ $colors-reversed-variants: 'black';
 :root {
   @each $name, $color in $colors {
     --color-#{$name}: #{$color};
-    @if not index($colors-without-variants, $name) {
+    @if not list.index($colors-without-variants, $name) {
       /* Darken variants */
-      @if index($colors-equal-variants, $name) {
+      @if list.index($colors-equal-variants, $name) {
         --color-#{$name}-hover: #{$color};
         --color-#{$name}-active: #{$color};
-      } @else if index($colors-reversed-variants, $name) {
-        --color-#{$name}-hover: #{mix(white, $color, 15%)};
-        --color-#{$name}-active: #{mix(white, $color, 30%)};
+      } @else if list.index($colors-reversed-variants, $name) {
+        --color-#{$name}-hover: #{color.mix(white, $color, 15%)};
+        --color-#{$name}-active: #{color.mix(white, $color, 30%)};
       } @else {
-        --color-#{$name}-hover: #{mix(black, $color, 15%)};
-        --color-#{$name}-active: #{mix(black, $color, 30%)};
+        --color-#{$name}-hover: #{color.mix(black, $color, 15%)};
+        --color-#{$name}-active: #{color.mix(black, $color, 30%)};
       }
 
       /* Lighter variants */
-      --color-#{$name}-light: #{mix(white, $color, 85%)};
-      --color-#{$name}-light-active: #{mix(white, $color, 70%)};
+      --color-#{$name}-light: #{color.mix(white, $color, 85%)};
+      --color-#{$name}-light-active: #{color.mix(white, $color, 70%)};
     }
   }
 }

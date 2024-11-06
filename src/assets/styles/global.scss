@@ -1,8 +1,8 @@
-@import '_variables/colors';
-@import '_variables/durations';
-@import '_variables/media-queries';
+@forward '_variables/colors';
+@forward '_variables/durations';
+@forward '_variables/media-queries';
 
-@import '_mixins/children-margin';
-@import '_mixins/scroll';
+@forward '_mixins/children-margin';
+@forward '_mixins/scroll';
 
-@import '_variables/app';
+@forward '_variables/app';
